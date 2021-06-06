@@ -49,7 +49,7 @@ function BrandsStack() {
 function OrdersTradesStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={OrdersTradesScreen} />
+      <Stack.Screen name="OrdersTrades" component={OrdersTradesScreen} />
     </Stack.Navigator>
   );
 }
