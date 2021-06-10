@@ -1,11 +1,25 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  FlatList,
+} from 'react-native';
+import Banner from '../assets/new-banner.png';
+import {FullWidthCarousel} from '../components/Carousels';
 
 export default function HomeScreen() {
+  const banner = [{source: Banner}, {source: Banner}];
+
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-    </View>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <ScrollView>
+        <FullWidthCarousel data={banner} />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({});
