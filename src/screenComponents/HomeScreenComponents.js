@@ -1,6 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {PriceTrendCarousel} from '../components/Carousels';
+import {Jost600} from '../components/StyledText';
+import colors from '../constants/colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export const Watches = () => {
   const data = [
@@ -35,6 +38,31 @@ export const Watches = () => {
   return (
     <View>
       <PriceTrendCarousel title="My Watchlist" data={data} />
+      <PriceTrendCarousel title="Popular Models" data={data} />
+      <Footer />
+    </View>
+  );
+};
+
+const Footer = () => {
+  return (
+    <View
+      style={{
+        height: 250,
+        paddingLeft: 28,
+        paddingRight: 48,
+        paddingTop: 18,
+        backgroundColor: colors.primary,
+      }}>
+      <Jost600 style={{fontSize: 36, color: 'white'}}>
+        Are you new to watch game?
+      </Jost600>
+      <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 20}}>
+        <Ionicons name="logo-instagram" size={27} color="white" />
+        <Jost600 style={{fontSize: 18, color: 'white', marginLeft: 10}}>
+          Follow us to step up your game
+        </Jost600>
+      </View>
     </View>
   );
 };

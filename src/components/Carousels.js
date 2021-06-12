@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import {width, height} from '../utils/tools';
-import {Jost200, Jost400, Jost600} from '../components/StyledText';
+import {Jost300, Jost400, Jost600} from '../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
 import GreenArrow from '../assets/arrow-up.svg';
@@ -47,6 +47,7 @@ export const FullWidthCarousel = ({data}) => {
       showsHorizontalScrollIndicator={false}
       data={data}
       renderItem={renderItem}
+      bounces={false}
       keyExtractor={(item, index) => index}
     />
   );
@@ -60,6 +61,11 @@ export const PriceTrendCarousel = ({title, data}) => {
     seeAllContainer,
     seeAllText,
     cardStyle,
+    smallText,
+    mediumText,
+    bigText,
+    imageStyle,
+    priceContainer,
   } = PriceTrendCarouselStyle;
   return (
     <View style={container}>
@@ -82,33 +88,16 @@ export const PriceTrendCarousel = ({title, data}) => {
         renderItem={({item, index}) => {
           const isFirst = index === 0;
           return (
-            <View style={cardStyle}>
+            <View style={{...cardStyle, marginLeft: isFirst ? 10 : 8}}>
               <View style={{zIndex: 1}}>
-                <Jost400 style={{fontSize: 9, textAlign: 'center'}}>
-                  "{item.significantEdition}"
-                </Jost400>
-                <Jost600 style={{fontSize: 12, textAlign: 'center'}}>
-                  {item.collection}
-                </Jost600>
-                <Jost400 style={{fontSize: 12, textAlign: 'center'}}>
-                  {item.reference}
-                </Jost400>
+                <Jost400 style={smallText}>"{item.significantEdition}"</Jost400>
+                <Jost600 style={mediumText}>{item.collection}</Jost600>
+                <Jost400 style={mediumText}>{item.reference}</Jost400>
               </View>
-              <Image
-                style={{width: 120, height: 120, position: 'absolute', top: 30}}
-                source={{uri: item.modelUrl}}></Image>
+              <Image style={imageStyle} source={{uri: item.modelUrl}}></Image>
               <View>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}>
-                  <Jost600
-                    style={{
-                      fontSize: 18,
-                      textAlign: 'center',
-                    }}>
+                <View style={priceContainer}>
+                  <Jost600 style={bigText}>
                     {new Intl.NumberFormat('id-ID', {
                       style: 'currency',
                       currency: item.currency,
@@ -129,9 +118,7 @@ export const PriceTrendCarousel = ({title, data}) => {
                     />
                   )}
                 </View>
-                <Jost200 style={{fontSize: 9, textAlign: 'center'}}>
-                  Market Price
-                </Jost200>
+                <Jost300 style={smallText}>Market Price</Jost300>
               </View>
             </View>
           );
@@ -159,11 +146,22 @@ const PriceTrendCarouselStyle = StyleSheet.create({
     shadowRadius: 4,
     shadowOffset: {height: 10, width: 0},
     padding: 6,
-
     width: 130,
     height: 180,
     backgroundColor: colors.almostWhite,
     justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  smallText: {fontSize: 9, textAlign: 'center'},
+  mediumText: {fontSize: 12, textAlign: 'center'},
+  bigText: {
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  imageStyle: {width: 120, height: 120, position: 'absolute', top: 30},
+  priceContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
   },
 });
