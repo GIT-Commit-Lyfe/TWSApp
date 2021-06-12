@@ -13,7 +13,7 @@ import {width, height} from '../utils/tools';
 import {Jost200, Jost400, Jost600} from '../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
-// import GreenUpArrow from '../assets/green-up-arrow.svg';
+import GreenArrow from '../assets/arrow-up.svg';
 
 export const FullWidthCarousel = ({data}) => {
   const renderItem = ({item, index}) => {
@@ -53,20 +53,20 @@ export const FullWidthCarousel = ({data}) => {
 };
 
 export const PriceTrendCarousel = ({title, data}) => {
+  const {
+    container,
+    titleContainer,
+    titleText,
+    seeAllContainer,
+    seeAllText,
+    cardStyle,
+  } = PriceTrendCarouselStyle;
   return (
-    <View>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingHorizontal: 10,
-        }}>
-        <Jost600 style={{fontSize: 24, color: colors.primary}}>{title}</Jost600>
-        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Jost400 style={{fontSize: 14, color: colors.primary}}>
-            See All
-          </Jost400>
+    <View style={container}>
+      <View style={titleContainer}>
+        <Jost600 style={titleText}>{title}</Jost600>
+        <TouchableOpacity style={seeAllContainer}>
+          <Jost400 style={seeAllText}>See All</Jost400>
           <MaterialIcons
             name="chevron-right"
             size={40}
@@ -76,34 +76,27 @@ export const PriceTrendCarousel = ({title, data}) => {
       <FlatList
         style={{paddingBottom: 30, paddingTop: 8}}
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={data}
         keyExtractor={(_, index) => index}
         renderItem={({item, index}) => {
-          console.log(index);
           const isFirst = index === 0;
           return (
-            <View
-              style={{
-                borderRadius: 10,
-                elevation: 5,
-                shadowOpacity: 0.25,
-                shadowRadius: 4,
-                shadowOffset: {height: 10, width: 0},
-                padding: 6,
-                marginLeft: isFirst ? 10 : 8,
-                width: 130,
-                height: 180,
-                backgroundColor: colors.almostWhite,
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}>
-              <View>
-                <Jost400 style={{fontSize: 9}}>
+            <View style={cardStyle}>
+              <View style={{zIndex: 1}}>
+                <Jost400 style={{fontSize: 9, textAlign: 'center'}}>
                   "{item.significantEdition}"
                 </Jost400>
-                <Jost600 style={{fontSize: 12}}>{item.collection}</Jost600>
-                <Jost400 style={{fontSize: 12}}>{item.reference}</Jost400>
+                <Jost600 style={{fontSize: 12, textAlign: 'center'}}>
+                  {item.collection}
+                </Jost600>
+                <Jost400 style={{fontSize: 12, textAlign: 'center'}}>
+                  {item.reference}
+                </Jost400>
               </View>
+              <Image
+                style={{width: 120, height: 120, position: 'absolute', top: 30}}
+                source={{uri: item.modelUrl}}></Image>
               <View>
                 <View
                   style={{
@@ -114,6 +107,7 @@ export const PriceTrendCarousel = ({title, data}) => {
                   <Jost600
                     style={{
                       fontSize: 18,
+                      textAlign: 'center',
                     }}>
                     {new Intl.NumberFormat('id-ID', {
                       style: 'currency',
@@ -121,9 +115,23 @@ export const PriceTrendCarousel = ({title, data}) => {
                       maximumFractionDigits: 0,
                     }).format(item.marketPrice)}
                   </Jost600>
+                  {item.raising ? (
+                    <GreenArrow
+                      style={{marginLeft: 2}}
+                      width={14}
+                      height={10}
+                    />
+                  ) : (
+                    <GreenArrow
+                      style={{marginLeft: 2}}
+                      width={14}
+                      height={10}
+                    />
+                  )}
                 </View>
-                {/* <GreenUpArrow /> */}
-                <Jost200 style={{fontSize: 9}}>Market Price</Jost200>
+                <Jost200 style={{fontSize: 9, textAlign: 'center'}}>
+                  Market Price
+                </Jost200>
               </View>
             </View>
           );
@@ -132,3 +140,30 @@ export const PriceTrendCarousel = ({title, data}) => {
     </View>
   );
 };
+
+const PriceTrendCarouselStyle = StyleSheet.create({
+  container: {},
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+  },
+  titleText: {fontSize: 24, color: colors.primary},
+  seeAllContainer: {flexDirection: 'row', alignItems: 'center'},
+  seeAllText: {fontSize: 14, color: colors.primary},
+  cardStyle: {
+    borderRadius: 10,
+    elevation: 5,
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    shadowOffset: {height: 10, width: 0},
+    padding: 6,
+
+    width: 130,
+    height: 180,
+    backgroundColor: colors.almostWhite,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+});

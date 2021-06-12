@@ -22,6 +22,15 @@ export const Watches = () => {
       raising: true,
       modelUrl: 'https://via.placeholder.com/120.png',
     },
+    {
+      reference: '5711A',
+      significantEdition: 'Olive Green',
+      collection: 'Nautilus',
+      marketPrice: 99850,
+      currency: 'EUR',
+      raising: true,
+      modelUrl: 'https://via.placeholder.com/120.png',
+    },
   ];
   return (
     <View>

@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   StyleSheet,
-  Image,
-  Text,
   View,
   SafeAreaView,
   ScrollView,
@@ -21,7 +19,7 @@ import {
 
 export default function HomeScreen() {
   const banner = [{source: Banner}, {source: Banner}, {source: Banner}];
-  
+
   const tabbedPages = [
     {title: 'Watches', component: <Watches />},
     {title: 'Boutiques', component: <Boutiques />},
