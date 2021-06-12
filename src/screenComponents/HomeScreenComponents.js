@@ -11,7 +11,7 @@ export const Watches = () => {
       marketPrice: 13350,
       currency: 'EUR',
       raising: true,
-      modelUrl: 'https://dummy.com/dummy.jpeg',
+      modelUrl: 'https://via.placeholder.com/120.png',
     },
     {
       reference: '5711A',
@@ -20,12 +20,12 @@ export const Watches = () => {
       marketPrice: 99850,
       currency: 'EUR',
       raising: true,
-      modelUrl: 'https://dummy.com/dummy1.jpeg',
+      modelUrl: 'https://via.placeholder.com/120.png',
     },
   ];
   return (
-    <View style={{paddingHorizontal: 10}}>
-      <PriceTrendCarousel title="My Watchlist" />
+    <View>
+      <PriceTrendCarousel title="My Watchlist" data={data} />
     </View>
   );
 };

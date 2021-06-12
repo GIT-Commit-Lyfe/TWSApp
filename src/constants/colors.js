@@ -5,4 +5,6 @@ export default {
   grey83: '#838387',
   grey62: '#626262',
   primary: '#18110C',
+  almostWhite: '#FBFBFB',
+  green: '#296142',
 };
