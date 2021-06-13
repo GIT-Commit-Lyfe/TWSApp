@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 const BoutiqueStyles = StyleSheet.create({
   container: {
-    color: '#fff',
+    backgroundColor: '#fff',
     paddingHorizontal: 20,
   },
   boutiqueContainer: {

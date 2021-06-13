@@ -1,15 +1,42 @@
 import {StyleSheet} from 'react-native';
-import colors from '../../../constants/colors';
 
 const WatchListingStyles = StyleSheet.create({
   container: {
-    color: '#fff',
-    paddingVertical: 20,
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
   },
-  boutiqueContainer: {
+  filterContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingVertical: 25,
+    justifyContent: 'space-between',
+  },
+  filterItemContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  filterItem: {
+    backgroundColor: '#fafafa',
+    borderRadius: 10,
+    borderWidth: 1,
+    paddingHorizontal: 7,
+    paddingVertical: 3,
+    marginRight: 5,
+    borderColor: '#E7E8E8',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    marginBottom: 5,
+  },
+  filterItemTextClose: {
+    marginLeft: 10,
+    fontSize: 13,
+  },
+  filterItemText: {
+    fontSize: 10,
+  },
+  filterText: {
+    fontWeight: '600',
+    fontSize: 24,
   },
   textContainer: {
     width: 0,
@@ -17,20 +44,11 @@ const WatchListingStyles = StyleSheet.create({
     flex: 1,
   },
   titleText: {fontSize: 18, fontWeight: '600', marginBottom: 5},
-  cardStyle: {
-    borderRadius: 10,
-    elevation: 5,
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    shadowOffset: {height: 10, width: 0},
-    padding: 6,
-
-    width: 130,
-    height: 180,
-    backgroundColor: colors.almostWhite,
+  watchListContainer: {
     justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
 });
 
-export default BoutiqueStyles;
+export default WatchListingStyles;

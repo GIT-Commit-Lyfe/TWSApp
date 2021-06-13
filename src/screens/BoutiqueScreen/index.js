@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView} from 'react-native';
 
 import Boutique from './Boutique';
 import WatchListing from './WatchListing';
@@ -13,10 +13,10 @@ export default function BoutiqueScreen() {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <ScrollView>
       <Boutique boutique={boutiqueMock} />
 
       <WatchListing />
-    </View>
+    </ScrollView>
   );
 }
