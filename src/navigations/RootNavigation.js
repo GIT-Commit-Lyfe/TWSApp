@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import BoutiqueScreen from '../screens/BoutiqueScreen';
+import BoutiquesLocationScreen from '../screens/BoutiquesLocationScreen';
 import BrandsScreen from '../screens/BrandsScreen';
 import OrdersTradesScreen from '../screens/OrdersTradesScreen';
 import AccountScreen from '../screens/AccountScreen';
@@ -35,6 +36,7 @@ function HomeStack() {
 function BoutiqueStack() {
   return (
     <Stack.Navigator>
+      <Stack.Screen name="Boutiques" component={BoutiquesLocationScreen} />
       <Stack.Screen name="Boutique" component={BoutiqueScreen} />
     </Stack.Navigator>
   );

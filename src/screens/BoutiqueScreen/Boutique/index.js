@@ -10,7 +10,7 @@ const Boutique = ({boutique}) => {
     <View style={BoutiqueStyles.container}>
       <View style={BoutiqueStyles.boutiqueContainer}>
         <Image
-          style={{width: 100, height: 100, borderRadius: 50, marginRight: 10}}
+          style={BoutiqueStyles.boutiqueImage}
           source={{uri: boutique.profile_pict}}
         />
 

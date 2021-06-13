@@ -10,6 +10,12 @@ const BoutiqueStyles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 35,
   },
+  boutiqueImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginRight: 10,
+  },
   textContainer: {
     width: 0,
     flexGrow: 1,
