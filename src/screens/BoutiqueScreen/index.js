@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {View} from 'react-native';
 
 import Boutique from './Boutique';
+import WatchListing from './WatchListing';
 
 export default function BoutiqueScreen() {
   const boutiqueMock = {
@@ -14,7 +15,8 @@ export default function BoutiqueScreen() {
   return (
     <View style={{flex: 1}}>
       <Boutique boutique={boutiqueMock} />
+
+      <WatchListing />
     </View>
   );
 }
-const styles = StyleSheet.create({});

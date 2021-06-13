@@ -1,15 +1,14 @@
 import {StyleSheet} from 'react-native';
-import colors from '../../../constants/colors';
 
 const BoutiqueStyles = StyleSheet.create({
   container: {
     color: '#fff',
-    paddingVertical: 20,
+    paddingHorizontal: 20,
   },
   boutiqueContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    marginVertical: 35,
   },
   textContainer: {
     width: 0,
@@ -17,19 +16,35 @@ const BoutiqueStyles = StyleSheet.create({
     flex: 1,
   },
   titleText: {fontSize: 18, fontWeight: '600', marginBottom: 5},
-  cardStyle: {
-    borderRadius: 10,
-    elevation: 5,
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    shadowOffset: {height: 10, width: 0},
-    padding: 6,
-
-    width: 130,
-    height: 180,
-    backgroundColor: colors.almostWhite,
+  buttonContainer: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  primary: {
     alignItems: 'center',
+    backgroundColor: '#000',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    color: '#000',
+    padding: 10,
+    width: 170,
+  },
+  primaryGhost: {
+    alignItems: 'center',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    padding: 10,
+    width: 170,
+  },
+  primaryText: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 16,
+  },
+  primaryGhostText: {
+    color: '#000',
+    fontWeight: '600',
+    fontSize: 16,
   },
 });
 

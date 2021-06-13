@@ -1,16 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 
 import BoutiqueStyles from './style';
 
@@ -27,6 +18,16 @@ const Boutique = ({boutique}) => {
           <Text style={BoutiqueStyles.titleText}>{boutique.name}</Text>
           <Text>{boutique.description}</Text>
         </View>
+      </View>
+
+      <View style={BoutiqueStyles.buttonContainer}>
+        <TouchableOpacity style={BoutiqueStyles.primaryGhost}>
+          <Text style={BoutiqueStyles.primaryGhostText}>Follow Boutique</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={BoutiqueStyles.primary}>
+          <Text style={BoutiqueStyles.primaryText}>Contact</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
