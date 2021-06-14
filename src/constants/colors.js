@@ -5,6 +5,7 @@ export default {
   grey83: '#838387',
   grey62: '#626262',
   grey58: '#585858',
+  greyCD: '#CDCDCD',
   primary: '#18110C',
   almostWhite: '#FBFBFB',
   green: '#296142',

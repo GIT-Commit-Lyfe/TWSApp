@@ -1,11 +1,8 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   FlatList,
   Image,
   StyleSheet,
-  SafeAreaView,
-  ScrollView,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -58,6 +55,68 @@ const FullWidthCarouselStyle = StyleSheet.create({
   },
   buttonTextStyle: {color: 'black', fontSize: 14},
   imageStyle: {width: width},
+});
+
+export const BigImageCarousel = ({data}) => {
+  const [shownItemIndex, setShownItemIndex] = useState(0);
+  const onScroll = event => {
+    // tracks which item index is currently shown based on x offset
+    setShownItemIndex(Math.round(event.nativeEvent.contentOffset.x / width));
+  };
+  const renderItem = ({item, index}) => {
+    return (
+      <View>
+        <Image
+          source={{uri: 'https://via.placeholder.com/120.png'}}
+          style={BigImageCarouselStyle.imageStyle}
+        />
+      </View>
+    );
+  };
+  return (
+    <>
+      <FlatList
+        pagingEnabled
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        data={data}
+        renderItem={renderItem}
+        bounces={false}
+        keyExtractor={(item, index) => index}
+        onScroll={onScroll}
+      />
+      <View style={BigImageCarouselStyle.dotsContainer}>
+        {data.map((i, index) => {
+          const isShown = index === shownItemIndex;
+          return (
+            <View
+              key={index}
+              style={{
+                ...BigImageCarouselStyle.dots,
+                backgroundColor: isShown ? colors.primary : colors.greyCD,
+              }}
+            />
+          );
+        })}
+      </View>
+    </>
+  );
+};
+
+const BigImageCarouselStyle = StyleSheet.create({
+  imageStyle: {width: width, height: width, resizeMode: 'cover'},
+  dotsContainer: {
+    marginTop: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  dots: {
+    height: 6,
+    width: 6,
+    borderRadius: 3,
+    marginHorizontal: 2,
+  },
 });
 
 export const PriceTrendCarousel = ({title, data}) => {
@@ -316,19 +375,29 @@ const WatchlistModalStyle = StyleSheet.create({
   marketPrice: {fontSize: 9, color: colors.grey58},
 });
 
-export const ListingCarousel = ({title, data}) => {
+export const ListingCarousel = ({
+  title,
+  data,
+  navigation,
+  withoutSeeAll = false,
+}) => {
+  const onPress = item => {
+    navigation.push('ListingDetail', {data: item});
+  };
   return (
     <View style={ListingCarouselStyle.container}>
       <View style={ListingCarouselStyle.titleContainer}>
         <Jost600 style={ListingCarouselStyle.titleText}>{title}</Jost600>
-        <TouchableOpacity style={ListingCarouselStyle.seeAllContainer}>
-          <Jost400 style={ListingCarouselStyle.seeAllText}>See All</Jost400>
-          <MaterialIcons
-            name="chevron-right"
-            size={40}
-            color={colors.primary}
-          />
-        </TouchableOpacity>
+        {!withoutSeeAll && (
+          <TouchableOpacity style={ListingCarouselStyle.seeAllContainer}>
+            <Jost400 style={ListingCarouselStyle.seeAllText}>See All</Jost400>
+            <MaterialIcons
+              name="chevron-right"
+              size={40}
+              color={colors.primary}
+            />
+          </TouchableOpacity>
+        )}
       </View>
       <FlatList
         style={ListingCarouselStyle.flatListStyle}
@@ -339,7 +408,8 @@ export const ListingCarousel = ({title, data}) => {
         renderItem={({item, index}) => {
           const isFirst = index === 0;
           return (
-            <View
+            <TouchableOpacity
+              onPress={() => onPress(item)}
               style={{
                 ...ListingCarouselStyle.cardStyle,
                 marginLeft: isFirst ? 10 : 8,
@@ -393,7 +463,7 @@ export const ListingCarousel = ({title, data}) => {
                   </Jost300>
                 </View>
               </View>
-            </View>
+            </TouchableOpacity>
           );
         }}
         ListEmptyComponent={() => {

@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
+import ListingDetailScreen from '../screens/ListingDetailScreen';
 import BoutiqueScreen from '../screens/BoutiqueScreen';
 import BrandsScreen from '../screens/BrandsScreen';
 import OrdersTradesScreen from '../screens/OrdersTradesScreen';
@@ -29,6 +30,7 @@ function HomeStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="ListingDetail" component={ListingDetailScreen} />
     </Stack.Navigator>
   );
 }

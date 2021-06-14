@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {
   PriceTrendCarousel,
   ListingCarousel,
@@ -11,6 +12,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 
 export const Watches = () => {
+  const navigation = useNavigation();
   const watchlist = [
     {
       reference: '126710BLRO',
@@ -96,13 +98,21 @@ export const Watches = () => {
   return (
     <View>
       <PriceTrendCarousel title="My Watchlist" data={watchlist} />
-      <ListingCarousel title="Followed Listings" data={followedListings} />
+      <ListingCarousel
+        title="Followed Listings"
+        data={followedListings}
+        navigation={navigation}
+      />
       <PriceTrendCarousel title="Popular Models" data={watchlist} />
       <ListingCarousel
         title="Most Popular Around You"
         data={followedListings}
       />
-      <PriceTrendCarousel title="What's Trending" data={watchlist} />
+      <PriceTrendCarousel
+        title="What's Trending"
+        data={watchlist}
+        navigation={navigation}
+      />
       <Footer />
     </View>
   );
