@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import colors from '../constants/colors';
-import {Jost600} from './StyledText';
+import {Jost400, Jost500} from './StyledText';
 
 export default function TabbedNavigator({data}) {
   const [componentShownIndex, setComponentShownIndex] = useState(0); // stores index of component to be shown
@@ -9,7 +9,12 @@ export default function TabbedNavigator({data}) {
   return (
     <>
       <FlatList
-        style={{padding: 10}}
+        style={{
+          paddingHorizontal: 10,
+          marginBottom: 10,
+          borderBottomColor: colors.lightGrey,
+          borderBottomWidth: 1,
+        }}
         data={data}
         keyExtractor={(_, index) => index}
         renderItem={({item, index}) => {
@@ -23,12 +28,13 @@ export default function TabbedNavigator({data}) {
                   borderBottomWidth: selected ? 2 : 0,
                   paddingBottom: 10,
                 }}>
-                <Text
+                <Jost400
                   style={{
                     color: selected ? colors.primary : colors.grey62,
+                    fontSize: 16,
                   }}>
                   {item.title}
-                </Text>
+                </Jost400>
               </View>
             </TouchableOpacity>
           );
@@ -40,5 +46,3 @@ export default function TabbedNavigator({data}) {
     </>
   );
 }
-
-const styles = StyleSheet.create({});
