@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import {BigImageCarousel} from '../components/Carousels';
 import {Jost300, Jost400, Jost600} from '../components/StyledText';
+import {BasicButton} from '../components/Buttons';
+import {PriceGraph} from '../components/Graphs';
 import {ItemDescription} from '../screenComponents/ListingDetailScreenComponents';
 import {SimpleList} from '../components/Lists';
 import {ListingCarousel} from '../components/Carousels';
@@ -139,6 +141,18 @@ export default function ListingDetailScreen({route, navigation}) {
             withoutSeeAll
           />
         </View>
+        <View style={styles.priceGraph}>
+          <PriceGraph title="Price History" />
+        </View>
+        <View style={styles.basicButtonsContainer}>
+          <BasicButton
+            backgroundColor="white"
+            textColor={colors.primary}
+            text="Add to Watchlist"
+          />
+          <View style={styles.basicSeparator} />
+          <BasicButton text="View Market Data" />
+        </View>
         <View style={styles.simpleListContainer}>
           <SimpleList
             title="Model Analytics"
@@ -216,5 +230,17 @@ const styles = StyleSheet.create({
   },
   sectionMargin: {
     marginVertical: 30,
+  },
+  priceGraph: {
+    paddingHorizontal: 10,
+  },
+  basicButtonsContainer: {
+    marginTop: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+  },
+  basicSeparator: {
+    width: 10,
   },
 });

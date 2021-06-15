@@ -3,7 +3,7 @@ import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 import {height} from '../utils/tools';
 import colors from '../constants/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {Jost400} from './StyledText';
+import {Jost400, Jost600} from './StyledText';
 import Sort from '../assets/sort.svg';
 
 export const FilterSortModalButton = () => {
@@ -47,3 +47,30 @@ const FilterSortModalButtonStyle = StyleSheet.create({
     backgroundColor: colors.almostWhite,
   },
 });
+
+export const BasicButton = ({
+  onPress,
+  backgroundColor = colors.primary,
+  textColor = 'white',
+  containerStyle,
+  textStyle,
+  text,
+}) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={{
+        ...containerStyle,
+        backgroundColor: backgroundColor,
+        borderWidth: 1,
+        borderColor: colors.primary,
+        padding: 10,
+        marginVertical: 10,
+        flex: 1,
+      }}>
+      <Jost600 style={{...textStyle, color: textColor, textAlign: 'center'}}>
+        {text}
+      </Jost600>
+    </TouchableOpacity>
+  );
+};
