@@ -3,7 +3,7 @@ import {StyleSheet, SafeAreaView, ScrollView} from 'react-native';
 import Banner from '../assets/new-banner.png';
 import {SearchBox} from '../components/Inputs';
 import {FullWidthCarousel} from '../components/Carousels';
-import TabbedNavigator from '../components/TabbedNavigator';
+import {ScrollingTabbedNavigator} from '../components/TabbedNavigator';
 import {
   Watches,
   Boutiques,
@@ -25,8 +25,12 @@ export default function HomeScreen() {
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <ScrollView bounces={false}>
         <FullWidthCarousel data={banner} />
-        <SearchBox onChange={text => console.log(text)} />
-        <TabbedNavigator data={tabbedPages} />
+        <SearchBox
+          placeholder="Search for Watches, Brands, Boutiques and more"
+          onChange={text => console.log(text)}
+          style={{marginHorizontal: 10}}
+        />
+        <ScrollingTabbedNavigator data={tabbedPages} scrolling />
       </ScrollView>
     </SafeAreaView>
   );

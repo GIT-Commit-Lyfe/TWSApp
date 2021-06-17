@@ -5,7 +5,7 @@ import colors from '../constants/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import useDebounce from '../customHooks/useDebounce';
 
-export function SearchBox({onChange}) {
+export function SearchBox({onChange, placeholder = '', style}) {
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search, 500);
   useEffect(() => {
@@ -16,11 +16,11 @@ export function SearchBox({onChange}) {
     <View
       style={{
         alignSelf: 'center',
-        width: width - 20,
         marginVertical: 14,
         backgroundColor: colors.lightGrey,
         padding: 8,
         flexDirection: 'row',
+        ...style,
       }}>
       <MaterialIcons
         name="search"
@@ -30,7 +30,7 @@ export function SearchBox({onChange}) {
         returnKeyType="search"
       />
       <TextInput
-        placeholder="Search for Watches, Brands, Boutiques and more"
+        placeholder={placeholder}
         placeholderTextColor={colors.grey83}
         autoCorrect={false}
         onChangeText={setSearch}
