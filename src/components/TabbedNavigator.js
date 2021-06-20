@@ -60,7 +60,9 @@ export function TabbedNavigator({data}) {
         {data.map((item, index) => {
           const selected = componentShownIndex === index;
           return (
-            <TouchableOpacity onPress={() => setComponentShownIndex(index)}>
+            <TouchableOpacity
+              key={index}
+              onPress={() => setComponentShownIndex(index)}>
               <View
                 style={{
                   borderBottomColor: colors.primary,

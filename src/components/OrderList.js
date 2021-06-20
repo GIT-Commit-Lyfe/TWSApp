@@ -27,6 +27,7 @@ export default function OrderList() {
         </View>
       </View>
       <FlatList
+        bounces={false}
         data={[
           {
             brand: 'ROLEX',
