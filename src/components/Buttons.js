@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
-import {height} from '../utils/tools';
+import {formatCurrency, height} from '../utils/tools';
 import colors from '../constants/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {Jost400, Jost600} from './StyledText';
+import {Jost400, Jost500, Jost600} from './StyledText';
 import Sort from '../assets/sort.svg';
 
 export const FilterSortModalButton = () => {
@@ -33,7 +33,7 @@ const FilterSortModalButtonStyle = StyleSheet.create({
     padding: 10,
     alignSelf: 'center',
     position: 'absolute',
-    top: height - 200,
+    bottom: 20,
     borderRadius: 25,
     justifyContent: 'space-evenly',
     alignItems: 'center',
@@ -74,3 +74,43 @@ export const BasicButton = ({
     </TouchableOpacity>
   );
 };
+
+export const FloatingButton = ({title = 'Buy Now', price, reserved}) => {
+  return (
+    <TouchableOpacity style={FloatingButtonStyle.button}>
+      <Jost500
+        style={{...FloatingButtonStyle.title, fontSize: reserved ? 24 : 11}}>
+        {reserved ? 'Reserved' : title}
+      </Jost500>
+      <Jost500
+        style={{
+          ...FloatingButtonStyle.price,
+          fontSize: reserved ? 11 : 24,
+        }}>
+        {formatCurrency(price)}
+      </Jost500>
+    </TouchableOpacity>
+  );
+};
+
+const FloatingButtonStyle = StyleSheet.create({
+  button: {
+    backgroundColor: colors.primary,
+    justifyContent: 'center',
+    marginHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 30,
+    position: 'absolute',
+    alignSelf: 'center',
+    bottom: 10,
+    width: '90%',
+  },
+  title: {
+    color: colors.greyCD,
+    textAlign: 'center',
+  },
+  price: {
+    color: colors.greyCD,
+    textAlign: 'center',
+  },
+});

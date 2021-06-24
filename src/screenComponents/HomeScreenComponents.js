@@ -97,16 +97,25 @@ export const Watches = () => {
   ];
   return (
     <View>
-      <PriceTrendCarousel title="My Watchlist" data={watchlist} />
+      <PriceTrendCarousel
+        title="My Watchlist"
+        data={watchlist}
+        navigation={navigation}
+      />
       <ListingCarousel
         title="Followed Listings"
         data={followedListings}
         navigation={navigation}
       />
-      <PriceTrendCarousel title="Popular Models" data={watchlist} />
+      <PriceTrendCarousel
+        title="Popular Models"
+        data={watchlist}
+        navigation={navigation}
+      />
       <ListingCarousel
         title="Most Popular Around You"
         data={followedListings}
+        navigation={navigation}
       />
       <PriceTrendCarousel
         title="What's Trending"
@@ -141,6 +150,7 @@ const Footer = () => {
   );
 };
 export const Boutiques = () => {
+  const navigation = useNavigation();
   const nearestBoutiques = [
     {
       boutiqueName: 'Menze Goldschmiede',
@@ -172,9 +182,21 @@ export const Boutiques = () => {
   ];
   return (
     <View>
-      <BoutiqueCarousel title="Followed Boutiques" data={nearestBoutiques} />
-      <BoutiqueCarousel title="Popular Boutiques" data={nearestBoutiques} />
-      <BoutiqueCarousel title="Nearest Boutiques" data={nearestBoutiques} />
+      <BoutiqueCarousel
+        title="Followed Boutiques"
+        data={nearestBoutiques}
+        navigation={navigation}
+      />
+      <BoutiqueCarousel
+        title="Popular Boutiques"
+        data={nearestBoutiques}
+        navigation={navigation}
+      />
+      <BoutiqueCarousel
+        title="Nearest Boutiques"
+        data={nearestBoutiques}
+        navigation={navigation}
+      />
       <Footer />
     </View>
   );

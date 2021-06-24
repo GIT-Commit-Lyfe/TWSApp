@@ -7,8 +7,8 @@ import {
   View,
 } from 'react-native';
 import {BigImageCarousel} from '../components/Carousels';
-import {Jost300, Jost400, Jost600} from '../components/StyledText';
-import {BasicButton} from '../components/Buttons';
+import {Jost300, Jost400, Jost500, Jost600} from '../components/StyledText';
+import {BasicButton, FloatingButton} from '../components/Buttons';
 import {PriceGraph} from '../components/Graphs';
 import {ItemDescription} from '../screenComponents/ListingDetailScreenComponents';
 import {SimpleList} from '../components/Lists';
@@ -172,7 +172,9 @@ export default function ListingDetailScreen({route, navigation}) {
             ]}
           />
         </View>
+        <View style={{height: 100}} />
       </ScrollView>
+      <FloatingButton title="Buy Now" price={listing.price} reserved={false} />
     </SafeAreaView>
   );
 }
