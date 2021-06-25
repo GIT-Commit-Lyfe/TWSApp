@@ -22,7 +22,7 @@ const AccountsStyles = StyleSheet.create({
     marginBottom: 5,
   },
   menuDescriptionn: {
-    fontSize: 14,
+    fontSize: 12,
   },
   listContainer: {
     alignItems: 'center',

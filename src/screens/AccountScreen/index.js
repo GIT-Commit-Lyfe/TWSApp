@@ -35,7 +35,7 @@ export default function AccountScreen() {
           <MaterialIcons
             name="arrow-forward-ios"
             color={colors.primary}
-            size={30}
+            size={20}
           />
         </TouchableOpacity>
       ))}
