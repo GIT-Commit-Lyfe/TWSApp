@@ -1,5 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import menus from './constant';
 
@@ -11,7 +17,7 @@ import AccountsStyles from './style';
 
 export default function AccountScreen() {
   return (
-    <View style={AccountsStyles.container}>
+    <ScrollView style={AccountsStyles.container}>
       {menus.map((menu, index) => (
         <TouchableOpacity key={index} style={AccountsStyles.listContainer}>
           <View style={AccountsStyles.list}>
@@ -39,7 +45,7 @@ export default function AccountScreen() {
           />
         </TouchableOpacity>
       ))}
-    </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({});

@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {width, height} from '../utils/tools';
+import {upperCase} from 'lodash';
+import {width, height, formatCurrency} from '../utils/tools';
 import {Jost300, Jost400, Jost500, Jost600} from '../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import BottomSheet from './BottomSheet';
@@ -199,11 +200,7 @@ export const PriceTrendCarousel = ({title, data, navigation}) => {
               <View>
                 <View style={PriceTrendCarouselStyle.priceContainer}>
                   <Jost600 style={PriceTrendCarouselStyle.bigText}>
-                    {new Intl.NumberFormat('de-DE', {
-                      style: 'currency',
-                      currency: item.currency,
-                      maximumFractionDigits: 0,
-                    }).format(item.marketPrice)}
+                    {formatCurrency(item.marketPrice)}
                   </Jost600>
                   {item.raising ? (
                     <GreenArrow
@@ -356,12 +353,9 @@ export const ListingCarousel = ({
                   style={ListingCarouselStyle.imageStyle}
                   source={{uri: item.modelUrl}}
                 />
-                <Jost500
-                  style={
-                    ListingCarouselStyle.mediumText
-                  }>{`${item.brand.toUpperCase()} "${
-                  item.significantEdition
-                }"`}</Jost500>
+                <Jost500 style={ListingCarouselStyle.mediumText}>{`${upperCase(
+                  item.brand,
+                )} "${item.significantEdition}"`}</Jost500>
                 <Jost500
                   style={
                     ListingCarouselStyle.mediumText
@@ -377,11 +371,7 @@ export const ListingCarousel = ({
               </View>
               <View>
                 <Jost600 style={ListingCarouselStyle.bigText}>
-                  {new Intl.NumberFormat('de-DE', {
-                    style: 'currency',
-                    currency: item.currency,
-                    maximumFractionDigits: 0,
-                  }).format(item.price)}
+                  {formatCurrency(item.price)}
                 </Jost600>
                 <Jost300 style={ListingCarouselStyle.tinyCopy}>
                   Incl. Chronobase Authentication

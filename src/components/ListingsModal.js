@@ -7,8 +7,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {upperCase} from 'lodash';
 import colors from '../constants/colors';
-import {width} from '../utils/tools';
+import {formatCurrency, width} from '../utils/tools';
 import {Jost300, Jost400, Jost500, Jost600} from './StyledText';
 import {FilterSortModalButton} from './Buttons';
 
@@ -138,10 +139,9 @@ export default function ListingsModal({navigation, bottomSheetRef}) {
                     style={styles.imageStyle}
                     source={{uri: item.modelUrl}}
                   />
-                  <Jost500
-                    style={styles.mediumText}>{`${item.brand.toUpperCase()} "${
-                    item.significantEdition
-                  }"`}</Jost500>
+                  <Jost500 style={styles.mediumText}>{`${upperCase(
+                    item.brand,
+                  )} "${item.significantEdition}"`}</Jost500>
                   <Jost500
                     style={
                       styles.mediumText
@@ -154,12 +154,7 @@ export default function ListingsModal({navigation, bottomSheetRef}) {
                     style={styles.smallText}>{`${item.accomodation}`}</Jost300>
                 </View>
                 <View>
-                  <Jost600 style={styles.bigText}>
-                    {new Intl.NumberFormat('de-DE', {
-                      style: 'currency',
-                      currency: item.currency,
-                      maximumFractionDigits: 0,
-                    }).format(item.price)}
+                  <Jost600 style={styles.bigText}>{formatCurrency(item.price)}
                   </Jost600>
                   <Jost300 style={styles.tinyCopy}>
                     Incl. Chronobase Authentication

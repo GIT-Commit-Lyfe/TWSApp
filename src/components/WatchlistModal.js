@@ -11,6 +11,7 @@ import {Jost300, Jost400, Jost500, Jost600} from './StyledText';
 import colors from '../constants/colors';
 import GreenArrow from '../assets/arrow-up.svg';
 import {FilterSortModalButton} from './Buttons';
+import { formatCurrency } from '../utils/tools';
 
 export default function WatchlistModal({}) {
   const watchlist = [
@@ -64,11 +65,7 @@ export default function WatchlistModal({}) {
               <View style={style.priceContainer}>
                 <View style={style.priceTrendContainer}>
                   <Jost500 style={style.price}>
-                    {new Intl.NumberFormat('de-DE', {
-                      style: 'currency',
-                      currency: item.currency,
-                      maximumFractionDigits: 0,
-                    }).format(item.marketPrice)}
+                    {formatCurrency(item.marketPrice)}
                   </Jost500>
                   {item.raising ? (
                     <GreenArrow

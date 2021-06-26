@@ -1,12 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {upperCase} from 'lodash';
 import {Jost300, Jost400, Jost500, Jost600} from '../../components/StyledText';
 import colors from '../../constants/colors';
 
 export const ItemDescription = ({data}) => {
   return (
     <View style={styles.detailContainer}>
-      <Jost600 style={styles.brand}>{`${data.brand.toUpperCase()} "${
+      <Jost600 style={styles.brand}>{`${upperCase(data.brand)} "${
         data.significantEdition
       }"`}</Jost600>
       <Jost600

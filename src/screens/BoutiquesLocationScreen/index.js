@@ -31,8 +31,9 @@ const BoutiquesLocationScreen = ({navigation}) => {
       </View>
 
       {brands.length > 0 &&
-        brands.map(brand => (
+        brands.map((brand, index) => (
           <TouchableOpacity
+            key={index}
             style={BoutiquesLocationStyles.list}
             onPress={() => navigation.navigate('Boutique', {name: brand.name})}>
             <Image
