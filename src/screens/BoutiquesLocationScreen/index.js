@@ -1,62 +1,101 @@
 import React from 'react';
 
-import {Image, Text, TouchableOpacity, TextInput, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+import {SearchBox} from '../../components/Inputs';
+
+import {Jost400, Jost500} from '../../components/StyledText';
+
+import colors from '../../constants/colors';
 
 import BoutiquesLocationStyles from './style';
 
 const BoutiquesLocationScreen = ({navigation}) => {
-  const brands = [
+  const boutiques = [
     {
       id: 1,
-      name: 'Brand A',
-      address: 'Address A, Berlin',
-      profile_pict: 'https://via.placeholder.com/50',
+      avatar: 'https://via.placeholder.com/50',
+      boutiqueName: 'Rolex Collections',
+      address: 'Berlin',
+      distance: 300,
+      unit: 'm',
+      approximateTimeInMin: 3,
     },
     {
       id: 2,
-      name: 'Brand B',
-      address: 'Address B, Jakarta',
-      profile_pict: 'https://via.placeholder.com/50',
+      avatar: 'https://via.placeholder.com/50',
+      boutiqueName: 'Rolex Collections',
+      address: 'Berlin',
+      distance: 300,
+      unit: 'm',
+      approximateTimeInMin: 3,
     },
   ];
 
   return (
-    <View style={BoutiquesLocationStyles.container}>
+    <SafeAreaView style={BoutiquesLocationStyles.container}>
       <View tyle={BoutiquesLocationStyles.textInputContainer}>
-        <TextInput
-          style={BoutiquesLocationStyles.textInput}
-          placeholder="Search Boutiques or Locations"
-          autoCorrect={false}
-        />
+        <SearchBox placeholder="Search Boutiques or Locations" />
       </View>
 
-      {brands.length > 0 &&
-        brands.map((brand, index) => (
-          <TouchableOpacity
-            key={index}
-            style={BoutiquesLocationStyles.list}
-            onPress={() => navigation.navigate('Boutique', {name: brand.name})}>
-            <Image
-              style={BoutiquesLocationStyles.image}
-              source={{uri: brand.profile_pict}}
-            />
+      <FlatList
+        data={boutiques}
+        keyExtractor={(item, index) => index}
+        renderItem={({item, index}) => {
+          return (
+            <TouchableOpacity
+              style={BoutiquesLocationStyles.list}
+              onPress={() =>
+                navigation.navigate('Boutique', {name: item.boutiqueName})
+              }>
+              <Image
+                style={BoutiquesLocationStyles.image}
+                source={{uri: item.avatar}}
+              />
 
-            <View style={BoutiquesLocationStyles.copywriting}>
-              <View>
-                <Text style={BoutiquesLocationStyles.brandName}>
-                  {brand.name}
-                </Text>
-                <Text>{brand.address}</Text>
-              </View>
+              <View style={BoutiquesLocationStyles.copywriting}>
+                <View>
+                  <Jost500 style={BoutiquesLocationStyles.boutiqueName}>
+                    {item.boutiqueName}
+                  </Jost500>
+                  <Jost400 style={BoutiquesLocationStyles.address}>
+                    {item.address}
+                  </Jost400>
+                </View>
 
-              <View>
-                <Text>3 min &gt; (300m)</Text>
+                <View>
+                  <Jost500 style={BoutiquesLocationStyles.estimatedTime}>
+                    {item.approximateTimeInMin + ' min '}
+                    <Jost400 style={BoutiquesLocationStyles.distance}>
+                      {`(${item.distance}${item.unit})`}
+                    </Jost400>
+                  </Jost500>
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
-        ))}
-    </View>
+              <MaterialIcons
+                name="chevron-right"
+                size={40}
+                color={colors.primary}
+              />
+            </TouchableOpacity>
+          );
+        }}
+        ItemSeparatorComponent={() => <Line />}
+        ListHeaderComponent={() => <Line />}
+        ListFooterComponent={() => <Line />}
+      />
+    </SafeAreaView>
   );
 };
+
+const Line = () => <View style={BoutiquesLocationStyles.line} />;
 
 export default BoutiquesLocationScreen;

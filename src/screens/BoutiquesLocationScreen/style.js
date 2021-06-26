@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import colors from '../../constants/colors';
 
 const BoutiquesLocationStyles = StyleSheet.create({
   container: {
@@ -30,18 +31,28 @@ const BoutiquesLocationStyles = StyleSheet.create({
     paddingVertical: 10,
     marginVertical: 25,
   },
-  brandName: {
+  boutiqueName: {
     fontWeight: '600',
     fontSize: 14,
     marginBottom: 5,
+    color: colors.primary,
+  },
+  address: {
+    color: colors.grey58,
+  },
+  estimatedTime: {
+    color: colors.primary,
+    fontSize: 12,
+  },
+  distance: {
+    color: colors.grey58,
   },
   list: {
     alignItems: 'center',
-    borderTopColor: '#D1D1D1',
-    borderTopWidth: 1,
     flexDirection: 'row',
     paddingVertical: 15,
   },
+  line: {height: 1, backgroundColor: colors.lightGrey},
 });
 
 export default BoutiquesLocationStyles;

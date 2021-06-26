@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import {Jost500, Jost600} from '../../components/StyledText';
 import colors from '../../constants/colors';
 import {SectionHeader, BrandsList} from './AllBrandsScreenComponents';
@@ -111,6 +112,16 @@ export default function AllBrandsScreen() {
     setSortedBrands(brandsSorter(brands));
   }, []);
 
+  const getItemLayout = sectionListGetItemLayout({
+    // The height of the row with rowData at the given sectionIndex and rowIndex
+    getItemHeight: (rowData, sectionIndex, rowIndex) => 50,
+    // These four properties are optional
+    getSeparatorHeight: () => 1, // The height of your separators
+    getSectionHeaderHeight: () => 30, // The height of your section headers
+    getSectionFooterHeight: () => 0, // The height of your section footers
+    listHeaderHeight: 0, // The height of your list header
+  });
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{flexDirection: 'row'}}>
@@ -120,6 +131,7 @@ export default function AllBrandsScreen() {
             Brands
           </Jost600>
           <SectionList
+            getItemLayout={getItemLayout}
             contentContainerStyle={{paddingBottom: 100}}
             ref={sectionListRef}
             showsVerticalScrollIndicator={false}

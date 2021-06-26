@@ -1,11 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
-import {width, height} from '../utils/tools';
+import {
+  Dimensions,
+  Keyboard,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  TextInput,
+  View,
+} from 'react-native';
+import {width, height, figmaHeight, figmaWidth} from '../utils/tools';
 import colors from '../constants/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import useDebounce from '../customHooks/useDebounce';
 
-export function SearchBox({onChange, placeholder = '', style}) {
+export function SearchBox({
+  onChange = () => console.log('searching'),
+  placeholder = 'Search',
+  style,
+}) {
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search, 500);
   useEffect(() => {
@@ -16,9 +27,10 @@ export function SearchBox({onChange, placeholder = '', style}) {
     <View
       style={{
         alignSelf: 'center',
-        marginVertical: 14,
+        alignItems: 'center',
+        marginVertical: figmaHeight(14),
         backgroundColor: colors.lightGrey,
-        padding: 8,
+        padding: figmaWidth(8),
         flexDirection: 'row',
         ...style,
       }}>
@@ -26,10 +38,11 @@ export function SearchBox({onChange, placeholder = '', style}) {
         name="search"
         color={colors.greyButton}
         size={20}
-        style={{marginRight: 8}}
+        style={{marginRight: figmaWidth(8)}}
         returnKeyType="search"
       />
       <TextInput
+        style={{paddingVertical: 0, fontFamily: 'Jost-Regular'}}
         placeholder={placeholder}
         placeholderTextColor={colors.grey83}
         autoCorrect={false}

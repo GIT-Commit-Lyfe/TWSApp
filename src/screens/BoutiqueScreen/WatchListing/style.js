@@ -46,8 +46,8 @@ const WatchListingStyles = StyleSheet.create({
   titleText: {fontSize: 18, fontWeight: '600', marginBottom: 5},
   watchListContainer: {
     justifyContent: 'space-between',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    alignItems: 'stretch',
+    alignContent: 'space-between',
   },
 });
 

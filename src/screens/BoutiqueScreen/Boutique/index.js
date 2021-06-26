@@ -1,9 +1,14 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
+
+import {upperCase} from 'lodash';
 
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 
 import BoutiqueStyles from './style';
+
+import {Jost400, Jost600} from '../../../components/StyledText';
 
 const Boutique = ({boutique}) => {
   return (
@@ -11,22 +16,24 @@ const Boutique = ({boutique}) => {
       <View style={BoutiqueStyles.boutiqueContainer}>
         <Image
           style={BoutiqueStyles.boutiqueImage}
-          source={{uri: boutique.profile_pict}}
+          source={{uri: boutique.avatar}}
         />
 
         <View style={BoutiqueStyles.textContainer}>
-          <Text style={BoutiqueStyles.titleText}>{boutique.name}</Text>
-          <Text>{boutique.description}</Text>
+          <Jost600 style={BoutiqueStyles.titleText}>
+            {upperCase(boutique.boutiqueName)}
+          </Jost600>
+          <Jost400>{boutique.description}</Jost400>
         </View>
       </View>
 
       <View style={BoutiqueStyles.buttonContainer}>
         <TouchableOpacity style={BoutiqueStyles.primaryGhost}>
-          <Text style={BoutiqueStyles.primaryGhostText}>Follow Boutique</Text>
+          <Jost600 style={BoutiqueStyles.primaryGhostText}>Follow Boutique</Jost600>
         </TouchableOpacity>
 
         <TouchableOpacity style={BoutiqueStyles.primary}>
-          <Text style={BoutiqueStyles.primaryText}>Contact</Text>
+          <Jost600 style={BoutiqueStyles.primaryText}>Contact</Jost600>
         </TouchableOpacity>
       </View>
     </View>

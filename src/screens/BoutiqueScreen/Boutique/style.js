@@ -15,6 +15,7 @@ const BoutiqueStyles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     marginRight: 10,
+    resizeMode: 'cover',
   },
   textContainer: {
     width: 0,

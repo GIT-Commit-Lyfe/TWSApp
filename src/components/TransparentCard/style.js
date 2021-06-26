@@ -1,9 +1,12 @@
 import {StyleSheet} from 'react-native';
+import colors from '../../constants/colors';
 
 const TransparentCardStyles = StyleSheet.create({
   transparentCardContainer: {
     marginVertical: 10,
-    width: '48%',
+    flex: 0.5,
+    padding: 2,
+    backgroundColor: colors.almostWhite,
   },
   transparentCardAlias: {
     fontSize: 11,
@@ -11,33 +14,34 @@ const TransparentCardStyles = StyleSheet.create({
   },
   transparentCardImage: {
     width: '100%',
-    height: 150,
-    marginBottom: 10,
+    aspectRatio: 1,
+    resizeMode: 'cover',
   },
   transparentCardName: {
     fontSize: 14,
-    fontWeight: '600',
     marginBottom: 5,
   },
   transparentCardCondition: {
-    fontWeight: '300',
     fontSize: 11,
+    color: colors.grey58,
   },
   transparentCardPrice: {
     fontSize: 22,
+    height: 24,
     marginTop: 5,
+  },
+  transparentCardAuthentication: {
+    fontSize: 8,
   },
   transparentCardFooter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 5,
+    marginTop: 10,
   },
   transparentCardSeller: {
-    fontWeight: '600',
     fontSize: 11,
   },
   transparentCardLocation: {
-    fontWeight: '300',
     fontSize: 11,
   },
 });

@@ -31,7 +31,7 @@ function RootNavigation() {
           tabBarIcon: ({color, size}) => {
             const icons = {
               Home: <HomeTab />,
-              Boutique: <BoutiqueTab />,
+              Boutiques: <BoutiqueTab />,
               Brands: <BrandsTab />,
               OrdersTrades: <OrdersTradesTab />,
               Account: <AccountTab />,
@@ -48,7 +48,7 @@ function RootNavigation() {
           component={HomeStack}
           options={{title: 'Home'}}
         />
-        <Tab.Screen name="Boutique" component={BoutiqueStack} />
+        <Tab.Screen name="Boutiques" component={BoutiqueStack} />
         <Tab.Screen name="Brands" component={BrandsStack} />
         <Tab.Screen name="OrdersTrades" component={OrdersTradesStack} />
         <Tab.Screen name="Account" component={AccountStack} />

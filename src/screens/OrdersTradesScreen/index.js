@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, SafeAreaView, ScrollView} from 'react-native';
+import {StyleSheet, SafeAreaView, View} from 'react-native';
 import {
   SubmittedOrders,
   AcceptedOrders,
@@ -15,9 +15,7 @@ export default function OrdersTradesScreen() {
   ];
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-      <ScrollView bounces={false}>
-        <TabbedNavigator data={tabbedPages} />
-      </ScrollView>
+      <TabbedNavigator data={tabbedPages} />
     </SafeAreaView>
   );
 }

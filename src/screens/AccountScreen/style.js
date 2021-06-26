@@ -1,6 +1,8 @@
 import {StyleSheet} from 'react-native';
+import colors from '../../constants/colors';
 
 const AccountsStyles = StyleSheet.create({
+  safeAreaView: {flex: 1, backgroundColor: 'white'},
   container: {
     backgroundColor: '#fff',
     paddingHorizontal: 20,
@@ -18,24 +20,23 @@ const AccountsStyles = StyleSheet.create({
   },
   menuName: {
     fontWeight: '600',
-    fontSize: 16,
-    marginBottom: 5,
+    fontSize: 14,
   },
-  menuDescriptionn: {
+  menuDescription: {
     fontSize: 12,
+    color: colors.grey58,
   },
   listContainer: {
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 15,
-    borderTopColor: '#D1D1D1',
-    borderTopWidth: 1,
     flexDirection: 'row',
   },
   list: {
     alignItems: 'center',
     flexDirection: 'row',
   },
+  line: {height: 1, backgroundColor: colors.lightGrey},
 });
 
 export default AccountsStyles;

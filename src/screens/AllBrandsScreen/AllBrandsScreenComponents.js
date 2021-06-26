@@ -15,6 +15,7 @@ export const BrandsList = ({title, index}) => {
 
 const BrandsListStyles = StyleSheet.create({
   container: {
+    height: 50,
     paddingLeft: 10,
     paddingVertical: 10,
     flexDirection: 'row',
@@ -37,6 +38,8 @@ export const SectionHeader = ({title}) => {
 
 const SectionHeaderStyles = StyleSheet.create({
   container: {
+    height: 30,
+    justifyContent: 'center',
     paddingLeft: 10,
     paddingVertical: 3,
     backgroundColor: colors.lightGrey,

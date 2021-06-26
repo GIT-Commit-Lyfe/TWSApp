@@ -1,43 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {upperCase} from 'lodash';
 
 import {Image, View, Text, TouchableOpacity} from 'react-native';
 
 import TransparentCardStyles from './style';
+import {Jost300, Jost400, Jost500, Jost600} from '../StyledText';
+import {formatCurrency} from '../../utils/tools';
 
-const TransparentCard = ({content}) => {
+const TransparentCard = ({content, index}) => {
   return (
-    <TouchableOpacity style={TransparentCardStyles.transparentCardContainer}>
-      <Text style={TransparentCardStyles.transparentCardAlias}>
-        {content.alias}
-      </Text>
+    <TouchableOpacity
+      style={{
+        ...TransparentCardStyles.transparentCardContainer,
+        marginLeft: index % 2 ? 10 : 0,
+        marginRight: index % 2 ? 0 : 10,
+      }}>
+      <Jost500 style={TransparentCardStyles.transparentCardAlias}>
+        {`(${content.code})${content.reference}`}
+        {content.SECode && `-${content.SECode}`}
+      </Jost500>
       <Image
         style={TransparentCardStyles.transparentCardImage}
-        source={{uri: content.profile_pict}}
+        source={{uri: content.modelUrl}}
       />
 
-      <Text style={TransparentCardStyles.transparentCardName}>
-        {content.name}
-      </Text>
+      <Jost500 style={TransparentCardStyles.transparentCardName}>
+        {`${upperCase(content.brand)} "${content.significantEdition}"`}
+        {`\n${content.collection} (${content.year})`}
+      </Jost500>
 
-      {content.conditions.length > 0 &&
-        content.conditions.map(condition => (
-          <Text style={TransparentCardStyles.transparentCardCondition}>
-            {condition}
-          </Text>
-        ))}
+      <Jost300 style={TransparentCardStyles.transparentCardCondition}>
+        {content.condition + ' Condition'}
+      </Jost300>
 
-      <Text style={TransparentCardStyles.transparentCardPrice}>
-        {content.price}
-      </Text>
+      <Jost300 style={TransparentCardStyles.transparentCardCondition}>
+        {content.accomodation}
+      </Jost300>
+
+      <Jost500 style={TransparentCardStyles.transparentCardPrice}>
+        {formatCurrency(content.price)}
+      </Jost500>
+
+      <Jost300 style={TransparentCardStyles.transparentCardAuthentication}>
+        Incl. Chronobase Authentication
+      </Jost300>
 
       <View style={TransparentCardStyles.transparentCardFooter}>
-        <Text style={TransparentCardStyles.transparentCardSeller}>
-          {content.seller}
-        </Text>
-        <Text style={TransparentCardStyles.transparentCardLocation}>
-          {content.location}
-        </Text>
+        <Jost600 style={TransparentCardStyles.transparentCardSeller}>
+          {content.sellerType}
+        </Jost600>
+        <Jost300 style={TransparentCardStyles.transparentCardLocation}>
+          {`${content.country}, ${content.city}`}
+        </Jost300>
       </View>
     </TouchableOpacity>
   );

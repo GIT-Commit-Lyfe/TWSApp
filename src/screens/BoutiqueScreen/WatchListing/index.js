@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Text, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
 
 import WatchListingStyles from './style';
 
@@ -16,64 +16,89 @@ const WatchListing = props => {
 
   const products = [
     {
-      id: 1,
-      name: 'Product A',
-      alias: 'AA-11-X',
+      brand: 'Rolex',
+      code: 'RLX',
+      SECode: '',
+      reference: '126710BLRO',
+      significantEdition: 'BATMAN',
+      collection: 'GMT Master II',
+      year: '2016',
       price: 13350,
-      profile_pict: 'https://via.placeholder.com/150',
-      conditions: ['Full Set', 'Fair Condition'],
-      seller: 'Proffesional Trader',
-      location: 'BE',
+      currency: 'EUR',
+      condition: 'Very Good',
+      accomodation: 'With Original Papers',
+      country: 'DE',
+      city: 'Berlin',
+      sellerType: 'Individual Investor',
+      modelUrl: 'https://via.placeholder.com/150.png',
     },
     {
-      id: 2,
-      name: 'Product B',
-      alias: 'AA-11-X',
-      price: 13350,
-      profile_pict: 'https://via.placeholder.com/150',
-      conditions: ['Full Set', 'Fair Condition'],
-      seller: 'Proffesional Trader',
-      location: 'BE',
+      brand: 'Rolex',
+      code: 'RLX',
+      SECode: 'F4',
+      reference: '16610LV',
+      significantEdition: 'KERMIT FLAT 4',
+      collection: 'Submariner Date',
+      year: '2004',
+      price: 17900,
+      currency: 'EUR',
+      condition: 'Fair',
+      accomodation: 'Full Set',
+      country: 'DE',
+      city: 'Berlin',
+      sellerType: 'Individual Investor',
+      modelUrl: 'https://via.placeholder.com/150.png',
     },
     {
-      id: 3,
-      name: 'Product C',
-      alias: 'AA-11-X',
+      brand: 'Rolex',
+      code: 'RLX',
+      SECode: 'F4',
+      reference: '16610LV',
+      significantEdition: 'KERMIT FLAT 4',
+      collection: 'Submariner Date',
+      year: '2004',
       price: 13350,
-      profile_pict: 'https://via.placeholder.com/150',
-      conditions: ['Full Set', 'Fair Condition'],
-      seller: 'Proffesional Trader',
-      location: 'BE',
+      currency: 'EUR',
+      condition: 'Fair',
+      accomodation: 'Full Set',
+      country: 'DE',
+      city: 'Berlin',
+      sellerType: 'Individual Investor',
+      modelUrl: 'https://via.placeholder.com/150.png',
     },
     {
-      id: 4,
-      name: 'Product D',
-      alias: 'AA-11-X',
+      brand: 'Rolex',
+      code: 'RLX',
+      SECode: 'F4',
+      reference: '16610LV',
+      significantEdition: 'KERMIT FLAT 4',
+      collection: 'Submariner Date',
+      year: '2004',
       price: 13350,
-      profile_pict: 'https://via.placeholder.com/150',
-      conditions: ['Full Set', 'Fair Condition'],
-      seller: 'Proffesional Trader',
-      location: 'BE',
+      currency: 'EUR',
+      condition: 'Fair',
+      accomodation: 'Full Set',
+      country: 'DE',
+      city: 'Berlin',
+      sellerType: 'Individual Investor',
+      modelUrl: 'https://via.placeholder.com/150.png',
     },
     {
-      id: 5,
-      name: 'Product E',
-      alias: 'AA-11-X',
+      brand: 'Rolex',
+      code: 'RLX',
+      SECode: 'F4',
+      reference: '16610LV',
+      significantEdition: 'KERMIT FLAT 4',
+      collection: 'Submariner Date',
+      year: '2004',
       price: 13350,
-      profile_pict: 'https://via.placeholder.com/150',
-      conditions: ['Full Set', 'Fair Condition'],
-      seller: 'Proffesional Trader',
-      location: 'BE',
-    },
-    {
-      id: 6,
-      name: 'Product F',
-      alias: 'AA-11-X',
-      price: 13350,
-      profile_pict: 'https://via.placeholder.com/150',
-      conditions: ['Full Set', 'Fair Condition'],
-      seller: 'Proffesional Trader',
-      location: 'BE',
+      currency: 'EUR',
+      condition: 'Fair',
+      accomodation: 'Full Set',
+      country: 'DE',
+      city: 'Berlin',
+      sellerType: 'Individual Investor',
+      modelUrl: 'https://via.placeholder.com/150.png',
     },
   ];
 
@@ -91,12 +116,15 @@ const WatchListing = props => {
           ))}
       </View>
 
-      <View style={WatchListingStyles.watchListContainer}>
-        {products.length > 0 &&
-          products.map((product, index) => (
-            <TransparentCard key={index} content={product} />
-          ))}
-      </View>
+      <FlatList
+        contentContainerStyle={WatchListingStyles.watchListContainer}
+        data={products}
+        keyExtractor={(_, index) => index}
+        numColumns={2}
+        renderItem={({item, index}) => {
+          return <TransparentCard key={index} content={item} index={index} />;
+        }}
+      />
     </View>
   );
 };

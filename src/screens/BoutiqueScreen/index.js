@@ -1,22 +1,28 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
+import {SafeAreaView, ScrollView} from 'react-native';
 
 import Boutique from './Boutique';
 import WatchListing from './WatchListing';
 
 export default function BoutiqueScreen() {
   const boutiqueMock = {
-    profile_pict: 'https://via.placeholder.com/100',
-    name: 'MENZE GOLDSCMIEDE',
-    description:
-      "We would like to welcome you to Juwelier Menze! Our jeweller's shop has been in our family for 120 years in the 5th generation.",
+    id: 1,
+    avatar: 'https://via.placeholder.com/100',
+    boutiqueName: 'Rolex Collections',
+    description: 'Welcome to our boutique, we serve you at best',
+    address: 'Berlin',
+    fullAddress: 'Berlin, Germany',
+    longitude: 58.1233235234,
+    latitude: 12.123124234,
   };
 
   return (
-    <ScrollView>
-      <Boutique boutique={boutiqueMock} />
+    <SafeAreaView style={{backgroundColor: 'white'}}>
+      <ScrollView>
+        <Boutique boutique={boutiqueMock} />
 
-      <WatchListing />
-    </ScrollView>
+        <WatchListing />
+      </ScrollView>
+    </SafeAreaView>
   );
 }

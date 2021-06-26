@@ -134,7 +134,7 @@ const CarouselHeader = ({title, onPress, withoutSeeAll = false}) => {
           <MaterialIcons
             name="chevron-right"
             size={40}
-            color={colors.primary}></MaterialIcons>
+            color={colors.primary} />
         </TouchableOpacity>
       )}
     </View>
@@ -267,6 +267,7 @@ const PriceTrendCarouselStyle = StyleSheet.create({
     shadowRadius: 4,
     shadowOffset: {height: 10, width: 0},
     padding: 6,
+    marginBottom: 10,
     width: 130,
     height: 180,
     backgroundColor: colors.almostWhite,
@@ -578,7 +579,7 @@ const BoutiqueCarouselStyle = StyleSheet.create({
   titleText: {fontSize: 24, color: colors.primary},
   seeAllContainer: {flexDirection: 'row', alignItems: 'center'},
   seeAllText: {fontSize: 14, color: colors.primary},
-  flatListStyle: {paddingBottom: 30, paddingTop: 8},
+  flatListStyle: {paddingBottom: 20, paddingTop: 8},
   cardStyle: {
     borderRadius: 10,
     elevation: 5,
@@ -588,6 +589,7 @@ const BoutiqueCarouselStyle = StyleSheet.create({
     padding: 6,
     width: 130,
     height: 180,
+    marginBottom: 10,
     backgroundColor: colors.almostWhite,
     justifyContent: 'space-between',
     alignItems: 'center',

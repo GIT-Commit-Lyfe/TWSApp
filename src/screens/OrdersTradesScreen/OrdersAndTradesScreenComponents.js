@@ -11,10 +11,11 @@ import OrderList from '../../components/OrderList';
 import {Jost400} from '../../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../../constants/colors';
+import {figmaWidth, height, width} from '../../utils/tools';
 
 export function SubmittedOrders() {
   return (
-    <View contentContainerStyle={SubmittedOrdersStyles.flex}>
+    <View style={SubmittedOrdersStyles.flex}>
       <View style={SubmittedOrdersStyles.searchFilterContainer}>
         <View style={SubmittedOrdersStyles.searchBoxContainer}>
           <SearchBox
@@ -40,12 +41,17 @@ const SubmittedOrdersStyles = StyleSheet.create({
   searchFilterContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: 10,
+    marginHorizontal: figmaWidth(10),
     alignItems: 'center',
   },
   searchBoxContainer: {flex: 3},
   searchBox: {marginRight: 10},
-  filterContainer: {flex: 1, flexDirection: 'row', alignItems: 'center'},
+  filterContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   filterText: {fontSize: 13, marginRight: 4},
 });
 

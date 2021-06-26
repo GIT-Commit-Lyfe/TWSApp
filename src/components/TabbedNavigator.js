@@ -50,7 +50,7 @@ export function TabbedNavigator({data}) {
   const [componentShownIndex, setComponentShownIndex] = useState(0); // stores index of component to be shown
 
   return (
-    <View style={{marginTop: 10}}>
+    <View style={{marginTop: 10, flex: 1}}>
       <View
         style={{
           flexDirection: 'row',

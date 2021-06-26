@@ -1,7 +1,8 @@
 import React from 'react';
 import {
+  FlatList,
   StyleSheet,
-  ScrollView,
+  SafeAreaView,
   Text,
   TouchableOpacity,
   View,
@@ -15,37 +16,47 @@ import colors from '../../constants/colors';
 
 import AccountsStyles from './style';
 
+import {Jost400, Jost600} from '../../components/StyledText';
+
 export default function AccountScreen() {
   return (
-    <ScrollView style={AccountsStyles.container}>
-      {menus.map((menu, index) => (
-        <TouchableOpacity key={index} style={AccountsStyles.listContainer}>
-          <View style={AccountsStyles.list}>
-            <MaterialIcons
-              name={menu.material_icon_name}
-              color={colors.primary}
-              size={30}
-              style={{marginRight: 15}}
-            />
+    <SafeAreaView style={AccountsStyles.safeAreaView}>
+      <FlatList
+        contentContainerStyle={AccountsStyles.container}
+        data={menus}
+        keyExtractor={(_, index) => index}
+        ItemSeparatorComponent={() => <Line />}
+        renderItem={({item: menu, index}) => {
+          return (
+            <TouchableOpacity key={index} style={AccountsStyles.listContainer}>
+              <View style={AccountsStyles.list}>
+                <MaterialIcons
+                  name={menu.material_icon_name}
+                  color={colors.primary}
+                  size={30}
+                  style={{marginRight: 15}}
+                />
 
-            <View>
-              <Text style={AccountsStyles.menuName}>{menu.name}</Text>
-              {menu.description !== '' && (
-                <Text style={AccountsStyles.menuDescriptionn}>
-                  {menu.description}
-                </Text>
-              )}
-            </View>
-          </View>
+                <View>
+                  <Jost600 style={AccountsStyles.menuName}>{menu.name}</Jost600>
+                  {menu.description !== '' && (
+                    <Jost400 style={AccountsStyles.menuDescription}>
+                      {menu.description}
+                    </Jost400>
+                  )}
+                </View>
+              </View>
 
-          <MaterialIcons
-            name="arrow-forward-ios"
-            color={colors.primary}
-            size={20}
-          />
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+              <MaterialIcons
+                name="arrow-forward-ios"
+                color={colors.primary}
+                size={20}
+              />
+            </TouchableOpacity>
+          );
+        }}
+      />
+    </SafeAreaView>
   );
 }
-const styles = StyleSheet.create({});
+const Line = () => <View style={AccountsStyles.line} />;
