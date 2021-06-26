@@ -9,13 +9,12 @@ import {
 } from 'react-native';
 import colors from '../constants/colors';
 import {width} from '../utils/tools';
-import {Jost300, Jost400, Jost500, Jost600} from '../components/StyledText';
-import {FilterSortModalButton} from '../components/Buttons';
+import {Jost300, Jost400, Jost500, Jost600} from './StyledText';
+import {FilterSortModalButton} from './Buttons';
 
-export default function ListingsScreen({navigation, route}) {
-  const type = route.params;
-  console.log(type);
+export default function ListingsModal({navigation, bottomSheetRef}) {
   const onPress = item => {
+    bottomSheetRef.current.close();
     navigation.push('ListingDetail', {data: item});
   };
 

@@ -4,8 +4,8 @@ import {
   SubmittedOrders,
   AcceptedOrders,
   HistoryOrders,
-} from '../screenComponents/OrdersAndTradesScreenComponents';
-import {TabbedNavigator} from '../components/TabbedNavigator';
+} from './OrdersAndTradesScreenComponents';
+import {TabbedNavigator} from '../../components/TabbedNavigator';
 
 export default function OrdersTradesScreen() {
   const tabbedPages = [

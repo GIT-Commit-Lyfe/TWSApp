@@ -1,12 +1,18 @@
 import React from 'react';
-import {FlatList, Image, StyleSheet, SafeAreaView, View} from 'react-native';
-import {Jost300, Jost400, Jost500, Jost600} from '../components/StyledText';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {Jost300, Jost400, Jost500, Jost600} from './StyledText';
 import colors from '../constants/colors';
 import GreenArrow from '../assets/arrow-up.svg';
-import {FilterSortModalButton} from '../components/Buttons';
+import {FilterSortModalButton} from './Buttons';
 
-export default function WatchlistScreen({navigation, route}) {
-  const {type} = route.params; // can be personal, popular or trending
+export default function WatchlistModal({}) {
   const watchlist = [
     {
       reference: '126710BLRO',
@@ -44,7 +50,7 @@ export default function WatchlistScreen({navigation, route}) {
         ItemSeparatorComponent={() => <View style={style.itemSeparator}></View>}
         renderItem={({item}) => {
           return (
-            <View style={style.container}>
+            <TouchableOpacity style={style.container}>
               <View style={{flexDirection: 'row'}}>
                 <Image style={style.modalImage} source={{uri: item.modelUrl}} />
                 <View style={style.textContainer}>
@@ -80,7 +86,7 @@ export default function WatchlistScreen({navigation, route}) {
                 </View>
                 <Jost300 style={style.marketPrice}>Market Price</Jost300>
               </View>
-            </View>
+            </TouchableOpacity>
           );
         }}
       />

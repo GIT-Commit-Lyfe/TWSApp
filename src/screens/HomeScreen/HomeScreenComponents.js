@@ -5,9 +5,9 @@ import {
   PriceTrendCarousel,
   ListingCarousel,
   BoutiqueCarousel,
-} from '../components/Carousels';
-import {Jost400, Jost600} from '../components/StyledText';
-import colors from '../constants/colors';
+} from '../../components/Carousels';
+import {Jost400, Jost600} from '../../components/StyledText';
+import colors from '../../constants/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {color} from 'react-native-reanimated';
 

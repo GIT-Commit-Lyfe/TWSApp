@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import colors from '../constants/colors';
-import {Jost400, Jost600} from '../components/StyledText';
+import colors from '../../constants/colors';
+import {Jost400, Jost600} from '../../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export const BrandsList = ({title, index}) => {

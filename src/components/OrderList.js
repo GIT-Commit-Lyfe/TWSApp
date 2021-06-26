@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
 });
 
 const OrderItem = ({item}) => {
-  console.log(item);
   return (
     <View
       style={{

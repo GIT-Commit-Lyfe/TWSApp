@@ -10,6 +10,8 @@ import {width, height} from '../utils/tools';
 import {Jost300, Jost400, Jost500, Jost600} from '../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import BottomSheet from './BottomSheet';
+import WatchlistModal from './WatchlistModal';
+import ListingsModal from '../components/ListingsModal';
 import colors from '../constants/colors';
 import GreenArrow from '../assets/arrow-up.svg';
 import {FilterSortModalButton} from './Buttons';
@@ -156,8 +158,10 @@ export const PriceTrendCarousel = ({title, data, navigation}) => {
       : title === 'Popular Models'
       ? 'popular'
       : 'trending';
+
+  const bottomSheetRef = useRef();
   const onPressSeeAll = () => {
-    navigation.navigate('Watchlist', {type});
+    bottomSheetRef.current.open();
   };
 
   return (
@@ -249,6 +253,9 @@ export const PriceTrendCarousel = ({title, data, navigation}) => {
           );
         }}
       />
+      <BottomSheet ref={bottomSheetRef} title={title}>
+        <WatchlistModal />
+      </BottomSheet>
     </View>
   );
 };
@@ -313,8 +320,9 @@ export const ListingCarousel = ({
   const onPress = item => {
     navigation.push('ListingDetail', {data: item});
   };
+  const bottomSheetRef = useRef();
   const onPressSeeAll = () => {
-    navigation.navigate('Listings', {type});
+    bottomSheetRef.current.open();
   };
   return (
     <View style={ListingCarouselStyle.container}>
@@ -411,6 +419,12 @@ export const ListingCarousel = ({
           );
         }}
       />
+      <BottomSheet ref={bottomSheetRef} title={title}>
+        <ListingsModal
+          navigation={navigation}
+          bottomSheetRef={bottomSheetRef}
+        />
+      </BottomSheet>
     </View>
   );
 };

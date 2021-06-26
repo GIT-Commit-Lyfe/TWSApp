@@ -6,11 +6,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {SearchBox} from '../components/Inputs';
-import OrderList from '../components/OrderList';
-import {Jost400} from '../components/StyledText';
+import {SearchBox} from '../../components/Inputs';
+import OrderList from '../../components/OrderList';
+import {Jost400} from '../../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 
 export function SubmittedOrders() {
   return (

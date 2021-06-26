@@ -1,15 +1,10 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView, ScrollView} from 'react-native';
-import Banner from '../assets/new-banner.png';
-import {SearchBox} from '../components/Inputs';
-import {FullWidthCarousel} from '../components/Carousels';
-import {ScrollingTabbedNavigator} from '../components/TabbedNavigator';
-import {
-  Watches,
-  Boutiques,
-  Straps,
-  Buckles,
-} from '../screenComponents/HomeScreenComponents';
+import Banner from '../../assets/new-banner.png';
+import {SearchBox} from '../../components/Inputs';
+import {FullWidthCarousel} from '../../components/Carousels';
+import {ScrollingTabbedNavigator} from '../../components/TabbedNavigator';
+import {Watches, Boutiques, Straps, Buckles} from './HomeScreenComponents';
 
 export default function HomeScreen() {
   const banner = [{source: Banner}, {source: Banner}, {source: Banner}];
@@ -35,4 +30,3 @@ export default function HomeScreen() {
     </SafeAreaView>
   );
 }
-const styles = StyleSheet.create({});

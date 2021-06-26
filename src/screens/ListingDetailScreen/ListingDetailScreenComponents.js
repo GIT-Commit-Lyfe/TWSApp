@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Jost300, Jost400, Jost500, Jost600} from '../components/StyledText';
-import colors from '../constants/colors';
+import {Jost300, Jost400, Jost500, Jost600} from '../../components/StyledText';
+import colors from '../../constants/colors';
 
 export const ItemDescription = ({data}) => {
   return (

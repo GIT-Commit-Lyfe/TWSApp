@@ -7,38 +7,62 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Jost500, Jost600} from '../components/StyledText';
-import colors from '../constants/colors';
-import {
-  SectionHeader,
-  BrandsList,
-} from '../screenComponents/AllBrandsScreenComponents';
+import {Jost500, Jost600} from '../../components/StyledText';
+import colors from '../../constants/colors';
+import {SectionHeader, BrandsList} from './AllBrandsScreenComponents';
 
 export default function AllBrandsScreen() {
   const brands = [
+    'Accurist',
+    'ADINA Watches',
+    'Adidas',
+    'Adriatica',
+    'A.L.B Atelier Le Brézéguet',
+    'Alba',
+    'Alexandre Christie',
+    'American Waltham Watch Company',
+    'Anonimo',
+    'Ansonia Clock Company',
+    'Apple Inc.',
+    'Aquastar',
+    'Aragon',
+    'Armand Nicolet',
+    'Armani Exchange',
+    'Armitron',
+    'John Arnold',
+    'ASUAG',
+    'Audemars Piguet',
+    'Ateliers deMonaco',
     'A. Lange & Sohne',
     'ABP Paris',
     'Aerowatch',
     'Aigner',
-    'Balmain',
-    'Boucheron',
+    'Backes & Strauss',
+    'Baume et Mercier',
+    'Ball Watch Company',
+    'Webb C. Ball',
+    'Bedat & Co',
+    'Beijing Watch Factory',
+    'Bell & Ross',
+    'Benetton Group',
+    'Benrus',
+    'Binda Group',
+    'Blancpain',
+    'Blumarine',
+    'Ernest Borel',
+    'Bovet Fleurier',
+    'Edouard Bovet',
+    'Bozeman Watch Company',
+    'Abraham-Louis Breguet',
+    'Breguet',
+    'Breil',
+    'Breitling SA|Breitling',
+    'Bremont Watch Company',
+    'Gustav Bruemmer',
+    'Buccellati',
     'Bulgari',
-    'Cartier',
-    'Chrono Swiss',
-    'Chanel',
-    'Dior',
-    'Diesel',
-    'Dolce & Gabbana',
-    'Eberhard & Co.',
-    'Fendi',
-    'Fossil',
-    'A. Lange & Sohne',
-    'ABP Paris',
-    'Aerowatch',
-    'Aigner',
-    'Balmain',
-    'Boucheron',
-    'Bulgari',
+    'Bulova',
+    'Burberry',
     'Cartier',
     'Chrono Swiss',
     'Chanel',
@@ -96,6 +120,7 @@ export default function AllBrandsScreen() {
             Brands
           </Jost600>
           <SectionList
+            contentContainerStyle={{paddingBottom: 100}}
             ref={sectionListRef}
             showsVerticalScrollIndicator={false}
             sections={sortedBrands}
@@ -111,28 +136,32 @@ export default function AllBrandsScreen() {
             )}
           />
         </View>
-        <View style={{alignSelf: 'center'}}>
-          {/* alphabetical navigator */}
-          {sortedBrands.map((section, idx) => {
-            console.log(section);
-            return (
-              <TouchableOpacity
-                key={section + idx}
-                style={{paddingHorizontal: 10}}
-                onPress={() => {
-                  sectionListRef.current.scrollToLocation({
-                    itemIndex: 0,
-                    sectionIndex: idx,
-                  });
-                }}>
-                <Jost500 style={{fontSize: 10, color: colors.grey58}}>
-                  {section.title}
-                </Jost500>
-              </TouchableOpacity>
-            );
-          })}
-        </View>
+        <Navigator list={sortedBrands} sectionListRef={sectionListRef} />
       </View>
     </SafeAreaView>
   );
 }
+
+const Navigator = ({list, sectionListRef}) => {
+  return (
+    <View style={{alignSelf: 'center'}}>
+      {list.map((section, idx) => {
+        return (
+          <TouchableOpacity
+            key={section + idx}
+            style={{paddingHorizontal: 10}}
+            onPress={() => {
+              sectionListRef.current.scrollToLocation({
+                itemIndex: 0,
+                sectionIndex: idx,
+              });
+            }}>
+            <Jost500 style={{fontSize: 10, color: colors.grey58}}>
+              {section.title}
+            </Jost500>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
+};
