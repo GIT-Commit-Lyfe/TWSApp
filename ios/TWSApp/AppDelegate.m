@@ -23,13 +23,15 @@ static void InitializeFlipper(UIApplication *application) {
 }
 #endif
 
-NSString* mapsApiKey = [[NSProcessInfo processInfo] environment[@"GOOGLE_MAP_API_KEY"]; // import google_map_api_key from .env
+// NSString* mapsApiKey = [[NSProcessInfo processInfo] environment[@"GOOGLE_MAP_API_KEY"]; // import google_map_api_key from .env
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-[GMSServices provideAPIKey:mapsApiKey]; // add this line using the api key obtained from Google Console
+  printf("hello");
+[GMSServices provideAPIKey:@"AIzaSyD0sd3jVC4E2d-HTTs2Bl5Sc5eOSPZGFEE"]; // add this line using the api key obtained from Google Console
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
