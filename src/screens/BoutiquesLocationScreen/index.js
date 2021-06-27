@@ -8,6 +8,8 @@ import {
   View,
 } from 'react-native';
 
+import MapView from 'react-native-maps';
+
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {SearchBox} from '../../components/Inputs';
@@ -45,6 +47,17 @@ const BoutiquesLocationScreen = ({navigation}) => {
       <View tyle={BoutiquesLocationStyles.textInputContainer}>
         <SearchBox placeholder="Search Boutiques or Locations" />
       </View>
+
+      <MapView
+        style={{height: 500, width: '100%'}}
+        initialRegion={{
+          latitude: 37.110366,
+          longitude: -122.163979,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+        showsUserLocation={true}
+      />
 
       <FlatList
         data={boutiques}
