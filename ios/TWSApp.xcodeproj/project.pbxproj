@@ -16,6 +16,7 @@
 		269A1484B578477D8FE4ED3A /* Jost-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60B9AFA7ABEA4F7D8F99008E /* Jost-ExtraLight.ttf */; };
 		2D13F3005156459C992627CB /* Jost-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A07FF10348354AF9A2CA9EC8 /* Jost-ThinItalic.ttf */; };
 		34E5F855D33A4298AB9BAC53 /* Jost-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A2ECD1FC67A478EB1E5C323 /* Jost-MediumItalic.ttf */; };
+		3D7AEE1F26884F8F0023D171 /* AirGoogleMaps in Resources */ = {isa = PBXBuildFile; fileRef = 3D7AEE1E26884F8F0023D171 /* AirGoogleMaps */; };
 		444D53F085B557FE463C42BF /* libPods-TWSApp-TWSAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD4DF1A96321C127E9DDEF7 /* libPods-TWSApp-TWSAppTests.a */; };
 		69183B4C882D4D79AFC8E444 /* Jost-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C37FAA1969F74941B63586FC /* Jost-Regular.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -74,6 +75,7 @@
 		3D00B3942674A77000000E2D /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		3D00B3952674A77000000E2D /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		3D2E3DB990A52FE388F11B42 /* libPods-TWSApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TWSApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D7AEE1E26884F8F0023D171 /* AirGoogleMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AirGoogleMaps; path = "../node_modules/react-native-maps/lib/ios/AirGoogleMaps"; sourceTree = "<group>"; };
 		4CD03CA9054801455EF79E32 /* Pods-TWSApp-TWSAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TWSApp-TWSAppTests.release.xcconfig"; path = "Target Support Files/Pods-TWSApp-TWSAppTests/Pods-TWSApp-TWSAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A05BB5E5FB64AD69E548337 /* Jost-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jost-ExtraBold.ttf"; path = "../src/assets/fonts/Jost-ExtraBold.ttf"; sourceTree = "<group>"; };
 		60B9AFA7ABEA4F7D8F99008E /* Jost-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jost-ExtraLight.ttf"; path = "../src/assets/fonts/Jost-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				3D7AEE1E26884F8F0023D171 /* AirGoogleMaps */,
 				13B07FAE1A68108700A75B9A /* TWSApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TWSAppTests */,
@@ -345,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D7AEE1F26884F8F0023D171 /* AirGoogleMaps in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				E69C5449BE6F4E89BA8B7795 /* Jost-Black.ttf in Resources */,
@@ -606,6 +610,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"FB_SONARKIT_ENABLED=1",
+					"HAVE_GOOGLE_MAPS=1",
+				);
 				INFOPLIST_FILE = TWSApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -632,6 +642,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"HAVE_GOOGLE_MAPS=1",
+				);
 				INFOPLIST_FILE = TWSApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

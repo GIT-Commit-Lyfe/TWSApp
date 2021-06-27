@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-import MapView from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -50,9 +50,10 @@ const BoutiquesLocationScreen = ({navigation}) => {
 
       <MapView
         style={{height: 500, width: '100%'}}
-        initialRegion={{
-          latitude: 37.110366,
-          longitude: -122.163979,
+        provider={PROVIDER_GOOGLE}
+        region={{
+          latitude: 37.78825,
+          longitude: -122.4324,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}

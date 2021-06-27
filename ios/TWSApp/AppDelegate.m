@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-// #import <GoogleMaps/GoogleMaps.h>
+#import <GoogleMaps/GoogleMaps.h>
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -23,11 +23,13 @@ static void InitializeFlipper(UIApplication *application) {
 }
 #endif
 
+NSString* mapsApiKey = [[NSProcessInfo processInfo] environment[@"GOOGLE_MAP_API_KEY"]; // import google_map_api_key from .env
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-// + [GMSServices provideAPIKey:@"AIzaSyD0sd3jVC4E2d-HTTs2Bl5Sc5eOSPZGFEE"]; // add this line using the api key obtained from Google Console
+[GMSServices provideAPIKey:mapsApiKey]; // add this line using the api key obtained from Google Console
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
