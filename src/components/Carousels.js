@@ -134,7 +134,8 @@ const CarouselHeader = ({title, onPress, withoutSeeAll = false}) => {
           <MaterialIcons
             name="chevron-right"
             size={40}
-            color={colors.primary} />
+            color={colors.primary}
+          />
         </TouchableOpacity>
       )}
     </View>
@@ -177,11 +178,14 @@ export const PriceTrendCarousel = ({title, data, navigation}) => {
         renderItem={({item, index}) => {
           const isFirst = index === 0;
           return (
-            <View
+            <TouchableOpacity
               style={{
                 ...PriceTrendCarouselStyle.cardStyle,
                 marginLeft: isFirst ? 10 : 8,
-              }}>
+              }}
+              onPress={() =>
+                navigation.navigate('Model', {name: item.collection})
+              }>
               <View style={{zIndex: 1}}>
                 <Jost400 style={PriceTrendCarouselStyle.smallText}>
                   "{item.significantEdition}"
@@ -220,7 +224,7 @@ export const PriceTrendCarousel = ({title, data, navigation}) => {
                   Market Price
                 </Jost300>
               </View>
-            </View>
+            </TouchableOpacity>
           );
         }}
         ListEmptyComponent={() => {
@@ -486,7 +490,8 @@ export const BoutiqueCarousel = ({title, data, navigation}) => {
           <MaterialIcons
             name="chevron-right"
             size={40}
-            color={colors.primary}></MaterialIcons>
+            color={colors.primary}
+          />
         </TouchableOpacity>
       </View>
       <FlatList
