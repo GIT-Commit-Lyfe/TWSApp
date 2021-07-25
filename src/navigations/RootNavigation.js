@@ -21,6 +21,7 @@ import BoutiqueTab from '../assets/boutique-tab.svg';
 import BrandsTab from '../assets/brands-tab.svg';
 import OrdersTradesTab from '../assets/orders-trades-tab.svg';
 import AccountTab from '../assets/account-tab.svg';
+import ModelSell from '../screens/ModelSell';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -64,6 +65,8 @@ function HomeStack() {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="ListingDetail" component={ListingDetailScreen} />
       <Stack.Screen name="Model" component={ModelScreen} />
+      <Stack.Screen name="ModelSell" component={ModelSell} />
+      <Stack.Screen name="ModelBuy" component={ModelScreen} />
     </Stack.Navigator>
   );
 }

@@ -1,11 +1,14 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import {Jost400, Jost600} from '../../../components/StyledText';
 
 import styles from './styles';
 
 const BuyAndSell = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.buyAndSellPosition}>
       <View style={styles.flexRow}>
@@ -39,7 +42,9 @@ const BuyAndSell = () => {
 
       <View>
         <View style={styles.flexRow}>
-          <TouchableOpacity style={styles.buttonRed}>
+          <TouchableOpacity
+            style={styles.buttonRed}
+            onPress={() => navigation.push('ModelSell')}>
             <Jost600 style={styles.buttonText}>SELL</Jost600>
             <Jost600 style={styles.buttonTextSmall}>Or Ask</Jost600>
           </TouchableOpacity>
@@ -48,7 +53,9 @@ const BuyAndSell = () => {
             <Jost600 style={styles.buttonTextSmall}>Listings</Jost600>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.buttonGreen}>
+          <TouchableOpacity
+            style={styles.buttonGreen}
+            onPress={() => navigation.push('ModelBuy')}>
             <Jost600 style={styles.buttonText}>BUY</Jost600>
             <Jost600 style={styles.buttonTextSmall}>Or Bid</Jost600>
           </TouchableOpacity>

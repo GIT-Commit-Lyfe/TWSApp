@@ -73,8 +73,8 @@ export default function ModelScreen() {
   ];
 
   return (
-    <SafeAreaView style={styles.safeContainer}>
-      <ScrollView>
+    <SafeAreaView style={styles.modelScreenContainer}>
+      <ScrollView style={styles.scrollViewContainner}>
         <ModelDetail />
         <SignificantEditions />
         <PriceGraph title="Price History" />

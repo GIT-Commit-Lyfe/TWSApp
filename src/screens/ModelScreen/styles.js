@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  safeContainer: {
+  modelScreenContainer: {
     flex: 1,
     backgroundColor: 'white',
     paddingVertical: 6,
