@@ -3,6 +3,7 @@ import {SafeAreaView, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import Accesories from './Accesories';
+import BuyAndSell from './BuyAndSell';
 import ModelDetail from './ModelDetail';
 import SignificantEditions from './SignificantEditions';
 
@@ -101,6 +102,7 @@ export default function ModelScreen() {
         />
         <Accesories />
       </ScrollView>
+      <BuyAndSell />
     </SafeAreaView>
   );
 }
