@@ -2,6 +2,7 @@ import React from 'react';
 import {SafeAreaView, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
+import Accesories from './Accesories';
 import ModelDetail from './ModelDetail';
 import SignificantEditions from './SignificantEditions';
 
@@ -98,6 +99,7 @@ export default function ModelScreen() {
           data={followedListings}
           navigation={navigation}
         />
+        <Accesories />
       </ScrollView>
     </SafeAreaView>
   );

@@ -9,7 +9,6 @@ import {
 import {Jost400, Jost600} from '../../components/StyledText';
 import colors from '../../constants/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {color} from 'react-native-reanimated';
 
 export const Watches = () => {
   const navigation = useNavigation();

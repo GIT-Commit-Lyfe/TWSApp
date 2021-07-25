@@ -3,6 +3,8 @@ import {Image, View, FlatList, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+import colors from '../../../constants/colors';
+
 import {formatCurrency} from '../../../utils/tools';
 import {
   Jost300,
