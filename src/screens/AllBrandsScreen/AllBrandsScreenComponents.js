@@ -4,9 +4,9 @@ import colors from '../../constants/colors';
 import {Jost400, Jost600} from '../../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-export const BrandsList = ({title, index}) => {
+export const BrandsList = ({title, index, onPress}) => {
   return (
-    <TouchableOpacity style={BrandsListStyles.container}>
+    <TouchableOpacity style={BrandsListStyles.container} onPress={onPress}>
       <Jost400 style={BrandsListStyles.text}>{title}</Jost400>
       <MaterialIcons name="chevron-right" size={20} color={colors.primary} />
     </TouchableOpacity>

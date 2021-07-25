@@ -10,26 +10,23 @@ import BoutiqueStyles from './style';
 
 import {Jost400, Jost600} from '../../../components/StyledText';
 
+import {BasicHeader} from '../../../components/Headers';
+
 const Boutique = ({boutique}) => {
+  const {avatar, boutiqueName, description} = boutique;
   return (
     <View style={BoutiqueStyles.container}>
-      <View style={BoutiqueStyles.boutiqueContainer}>
-        <Image
-          style={BoutiqueStyles.boutiqueImage}
-          source={{uri: boutique.avatar}}
-        />
-
-        <View style={BoutiqueStyles.textContainer}>
-          <Jost600 style={BoutiqueStyles.titleText}>
-            {upperCase(boutique.boutiqueName)}
-          </Jost600>
-          <Jost400>{boutique.description}</Jost400>
-        </View>
-      </View>
+      <BasicHeader
+        imageUri={avatar}
+        title={boutiqueName}
+        description={description}
+      />
 
       <View style={BoutiqueStyles.buttonContainer}>
         <TouchableOpacity style={BoutiqueStyles.primaryGhost}>
-          <Jost600 style={BoutiqueStyles.primaryGhostText}>Follow Boutique</Jost600>
+          <Jost600 style={BoutiqueStyles.primaryGhostText}>
+            Follow Boutique
+          </Jost600>
         </TouchableOpacity>
 
         <TouchableOpacity style={BoutiqueStyles.primary}>

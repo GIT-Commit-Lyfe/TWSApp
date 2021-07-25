@@ -22,7 +22,7 @@ export function ScrollingTabbedNavigator({data}) {
             <TouchableOpacity onPress={() => setComponentShownIndex(index)}>
               <View
                 style={{
-                  marginRight: 30,
+                  marginRight: 50,
                   borderBottomColor: colors.primary,
                   borderBottomWidth: selected ? 2 : 0,
                   paddingBottom: 10,

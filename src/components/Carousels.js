@@ -134,7 +134,8 @@ const CarouselHeader = ({title, onPress, withoutSeeAll = false}) => {
           <MaterialIcons
             name="chevron-right"
             size={40}
-            color={colors.primary} />
+            color={colors.primary}
+          />
         </TouchableOpacity>
       )}
     </View>

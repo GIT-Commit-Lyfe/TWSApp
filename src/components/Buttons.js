@@ -49,7 +49,7 @@ const FilterSortModalButtonStyle = StyleSheet.create({
 });
 
 export const BasicButton = ({
-  onPress,
+  onPress = () => {},
   backgroundColor = colors.primary,
   textColor = 'white',
   containerStyle,
@@ -60,13 +60,12 @@ export const BasicButton = ({
     <TouchableOpacity
       onPress={onPress}
       style={{
-        ...containerStyle,
         backgroundColor: backgroundColor,
         borderWidth: 1,
         borderColor: colors.primary,
         padding: 10,
         marginVertical: 10,
-        flex: 1,
+        ...containerStyle,
       }}>
       <Jost600 style={{...textStyle, color: textColor, textAlign: 'center'}}>
         {text}

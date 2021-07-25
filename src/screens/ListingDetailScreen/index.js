@@ -150,9 +150,10 @@ export default function ListingDetailScreen({route, navigation}) {
             backgroundColor="white"
             textColor={colors.primary}
             text="Add to Watchlist"
+            containerStyle={{flex: 1}}
           />
           <View style={styles.basicSeparator} />
-          <BasicButton text="View Market Data" />
+          <BasicButton text="View Market Data" containerStyle={{flex: 1}} />
         </View>
         <View style={styles.simpleListContainer}>
           <SimpleList

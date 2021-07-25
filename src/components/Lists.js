@@ -1,7 +1,16 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import colors from '../constants/colors';
-import {Jost400, Jost600} from './StyledText';
+import {formatCurrency} from '../utils/tools';
+import {Jost300, Jost400, Jost500, Jost600} from './StyledText';
+import GreenArrow from '../assets/arrow-up.svg';
 
 export const SimpleList = ({title, items}) => {
   return (
@@ -50,3 +59,158 @@ const styles = StyleSheet.create({
   },
 });
 
+export const WatchList = ({data}) => {
+  return (
+    <FlatList
+      data={data}
+      keyExtractor={(_, index) => index}
+      ItemSeparatorComponent={() => (
+        <View style={WatchListStyle.itemSeparator}></View>
+      )}
+      renderItem={({item}) => {
+        return (
+          <TouchableOpacity style={WatchListStyle.container}>
+            <View style={{flexDirection: 'row'}}>
+              <Image
+                style={WatchListStyle.modalImage}
+                source={{uri: item.modelUrl}}
+              />
+              <View style={WatchListStyle.textContainer}>
+                <Jost600 style={WatchListStyle.significantEdition}>
+                  "{item.significantEdition}"
+                </Jost600>
+                <Jost600 style={WatchListStyle.collection}>
+                  {item.collection}
+                </Jost600>
+                <Jost400 style={WatchListStyle.reference}>
+                  {item.reference}
+                </Jost400>
+              </View>
+            </View>
+            <View style={WatchListStyle.priceContainer}>
+              <View style={WatchListStyle.priceTrendContainer}>
+                <Jost500 style={WatchListStyle.price}>
+                  {formatCurrency(item.marketPrice)}
+                </Jost500>
+                {item.raising ? (
+                  <GreenArrow style={{marginLeft: 2}} width={14} height={10} />
+                ) : (
+                  <GreenArrow style={{marginLeft: 2}} width={14} height={10} />
+                )}
+              </View>
+              <Jost300 style={WatchListStyle.marketPrice}>Market Price</Jost300>
+            </View>
+          </TouchableOpacity>
+        );
+      }}
+    />
+  );
+};
+
+const WatchListStyle = StyleSheet.create({
+  itemSeparator: {height: 1, backgroundColor: colors.lightGrey},
+  container: {flexDirection: 'row', justifyContent: 'space-between'},
+  modalImage: {
+    width: 100,
+    height: 100,
+    resizeMode: 'cover',
+  },
+  textContainer: {justifyContent: 'center'},
+  significantEdition: {fontSize: 9, color: colors.grey58},
+  collection: {fontSize: 18, color: colors.primary},
+  reference: {fontSize: 12, color: colors.primary},
+  priceContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.almostWhite,
+    paddingHorizontal: 10,
+    width: 110,
+  },
+  priceTrendContainer: {flexDirection: 'row', alignItems: 'center'},
+  price: {fontSize: 18, color: colors.primary},
+  marketPrice: {fontSize: 9, color: colors.grey58},
+});
+
+export const CollectionList = ({data}) => {
+  return (
+    <FlatList
+      data={data}
+      keyExtractor={(_, index) => index}
+      ItemSeparatorComponent={() => (
+        <View style={CollectionListStyle.itemSeparator}></View>
+      )}
+      renderItem={({item}) => {
+        const {
+          collection,
+          productionYearStart,
+          productionYearEnd,
+          modelUrl,
+          currency,
+          lowestAsk,
+        } = item;
+
+        const currentYear = new Date().getFullYear();
+        const isDiscontinued = productionYearEnd < currentYear;
+        return (
+          <TouchableOpacity style={CollectionListStyle.container}>
+            <View style={{flexDirection: 'row'}}>
+              <Image
+                style={CollectionListStyle.modalImage}
+                source={{uri: modelUrl}}
+              />
+              <View style={CollectionListStyle.textContainer}>
+                {isDiscontinued && (
+                  <Jost600 style={CollectionListStyle.significantEdition}>
+                    Discontinued
+                  </Jost600>
+                )}
+                <Jost600 style={CollectionListStyle.collection}>
+                  {collection}
+                </Jost600>
+                <Jost400 style={CollectionListStyle.reference}>
+                  {`${productionYearStart} - ${
+                    isDiscontinued ? productionYearEnd : 'Current Model'
+                  }`}
+                </Jost400>
+              </View>
+            </View>
+            <View style={CollectionListStyle.priceContainer}>
+              <View style={CollectionListStyle.priceTrendContainer}>
+                <Jost500 style={CollectionListStyle.price}>
+                  {formatCurrency(lowestAsk)}
+                </Jost500>
+              </View>
+              <Jost300 style={CollectionListStyle.marketPrice}>
+                Lowest Ask
+              </Jost300>
+            </View>
+          </TouchableOpacity>
+        );
+      }}
+    />
+  );
+};
+
+const CollectionListStyle = StyleSheet.create({
+  itemSeparator: {height: 1, backgroundColor: colors.lightGrey},
+  container: {flexDirection: 'row', justifyContent: 'space-between'},
+  modalImage: {
+    width: 100,
+    height: 100,
+    resizeMode: 'cover',
+  },
+  textContainer: {justifyContent: 'center'},
+  significantEdition: {fontSize: 9, color: colors.grey58},
+  collection: {fontSize: 18, color: colors.primary},
+  reference: {fontSize: 12, color: colors.primary},
+  priceContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.almostWhite,
+    paddingHorizontal: 10,
+    width: 110,
+  },
+  priceTrendContainer: {flexDirection: 'row', alignItems: 'center'},
+  price: {fontSize: 18, color: colors.primary},
+  marketPrice: {fontSize: 9, color: colors.grey58},
+});

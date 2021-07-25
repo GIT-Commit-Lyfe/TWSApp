@@ -12,7 +12,7 @@ import {Jost500, Jost600} from '../../components/StyledText';
 import colors from '../../constants/colors';
 import {SectionHeader, BrandsList} from './AllBrandsScreenComponents';
 
-export default function AllBrandsScreen() {
+export default function AllBrandsScreen({navigation}) {
   const brands = [
     'Accurist',
     'ADINA Watches',
@@ -140,9 +140,12 @@ export default function AllBrandsScreen() {
             ItemSeparatorComponent={() => (
               <View style={{height: 1, backgroundColor: colors.lightGrey}} />
             )}
-            renderItem={({item, index}) => (
-              <BrandsList title={item} index={index} />
-            )}
+            renderItem={({item, index}) => {
+              const onPress = () => navigation.navigate('BrandDetail');
+              return (
+                <BrandsList title={item} index={index} onPress={onPress} />
+              );
+            }}
             renderSectionHeader={({section: {title}}) => (
               <SectionHeader title={title} />
             )}
