@@ -12,17 +12,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 30,
   },
+  buttonLeft: {
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
+  },
+  buttonRight: {
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+  },
   buttonBidGreen: {
     backgroundColor: '#296142',
-    borderRadius: 20,
-    width: width / 2,
+    width: width / 2 - 10,
     paddingVertical: 8,
     alignItems: 'center',
   },
   buttonBidGrey: {
     backgroundColor: '#F5F5F5',
-    borderRadius: 20,
-    width: width / 2,
+    borderColor: '#CDCDCD',
+    borderWidth: 1,
+    width: width / 2 - 10,
     paddingVertical: 8,
     alignItems: 'center',
   },
@@ -61,8 +69,40 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
   },
+  buyContainer: {
+    marginTop: 25,
+    marginBottom: 5,
+  },
+  halveWidth: {
+    width: width / 2 - 20,
+  },
+  imageStyle: {
+    width: '100%',
+    aspectRatio: 1,
+    resizeMode: 'cover',
+    alignSelf: 'center',
+  },
   blackButtonText: {
     color: '#fff',
+  },
+  buyTitleText: {
+    fontSize: 14,
+    marginBottom: 5,
+  },
+  buyDescriptionText: {
+    fontSize: 12,
+  },
+  flexRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  buyButton: {
+    alignItems: 'center',
+    borderColor: '#18110C',
+    borderWidth: 1,
+    flex: 1,
+    paddingVertical: 10,
+    marginTop: 15,
   },
 });
 
