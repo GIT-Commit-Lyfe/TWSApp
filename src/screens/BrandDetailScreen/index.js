@@ -20,6 +20,8 @@ import {
 import colors from '../../constants/colors';
 import {figmaWidth} from '../../utils/tools';
 import {Watches} from '../HomeScreen/HomeScreenComponents';
+import MarketDataModal from '../../components/MarketDataModal';
+import FilterModal from '../../components/FilterModal';
 
 const brandInfo = {
   id: 1,
@@ -28,6 +30,7 @@ const brandInfo = {
   details: 'Rolex is lorem ipsum',
   website: 'https://www.rolex.com',
 };
+
 const collections = [
   {
     id: 1,
@@ -102,22 +105,30 @@ const collections = [
     lowestAsk: 10444,
   },
 ];
-const tabbedPages = [
-  {
-    title: 'Collections',
-    component: <CollectionList data={collections} />,
-  },
-  {title: 'Models', component: <CollectionList data={collections} />},
-  {title: 'Collectibles', component: <CollectionList data={collections} />},
-  {title: 'Parts', component: <CollectionList data={collections} />},
-];
 
 export default function BrandDetailScreen({navigation}) {
   const filterRef = useRef();
   const marketDataRef = useRef();
-  // const isReady = Math.random() > 0.5;
-  const isReady = true;
+  const isReady = Math.random() < 0.8;
+  // const isReady = true;
   const {brand, logo, details, website} = brandInfo;
+
+  const collectionOnPress = item => {
+    console.log(item);
+    navigation.navigate('CollectionDetail', {data: item});
+  };
+
+  const tabbedPages = [
+    {
+      title: 'Collections',
+      component: (
+        <CollectionList data={collections} onPress={collectionOnPress} />
+      ),
+    },
+    {title: 'Models', component: <CollectionList data={collections} />},
+    {title: 'Collectibles', component: <CollectionList data={collections} />},
+    {title: 'Parts', component: <CollectionList data={collections} />},
+  ];
 
   const openFilter = () => {
     filterRef.current.open();
@@ -128,13 +139,13 @@ export default function BrandDetailScreen({navigation}) {
   };
 
   const prioritizeBrand = () => {
-    console.log(brand);
+    console.log('Prioritize this brand!', brand);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       {isReady ? (
-        <ScrollView>
+        <View style={{flex: 1}}>
           <View style={styles.paddingHorizontal}>
             <BasicHeader
               title={brand}
@@ -159,9 +170,9 @@ export default function BrandDetailScreen({navigation}) {
             </View>
           </View>
           <View style={styles.tabbedSeparator}>
-            <ScrollingTabbedNavigator data={tabbedPages} scrolling />
+            <ScrollingTabbedNavigator data={tabbedPages} />
           </View>
-        </ScrollView>
+        </View>
       ) : (
         <View>
           <View style={styles.paddingHorizontal}>
@@ -187,11 +198,9 @@ export default function BrandDetailScreen({navigation}) {
           </View>
         </View>
       )}
-      <BottomSheet ref={filterRef} title={'Filter'}>
-        {/* <WatchlistModal /> */}
-      </BottomSheet>
-      <BottomSheet ref={marketDataRef} title={'View Market Data'}>
-        {/* <WatchlistModal /> */}
+      <FilterModal ref={filterRef} />
+      <BottomSheet ref={marketDataRef} title={brand} subtitle="(RLX)">
+        <MarketDataModal />
       </BottomSheet>
     </SafeAreaView>
   );
@@ -208,7 +217,7 @@ const styles = StyleSheet.create({
   },
   separator: {width: 10},
   flex: {flex: 1},
-  tabbedSeparator: {marginTop: 20},
+  tabbedSeparator: {marginTop: 20, flex: 1},
   prioritizeButton: {marginVertical: 20},
   addToWatchlist: {flexDirection: 'row', alignItems: 'center'},
   watchlistText: {
@@ -217,3 +226,11 @@ const styles = StyleSheet.create({
     width: '90%',
   },
 });
+
+const BrandCollections = ({data}) => {
+  return (
+    <View style={{flex: 1, backgroundColor: 'red'}}>
+      <CollectionList data={data} />
+    </View>
+  );
+};

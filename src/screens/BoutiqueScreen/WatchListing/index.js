@@ -6,8 +6,9 @@ import WatchListingStyles from './style';
 
 import FilterItem from '../../../components/FilterItem';
 import TransparentCard from '../../../components/TransparentCard';
+import {TwoRowList} from '../../../components/Lists';
 
-const WatchListing = props => {
+const WatchListing = ({ListHeaderComponent, title = 'All Listings'}) => {
   const filters = [
     'Stainless Steel',
     'Condition: Good or Better',
@@ -103,29 +104,26 @@ const WatchListing = props => {
   ];
 
   return (
-    <View style={WatchListingStyles.container}>
-      <View style={WatchListingStyles.filterContainer}>
-        <Text style={WatchListingStyles.filterText}>All Listings</Text>
-        <Text>Filter Models</Text>
-      </View>
-
-      <View style={WatchListingStyles.filterItemContainer}>
-        {filters.length > 0 &&
-          filters.map((filter, index) => (
-            <FilterItem key={index} filter={filter} />
-          ))}
-      </View>
-
-      <FlatList
-        contentContainerStyle={WatchListingStyles.watchListContainer}
-        data={products}
-        keyExtractor={(_, index) => index}
-        numColumns={2}
-        renderItem={({item, index}) => {
-          return <TransparentCard key={index} content={item} index={index} />;
-        }}
-      />
-    </View>
+    <TwoRowList
+      data={products}
+      ListHeaderComponent={
+        <>
+          {ListHeaderComponent}
+          <View style={WatchListingStyles.container}>
+            <View style={WatchListingStyles.filterContainer}>
+              <Text style={WatchListingStyles.filterText}>{title}</Text>
+              <Text>Filter Models</Text>
+            </View>
+            <View style={WatchListingStyles.filterItemContainer}>
+              {filters.length > 0 &&
+                filters.map((filter, index) => (
+                  <FilterItem key={index} filter={filter} />
+                ))}
+            </View>
+          </View>
+        </>
+      }
+    />
   );
 };
 

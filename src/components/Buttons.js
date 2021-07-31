@@ -54,7 +54,7 @@ export const BasicButton = ({
   textColor = 'white',
   containerStyle,
   textStyle,
-  text,
+  text = 'Button',
 }) => {
   return (
     <TouchableOpacity

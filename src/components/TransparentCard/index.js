@@ -13,8 +13,8 @@ const TransparentCard = ({content, index}) => {
     <TouchableOpacity
       style={{
         ...TransparentCardStyles.transparentCardContainer,
-        marginLeft: index % 2 ? 10 : 0,
-        marginRight: index % 2 ? 0 : 10,
+        marginLeft: index % 2 ? 5 : 10,
+        marginRight: index % 2 ? 10 : 5,
       }}>
       <Jost500 style={TransparentCardStyles.transparentCardAlias}>
         {`(${content.code})${content.reference}`}

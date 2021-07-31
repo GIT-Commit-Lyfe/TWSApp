@@ -122,10 +122,15 @@ const BigImageCarouselStyle = StyleSheet.create({
   },
 });
 
-const CarouselHeader = ({title, onPress, withoutSeeAll = false}) => {
+const CarouselHeader = ({
+  title,
+  onPress,
+  withoutSeeAll = false,
+  fontSize = 24,
+}) => {
   return (
     <View style={CarouselHeaderStyle.titleContainer}>
-      <Jost600 style={CarouselHeaderStyle.titleText}>{title}</Jost600>
+      <Jost600 style={{fontSize}}>{title}</Jost600>
       {!withoutSeeAll && (
         <TouchableOpacity
           onPress={onPress}
@@ -148,12 +153,11 @@ const CarouselHeaderStyle = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 10,
   },
-  titleText: {fontSize: 24, color: colors.primary},
   seeAllContainer: {flexDirection: 'row', alignItems: 'center'},
   seeAllText: {fontSize: 14, color: colors.primary},
 });
 
-export const PriceTrendCarousel = ({title, data, navigation}) => {
+export const PriceTrendCarousel = ({title, data, navigation, fontSize}) => {
   const type =
     title === 'My Watchlist'
       ? 'personal'
@@ -168,7 +172,11 @@ export const PriceTrendCarousel = ({title, data, navigation}) => {
 
   return (
     <View style={PriceTrendCarouselStyle.container}>
-      <CarouselHeader title={title} onPress={onPressSeeAll} />
+      <CarouselHeader
+        title={title}
+        onPress={onPressSeeAll}
+        fontSize={fontSize}
+      />
       <FlatList
         style={PriceTrendCarouselStyle.flatListStyle}
         horizontal

@@ -8,9 +8,10 @@ import {
   View,
 } from 'react-native';
 import colors from '../constants/colors';
-import {formatCurrency} from '../utils/tools';
+import {figmaWidth, formatCurrency} from '../utils/tools';
 import {Jost300, Jost400, Jost500, Jost600} from './StyledText';
 import GreenArrow from '../assets/arrow-up.svg';
+import TransparentCard from './TransparentCard';
 
 export const SimpleList = ({title, items}) => {
   return (
@@ -131,7 +132,7 @@ const WatchListStyle = StyleSheet.create({
   marketPrice: {fontSize: 9, color: colors.grey58},
 });
 
-export const CollectionList = ({data}) => {
+export const CollectionList = ({data, onPress}) => {
   return (
     <FlatList
       data={data}
@@ -152,7 +153,9 @@ export const CollectionList = ({data}) => {
         const currentYear = new Date().getFullYear();
         const isDiscontinued = productionYearEnd < currentYear;
         return (
-          <TouchableOpacity style={CollectionListStyle.container}>
+          <TouchableOpacity
+            onPress={() => onPress(item)}
+            style={CollectionListStyle.container}>
             <View style={{flexDirection: 'row'}}>
               <Image
                 style={CollectionListStyle.modalImage}
@@ -213,4 +216,27 @@ const CollectionListStyle = StyleSheet.create({
   priceTrendContainer: {flexDirection: 'row', alignItems: 'center'},
   price: {fontSize: 18, color: colors.primary},
   marketPrice: {fontSize: 9, color: colors.grey58},
+});
+
+export const TwoRowList = ({ListHeaderComponent, data}) => {
+  return (
+    <FlatList
+      contentContainerStyle={TwooRowListStyles.container}
+      ListHeaderComponent={ListHeaderComponent}
+      data={data}
+      keyExtractor={(_, index) => index}
+      numColumns={2}
+      renderItem={({item, index}) => {
+        return <TransparentCard key={index} content={item} index={index} />;
+      }}
+    />
+  );
+};
+
+const TwooRowListStyles = StyleSheet.create({
+  container: {
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    alignContent: 'space-between',
+  },
 });

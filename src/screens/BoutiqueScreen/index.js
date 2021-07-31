@@ -18,11 +18,9 @@ export default function BoutiqueScreen() {
 
   return (
     <SafeAreaView style={{backgroundColor: 'white'}}>
-      <ScrollView>
-        <Boutique boutique={boutiqueMock} />
-
-        <WatchListing />
-      </ScrollView>
+      <WatchListing
+        ListHeaderComponent={<Boutique boutique={boutiqueMock} />}
+      />
     </SafeAreaView>
   );
 }

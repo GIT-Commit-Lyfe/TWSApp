@@ -1,9 +1,10 @@
 import {StyleSheet} from 'react-native';
+import {figmaWidth} from '../../../utils/tools';
 
 const WatchListingStyles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    paddingHorizontal: 20,
+    paddingHorizontal: figmaWidth(14),
   },
   filterContainer: {
     alignItems: 'center',
