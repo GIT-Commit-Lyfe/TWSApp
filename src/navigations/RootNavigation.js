@@ -11,6 +11,7 @@ import BoutiqueScreen from '../screens/BoutiqueScreen';
 import BoutiquesLocationScreen from '../screens/BoutiquesLocationScreen';
 import BrandsScreen from '../screens/BrandsScreen';
 import AllBrandsScreen from '../screens/AllBrandsScreen';
+import PopularBrandsScreen from '../screens/PopularBrandsScreen';
 import OrdersTradesScreen from '../screens/OrdersTradesScreen';
 import AccountScreen from '../screens/AccountScreen';
 import BrandDetailScreen from '../screens/BrandDetailScreen';
@@ -29,6 +30,7 @@ import ModelSell from '../screens/ModelSell';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
 function RootNavigation() {
   return (
     <NavigationContainer>
@@ -85,7 +87,8 @@ function BoutiqueStack() {
 function BrandsStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="AllBrands" component={AllBrandsScreen} />
+      <Stack.Screen name="Popular Brands" component={PopularBrandsScreen} />
+      <Stack.Screen name="All Brands" component={AllBrandsScreen} />
       <Stack.Screen name="Brands" component={BrandsScreen} />
       <Stack.Screen name="BrandDetail" component={BrandDetailScreen} />
       <Stack.Screen
