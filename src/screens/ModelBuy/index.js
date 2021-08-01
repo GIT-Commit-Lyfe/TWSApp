@@ -8,6 +8,7 @@ import {
   TextInput,
 } from 'react-native';
 
+import BuyAndSellSummary from '../../components/BuyAndSellSummary';
 import {Jost300, Jost500, Jost600} from '../../components/StyledText';
 
 import styles from './styles';
@@ -18,6 +19,8 @@ const ModelBuy = () => {
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <ScrollView>
+        <BuyAndSellSummary />
+
         <View style={styles.buttonBidContainer}>
           <TouchableOpacity
             onPress={() => setMode('bid')}

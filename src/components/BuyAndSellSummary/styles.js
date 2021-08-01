@@ -1,31 +1,17 @@
 import {StyleSheet} from 'react-native';
-import {width} from '../../../utils/tools';
+import {width} from '../../utils/tools';
 
 const styles = StyleSheet.create({
-  buyAndSellPosition: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    bottom: 0,
-    borderTopWidth: 1,
-    borderTopColor: '#C5C5C5',
-    justifyContent: 'center',
-    left: 0,
-    position: 'absolute',
-    width: width,
-    paddingTop: 20,
-  },
-  buttonContainner: {
-    width: '95%',
-  },
-  flexRow: {
+  buyAndSellSummaryContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: '95%',
     alignItems: 'center',
+    marginVertical: 15,
   },
   bottomContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 10,
   },
   priceContainer: {
     alignItems: 'center',
@@ -39,6 +25,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: width / 5,
+    borderColor: '#C5C5C5',
+    borderWidth: 1,
+    paddingTop: 5,
   },
   buttonGray: {
     alignItems: 'center',
@@ -47,7 +36,6 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     width: width / 5,
     justifyContent: 'center',
-    height: '100%',
   },
   buttonGreen: {
     alignItems: 'center',

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   buttonBidContainer: {
     flexDirection: 'row',
-    marginTop: 30,
+    marginTop: 10,
   },
   buttonLeft: {
     borderTopLeftRadius: 20,

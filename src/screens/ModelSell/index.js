@@ -1,6 +1,7 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native';
 
+import BuyAndSellSummary from '../../components/BuyAndSellSummary';
 import {Jost300, Jost500, Jost600} from '../../components/StyledText';
 import GreyBox from '../../components/GreyBox';
 
@@ -14,6 +15,8 @@ const ModelSell = () => {
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
+      <BuyAndSellSummary />
+
       <ScrollView>
         <View style={styles.list}>
           <Jost600 style={styles.headerText}>Details for Sell Order</Jost600>
