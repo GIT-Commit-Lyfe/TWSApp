@@ -9,7 +9,6 @@ import {
 import {Jost400, Jost600} from '../../components/StyledText';
 import colors from '../../constants/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {color} from 'react-native-reanimated';
 
 export const Watches = () => {
   const navigation = useNavigation();
@@ -149,6 +148,7 @@ const Footer = () => {
     </View>
   );
 };
+
 export const Boutiques = () => {
   const navigation = useNavigation();
   const nearestBoutiques = [
@@ -201,6 +201,7 @@ export const Boutiques = () => {
     </View>
   );
 };
+
 export const Straps = () => {
   const prioritizeStraps = () => {
     console.log('Prioritize Straps!');
@@ -238,6 +239,7 @@ export const Straps = () => {
     </View>
   );
 };
+
 export const Buckles = () => {
   const prioritizeBuckles = () => {
     console.log('Prioritize Buckles!');
@@ -274,4 +276,27 @@ export const Buckles = () => {
     </View>
   );
 };
+
+export const Model = () => {
+  const navigation = useNavigation();
+  const model = [
+    {
+      boutiqueName: 'Menze Goldschmiede',
+      address: 'Berlin',
+      country: 'DE',
+      distance: 300,
+      unit: 'm',
+      approximateTimeInMin: 3,
+      imageUrl: 'https://via.placeholder.com/150.png',
+    },
+  ];
+
+  return (
+    <View>
+      <Text>Test</Text>
+      <Footer />
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({});

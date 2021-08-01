@@ -6,6 +6,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ListingDetailScreen from '../screens/ListingDetailScreen';
+import ModelScreen from '../screens/ModelScreen';
 import BoutiqueScreen from '../screens/BoutiqueScreen';
 import BoutiquesLocationScreen from '../screens/BoutiquesLocationScreen';
 import BrandsScreen from '../screens/BrandsScreen';
@@ -23,6 +24,8 @@ import BoutiqueTab from '../assets/boutique-tab.svg';
 import BrandsTab from '../assets/brands-tab.svg';
 import OrdersTradesTab from '../assets/orders-trades-tab.svg';
 import AccountTab from '../assets/account-tab.svg';
+import ModelBuy from '../screens/ModelBuy';
+import ModelSell from '../screens/ModelSell';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -65,6 +68,9 @@ function HomeStack() {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="ListingDetail" component={ListingDetailScreen} />
+      <Stack.Screen name="Model" component={ModelScreen} />
+      <Stack.Screen name="ModelSell" component={ModelSell} />
+      <Stack.Screen name="ModelBuy" component={ModelBuy} />
     </Stack.Navigator>
   );
 }
