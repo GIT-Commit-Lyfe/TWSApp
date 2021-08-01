@@ -36,7 +36,18 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   combobox: {
-    marginBottom: 7,
+    borderColor: '#18110C',
+    borderRadius: 5,
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingLeft: 5,
+    paddingRight: 10,
+    paddingVertical: 5,
+    width: '90%',
+    marginTop: 3,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   label: {
     color: '#585858',
@@ -75,6 +86,9 @@ const styles = StyleSheet.create({
   },
   buttonBlackText: {
     color: '#fff',
+  },
+  headingSheet: {
+    marginBottom: 15,
   },
 });
 
