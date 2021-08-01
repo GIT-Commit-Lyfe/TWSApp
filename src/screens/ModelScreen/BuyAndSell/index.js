@@ -14,7 +14,9 @@ const BuyAndSell = () => {
 
   return (
     <View style={styles.buyAndSellPosition}>
-      <BuyAndSellSummary />
+      <View style={styles.buttonContainner}>
+        <BuyAndSellSummary />
+      </View>
 
       <View style={styles.buttonContainner}>
         <View style={styles.flexRow}>

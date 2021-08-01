@@ -5,13 +5,19 @@ const styles = StyleSheet.create({
   buyAndSellSummaryContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '95%',
+    width: '100%',
     alignItems: 'center',
     marginVertical: 15,
   },
   bottomContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    width: width / 3,
+  },
+  middleBottomContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: width / 5,
   },
   priceContainer: {
     alignItems: 'center',

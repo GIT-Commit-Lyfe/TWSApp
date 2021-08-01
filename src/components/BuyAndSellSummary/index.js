@@ -26,7 +26,7 @@ const BuyAndSellSummary = () => {
         </View>
       </View>
 
-      <View style={styles.bottomContainer}>
+      <View style={styles.middleBottomContainer}>
         <Jost400
           style={{
             ...styles.buttonTextSmall,
