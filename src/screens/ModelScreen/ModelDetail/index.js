@@ -128,8 +128,12 @@ const ModelDetail = () => {
         closeOnDragDown={true}
         closeOnPressMask={false}
         customStyles={{
+          container: {
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+          },
           wrapper: {
-            backgroundColor: 'transparent',
+            backgroundColor: 'rgba(0, 0, 0, .2)',
             width: '100%',
           },
           draggableIcon: {
@@ -159,8 +163,12 @@ const ModelDetail = () => {
         closeOnDragDown={true}
         closeOnPressMask={false}
         customStyles={{
+          container: {
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+          },
           wrapper: {
-            backgroundColor: 'transparent',
+            backgroundColor: 'rgba(0, 0, 0, .2)',
             width: '100%',
           },
           draggableIcon: {
@@ -187,8 +195,12 @@ const ModelDetail = () => {
         closeOnDragDown={true}
         closeOnPressMask={false}
         customStyles={{
+          container: {
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+          },
           wrapper: {
-            backgroundColor: 'transparent',
+            backgroundColor: 'rgba(0, 0, 0, .2)',
             width: '100%',
           },
           draggableIcon: {
