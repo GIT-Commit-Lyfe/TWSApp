@@ -153,7 +153,6 @@ const CollectionDetailScreen = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <WatchListing title="GMT Master II Listings" /> */}
       <TwoRowList
         data={products}
         ListHeaderComponent={
@@ -174,13 +173,13 @@ const CollectionDetailScreen = ({navigation, route}) => {
                 text="Releases"
                 backgroundColor="white"
                 textColor={colors.primary}
-                containerStyle={{flex: 1}}>
+                containerStyle={styles.flex}>
                 Releases
               </BasicButton>
               <View style={styles.separator} />
               <BasicButton
                 text="View Market Data"
-                containerStyle={{flex: 1}}
+                containerStyle={styles.flex}
                 onPress={openMarketData}>
                 Releases
               </BasicButton>

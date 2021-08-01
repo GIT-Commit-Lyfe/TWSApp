@@ -12,6 +12,9 @@ import BrandsScreen from '../screens/BrandsScreen';
 import AllBrandsScreen from '../screens/AllBrandsScreen';
 import OrdersTradesScreen from '../screens/OrdersTradesScreen';
 import AccountScreen from '../screens/AccountScreen';
+import BrandDetailScreen from '../screens/BrandDetailScreen';
+import CollectionDetailScreen from '../screens/CollectionDetailScreen';
+import CollectionListingsScreen from '../screens/CollectionListings.js';
 import {Jost400} from '../components/StyledText';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
@@ -20,8 +23,6 @@ import BoutiqueTab from '../assets/boutique-tab.svg';
 import BrandsTab from '../assets/brands-tab.svg';
 import OrdersTradesTab from '../assets/orders-trades-tab.svg';
 import AccountTab from '../assets/account-tab.svg';
-import BrandDetailScreen from '../screens/BrandDetailScreen';
-import CollectionDetailScreen from '../screens/CollectionDetailScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -84,6 +85,10 @@ function BrandsStack() {
       <Stack.Screen
         name="CollectionDetail"
         component={CollectionDetailScreen}
+      />
+      <Stack.Screen
+        name="CollectionListings"
+        component={CollectionListingsScreen}
       />
     </Stack.Navigator>
   );

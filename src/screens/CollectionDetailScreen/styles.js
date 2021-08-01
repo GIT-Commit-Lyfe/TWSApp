@@ -5,6 +5,7 @@ import {figmaHeight, figmaWidth} from '../../utils/tools';
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: 'white'},
+  flex: {flex: 1},
   header: {
     marginHorizontal: figmaWidth(14),
     paddingVertical: figmaHeight(16),
