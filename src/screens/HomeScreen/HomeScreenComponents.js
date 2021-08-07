@@ -18,6 +18,7 @@ export const Watches = () => {
   const [watchLists, setWatchLists] = useState([]);
   const [followedListings, setFollowedListings] = useState([]);
   const [popularNearby, setPopularNearby] = useState([]);
+  const [trendingModels, setTrendingModels] = useState([]);
 
   const navigation = useNavigation();
 
@@ -46,43 +47,20 @@ export const Watches = () => {
       setPopularNearby(data);
     };
 
+    const getTrendingModels = async () => {
+      const {data} = await ModelsAPI.getTrendingModels();
+
+      setTrendingModels(data);
+    };
+
     getPopularModels();
     getWatchLists();
     getFollowedListings();
     getPopularNearby();
+    getTrendingModels();
 
     return setPopularModels([]);
   }, []);
-
-  const watchlist = [
-    {
-      reference: '126710BLRO',
-      significantEdition: 'GMT Pepsi',
-      collection: 'GMT Master II',
-      marketPrice: 13350,
-      currency: 'EUR',
-      raising: true,
-      modelUrl: 'https://via.placeholder.com/120.png',
-    },
-    {
-      reference: '5711A',
-      significantEdition: 'Olive Green',
-      collection: 'Nautilus',
-      marketPrice: 99850,
-      currency: 'EUR',
-      raising: true,
-      modelUrl: 'https://via.placeholder.com/120.png',
-    },
-    {
-      reference: '5711A',
-      significantEdition: 'Olive Green',
-      collection: 'Nautilus',
-      marketPrice: 99850,
-      currency: 'EUR',
-      raising: true,
-      modelUrl: 'https://via.placeholder.com/120.png',
-    },
-  ];
 
   return (
     <View>
@@ -108,7 +86,7 @@ export const Watches = () => {
       />
       <PriceTrendCarousel
         title="What's Trending"
-        data={watchlist}
+        data={trendingModels}
         navigation={navigation}
       />
       <Footer />
