@@ -28,6 +28,7 @@ export function SearchBox({
       style={{
         alignSelf: 'center',
         alignItems: 'center',
+        borderRadius: 7,
         marginVertical: figmaHeight(14),
         backgroundColor: colors.lightGrey,
         padding: figmaWidth(8),
@@ -42,7 +43,10 @@ export function SearchBox({
         returnKeyType="search"
       />
       <TextInput
-        style={{paddingVertical: 0, fontFamily: 'Jost-Regular'}}
+        style={{
+          paddingVertical: 0,
+          fontFamily: 'Jost-Regular',
+        }}
         placeholder={placeholder}
         placeholderTextColor={colors.grey83}
         autoCorrect={false}
