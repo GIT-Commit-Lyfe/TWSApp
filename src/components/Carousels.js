@@ -30,6 +30,7 @@ export const FullWidthCarousel = ({data}) => {
       </View>
     );
   };
+
   return (
     <FlatList
       pagingEnabled

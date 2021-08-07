@@ -1,12 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {
-  SafeAreaView,
-  SectionList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {SafeAreaView, SectionList, TouchableOpacity, View} from 'react-native';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
 import {Jost500, Jost600} from '../../components/StyledText';
 import colors from '../../constants/colors';
@@ -89,6 +82,7 @@ export default function AllBrandsScreen({navigation}) {
   //     data: ['Balmain', 'Boucheron', 'Bulgari'],
   //   },
   // ];
+
   const brandsSorter = brands => {
     let startingAlphabet = 'A';
     const sorted = [];

@@ -1896,7 +1896,7 @@ atob@^2.1.2:
 
 axios@^0.21.1:
   version "0.21.1"
-  resolved "https://registry.npmjs.org/axios/-/axios-0.21.1.tgz"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
   integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
   dependencies:
     follow-redirects "^1.10.0"
@@ -5963,10 +5963,10 @@ react-native-codegen@^0.0.6:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
-react-native-dotenv@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-2.6.2.tgz#b63fc5f60d8dc86fcb4ba02e9626652e8f6c187f"
-  integrity sha512-yGVEYjhXTpHFEpeaJS6qdnI1TyFFHj3E2k9X3HgkIsOh7c86t+JkBRfHP7zeOOyquE5ewN7+OcLEARgkFhDuRA==
+react-native-dotenv@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-3.1.1.tgz#03fa95f6a4a883a7975a7a936e5de319ed638253"
+  integrity sha512-eMVEItSKy1saVH14Tn4mGpxhUPfHItBjuqW3DYFYELOO2sPAe25vaxgG5LRee/VyfR6OcJxbVE/6J8aOjy04zA==
   dependencies:
     dotenv "^10.0.0"
 
