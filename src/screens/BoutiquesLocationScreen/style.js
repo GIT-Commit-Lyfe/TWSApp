@@ -4,12 +4,14 @@ import colors from '../../constants/colors';
 const BoutiquesLocationStyles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    paddingHorizontal: 20,
     flex: 1,
   },
+  sheetContainer: {
+    paddingHorizontal: 20,
+  },
   textInputContainer: {
-    paddingVertical: 15,
     flex: 1,
+    paddingVertical: 15,
   },
   image: {
     width: 50,

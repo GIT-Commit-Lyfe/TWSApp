@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo, useRef} from 'react';
 
 import {
   FlatList,
@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import MapView from 'react-native-maps';
-import SwipeUpDown from 'react-native-swipe-up-down';
+import BottomSheet from '@gorhom/bottom-sheet';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -22,6 +22,10 @@ import colors from '../../constants/colors';
 import BoutiquesLocationStyles from './style';
 
 const BoutiquesLocationScreen = ({navigation}) => {
+  const bottomSheetRef = useRef(null);
+
+  const snapPoints = useMemo(() => ['35%', '100%'], []);
+
   const boutiques = [
     {
       id: 1,
@@ -45,10 +49,6 @@ const BoutiquesLocationScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={BoutiquesLocationStyles.container}>
-      <View tyle={BoutiquesLocationStyles.textInputContainer}>
-        <SearchBox placeholder="Search Boutiques or Locations" />
-      </View>
-
       <MapView
         style={{height: 500, width: '100%'}}
         region={{
@@ -60,9 +60,12 @@ const BoutiquesLocationScreen = ({navigation}) => {
         showsUserLocation={true}
       />
 
-      <SwipeUpDown
-        swipeHeight={100}
-        itemMini={
+      <BottomSheet ref={bottomSheetRef} index={0} snapPoints={snapPoints}>
+        <View style={BoutiquesLocationStyles.sheetContainer}>
+          <View tyle={BoutiquesLocationStyles.textInputContainer}>
+            <SearchBox placeholder="Search Boutiques or Locations" />
+          </View>
+
           <FlatList
             data={boutiques}
             keyExtractor={(item, index) => index}
@@ -109,9 +112,8 @@ const BoutiquesLocationScreen = ({navigation}) => {
             ListHeaderComponent={() => <Line />}
             ListFooterComponent={() => <Line />}
           />
-        }
-        disablePressToShow={false} // Press item mini to show full
-      />
+        </View>
+      </BottomSheet>
     </SafeAreaView>
   );
 };
