@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {
@@ -10,8 +10,50 @@ import {Jost400, Jost600} from '../../components/StyledText';
 import colors from '../../constants/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import ModelsAPI from '../../api/model';
+import ListingsAPI from '../../api/list';
+
 export const Watches = () => {
+  const [popularModels, setPopularModels] = useState([]);
+  const [watchLists, setWatchLists] = useState([]);
+  const [followedListings, setFollowedListings] = useState([]);
+  const [popularNearby, setPopularNearby] = useState([]);
+
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const getPopularModels = async () => {
+      const {data} = await ModelsAPI.get('popular-models');
+
+      setPopularModels(data);
+    };
+
+    const getWatchLists = async () => {
+      const {data} = await ListingsAPI.getWatchLists();
+
+      setWatchLists(data);
+    };
+
+    const getFollowedListings = async () => {
+      const {data} = await ListingsAPI.getFollowedListings();
+
+      setFollowedListings(data);
+    };
+
+    const getPopularNearby = async () => {
+      const {data} = await ModelsAPI.getPopularNearby();
+
+      setPopularNearby(data);
+    };
+
+    getPopularModels();
+    getWatchLists();
+    getFollowedListings();
+    getPopularNearby();
+
+    return setPopularModels([]);
+  }, []);
+
   const watchlist = [
     {
       reference: '126710BLRO',
@@ -41,64 +83,12 @@ export const Watches = () => {
       modelUrl: 'https://via.placeholder.com/120.png',
     },
   ];
-  const followedListings = [
-    {
-      brand: 'Rolex',
-      code: 'RLX',
-      SECode: '',
-      reference: '126710BLRO',
-      significantEdition: 'BATMAN',
-      collection: 'GMT Master II',
-      year: '2016',
-      price: 13350,
-      currency: 'EUR',
-      condition: 'Very Good',
-      accomodation: 'With Original Papers',
-      country: 'DE',
-      city: 'Berlin',
-      sellerType: 'Individual Investor',
-      modelUrl: 'https://via.placeholder.com/150.png',
-    },
-    {
-      brand: 'Rolex',
-      code: 'RLX',
-      SECode: 'F4',
-      reference: '16610LV',
-      significantEdition: 'KERMIT FLAT 4',
-      collection: 'Submariner Date',
-      year: '2004',
-      price: 17900,
-      currency: 'EUR',
-      condition: 'Fair',
-      accomodation: 'Full Set',
-      country: 'DE',
-      city: 'Berlin',
-      sellerType: 'Individual Investor',
-      modelUrl: 'https://via.placeholder.com/150.png',
-    },
-    {
-      brand: 'Rolex',
-      code: 'RLX',
-      SECode: 'F4',
-      reference: '16610LV',
-      significantEdition: 'KERMIT FLAT 4',
-      collection: 'Submariner Date',
-      year: '2004',
-      price: 13350,
-      currency: 'EUR',
-      condition: 'Fair',
-      accomodation: 'Full Set',
-      country: 'DE',
-      city: 'Berlin',
-      sellerType: 'Individual Investor',
-      modelUrl: 'https://via.placeholder.com/150.png',
-    },
-  ];
+
   return (
     <View>
       <PriceTrendCarousel
         title="My Watchlist"
-        data={watchlist}
+        data={watchLists}
         navigation={navigation}
       />
       <ListingCarousel
@@ -108,12 +98,12 @@ export const Watches = () => {
       />
       <PriceTrendCarousel
         title="Popular Models"
-        data={watchlist}
+        data={popularModels}
         navigation={navigation}
       />
       <ListingCarousel
         title="Most Popular Around You"
-        data={followedListings}
+        data={popularNearby}
         navigation={navigation}
       />
       <PriceTrendCarousel
