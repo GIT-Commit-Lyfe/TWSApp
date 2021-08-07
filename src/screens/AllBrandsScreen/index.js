@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {SafeAreaView, SectionList, TouchableOpacity, View} from 'react-native';
 import sectionListGetItemLayout from 'react-native-section-list-get-item-layout';
-import BrandsAPI from '../../api/brand';
 import {Jost500, Jost600} from '../../components/StyledText';
 import colors from '../../constants/colors';
 import {SectionHeader, BrandsList} from './AllBrandsScreenComponents';
@@ -71,18 +70,6 @@ export default function AllBrandsScreen({navigation}) {
 
   const [sortedBrands, setSortedBrands] = useState([]);
   const sectionListRef = useRef();
-
-  useEffect(() => {
-    const getAllBrands = async () => {
-      const {data} = await BrandsAPI.get();
-
-      console.log(data);
-    };
-
-    getAllBrands();
-
-    return setSortedBrands([]);
-  }, []);
 
   // groups and sort brands into array of objects based on first letter
   // const DATA = [
