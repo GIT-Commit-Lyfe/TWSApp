@@ -9,14 +9,13 @@ import ListingDetailScreen from '../screens/ListingDetailScreen';
 import ModelScreen from '../screens/ModelScreen';
 import BoutiqueScreen from '../screens/BoutiqueScreen';
 import BoutiquesLocationScreen from '../screens/BoutiquesLocationScreen';
-import BrandsScreen from '../screens/BrandsScreen';
 import AllBrandsScreen from '../screens/AllBrandsScreen';
 import PopularBrandsScreen from '../screens/PopularBrandsScreen';
 import OrdersTradesScreen from '../screens/OrdersTradesScreen';
 import AccountScreen from '../screens/AccountScreen';
 import BrandDetailScreen from '../screens/BrandDetailScreen';
 import CollectionDetailScreen from '../screens/CollectionDetailScreen';
-import CollectionListingsScreen from '../screens/CollectionListings.js';
+import CollectionListingsScreen from '../screens/CollectionListingsScreen.js';
 import {Jost400} from '../components/StyledText';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
@@ -25,8 +24,15 @@ import BoutiqueTab from '../assets/boutique-tab.svg';
 import BrandsTab from '../assets/brands-tab.svg';
 import OrdersTradesTab from '../assets/orders-trades-tab.svg';
 import AccountTab from '../assets/account-tab.svg';
-import ModelBuy from '../screens/ModelBuy';
-import ModelSell from '../screens/ModelSell';
+import ModelSellDetailsScreen from '../screens/ModelSellDetailsScreen';
+import ModelSellPhotosScreen from '../screens/ModelSellPhotosScreen';
+import ModelSellAskPriceScreen from '../screens/ModelSellAskPriceScreen';
+import ModelSellPreviewScreen from '../screens/ModelSellPreviewScreen';
+import CameraScreen from '../screens/CameraScreen';
+import PaymentMethodsScreen from '../screens/PaymentMethodsScreen';
+import ModelBuyScreen from '../screens/ModelBuy';
+import ModelOrderDetailsScreen from '../screens/ModelOrderDetailsScreen';
+import SuccessScreen from '../screens/SuccessScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -71,8 +77,32 @@ function HomeStack() {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="ListingDetail" component={ListingDetailScreen} />
       <Stack.Screen name="Model" component={ModelScreen} />
-      <Stack.Screen name="ModelSell" component={ModelSell} />
-      <Stack.Screen name="ModelBuy" component={ModelBuy} />
+      <Stack.Screen
+        name="ModelSellDetails"
+        component={ModelSellDetailsScreen}
+      />
+      <Stack.Screen name="ModelSellPhotos" component={ModelSellPhotosScreen} />
+      <Stack.Screen
+        name="ModelSellAskPrice"
+        component={ModelSellAskPriceScreen}
+      />
+      <Stack.Screen name="Camera" component={CameraScreen} />
+      <Stack.Screen
+        name="ModelSellPreview"
+        component={ModelSellPreviewScreen}
+      />
+      <Stack.Screen name="PaymentMethods" component={PaymentMethodsScreen} />
+
+      <Stack.Screen name="ModelBuy" component={ModelBuyScreen} />
+      <Stack.Screen
+        name="ModelOrderDetails"
+        component={ModelOrderDetailsScreen}
+      />
+      <Stack.Screen name="Success" component={SuccessScreen} />
+      <Stack.Screen
+        name="CollectionListings"
+        component={CollectionListingsScreen}
+      />
     </Stack.Navigator>
   );
 }
@@ -87,9 +117,8 @@ function BoutiqueStack() {
 function BrandsStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Popular Brands" component={PopularBrandsScreen} />
-      <Stack.Screen name="All Brands" component={AllBrandsScreen} />
-      <Stack.Screen name="Brands" component={BrandsScreen} />
+      <Stack.Screen name="PopularBrands" component={PopularBrandsScreen} />
+      <Stack.Screen name="AllBrands" component={AllBrandsScreen} />
       <Stack.Screen name="BrandDetail" component={BrandDetailScreen} />
       <Stack.Screen
         name="CollectionDetail"

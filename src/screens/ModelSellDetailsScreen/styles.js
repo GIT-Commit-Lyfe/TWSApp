@@ -6,6 +6,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     paddingVertical: 6,
+  },
+  innerContainer: {
     paddingHorizontal: 10,
   },
   headerText: {
@@ -20,22 +22,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     paddingVertical: 11,
   },
-  center: {
+  buttonContainer: {
     alignItems: 'center',
     flex: 1,
-    width: width,
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#18110C',
-    flex: 1,
+
     paddingVertical: 10,
-    marginTop: 25,
-    marginBottom: 5,
-    width: width,
-  },
-  buttonText: {
-    color: '#fff',
   },
 });
 

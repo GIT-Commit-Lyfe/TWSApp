@@ -5,7 +5,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     paddingVertical: 6,
+  },
+  horizontalPadding: {
     paddingHorizontal: 10,
+  },
+  separator: {
+    height: 34,
   },
 });
 

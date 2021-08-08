@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {SearchBox} from '../../components/Inputs';
+import SearchBox from '../../components/Inputs/SearchBox';
 import OrderList from '../../components/OrderList';
 import {Jost400} from '../../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';

@@ -74,10 +74,14 @@ export default function ModelScreen() {
 
   return (
     <SafeAreaView style={styles.modelScreenContainer}>
-      <ScrollView style={styles.scrollViewContainner}>
-        <ModelDetail />
+      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+        <View style={styles.horizontalPadding}>
+          <ModelDetail />
+        </View>
         <SignificantEditions />
-        <PriceGraph title="Price History" />
+        <View style={styles.horizontalPadding}>
+          <PriceGraph title="Price History" />
+        </View>
         <SimpleList
           title="Model Analytics"
           items={[
@@ -95,6 +99,7 @@ export default function ModelScreen() {
             {label: 'YTD Gain', value: '19%'},
           ]}
         />
+        <View style={styles.separator} />
         <ListingCarousel
           title="Most Popular Around You"
           data={followedListings}

@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   halveWidth: {
-    width: width / 2,
+    flex: 0.5,
   },
   flexRow: {
     flexDirection: 'row',

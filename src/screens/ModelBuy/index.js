@@ -7,18 +7,49 @@ import {
   Image,
   TextInput,
 } from 'react-native';
+import {BasicButton} from '../../components/Buttons';
 
 import BuyAndSellSummary from '../../components/BuyAndSellSummary';
 import {Jost300, Jost500, Jost600} from '../../components/StyledText';
+import {ModelDetailBox} from '../CollectionListingsScreen.js';
 
 import styles from './styles';
 
-const ModelBuy = () => {
+const ModelBuy = ({navigation}) => {
   const [mode, setMode] = useState('bid');
+  const data = {
+    id: 1,
+    brand: 'Rolex',
+    code: 'RLX',
+    SECode: 'F4',
+    reference: '16610LV',
+    significantEdition: 'KERMIT FLAT 4',
+    collection: 'Submariner Date',
+    year: '2004',
+    price: 13350,
+    currency: 'EUR',
+    condition: 'Fair',
+    accomodation: 'Full Set',
+    country: 'DE',
+    city: 'Berlin',
+    sellerType: 'Individual Investor',
+    sellerId: 1,
+    seller: 'Amazing World',
+    description: 'Lorem ipsum',
+    modelUrl: 'https://via.placeholder.com/150.png',
+  };
+
+  const handleReviewOrder = () => {
+    navigation.navigate('ModelOrderDetails');
+  };
+
+  const handleBuyNow = () => {
+    navigation.navigate('ModelOrderDetails');
+  };
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
         <BuyAndSellSummary />
 
         <View style={styles.buttonBidContainer}>
@@ -26,8 +57,8 @@ const ModelBuy = () => {
             onPress={() => setMode('bid')}
             style={
               mode === 'bid'
-                ? {...styles.buttonBidGreen, ...styles.buttonLeft}
-                : {...styles.buttonBidGrey, ...styles.buttonLeft}
+                ? {...styles.buttonBidGreen}
+                : {...styles.buttonBidGrey}
             }>
             <Jost500
               style={mode === 'bid' ? styles.textWhite : styles.textBlack}>
@@ -38,8 +69,8 @@ const ModelBuy = () => {
             onPress={() => setMode('buy')}
             style={
               mode === 'buy'
-                ? {...styles.buttonBidGreen, ...styles.buttonRight}
-                : {...styles.buttonBidGrey, ...styles.buttonRight}
+                ? {...styles.buttonBidGreen}
+                : {...styles.buttonBidGrey}
             }>
             <Jost500
               style={mode === 'buy' ? styles.textWhite : styles.textBlack}>
@@ -68,25 +99,7 @@ const ModelBuy = () => {
           </>
         ) : (
           <View style={styles.buyContainer}>
-            <View style={styles.flexRow}>
-              <View style={styles.halveWidth}>
-                <Image
-                  source={{uri: 'https://via.placeholder.com/150.png'}}
-                  style={styles.imageStyle}
-                />
-              </View>
-
-              <View style={styles.halveWidth}>
-                <Jost500 style={styles.buyTitleText}>
-                  ROLEX “BATMAN” GMT Master II (2016)
-                </Jost500>
-                <Jost300 style={styles.buyDescriptionText}>
-                  Rolex gmt ii from 2016, the watch has been professionally
-                  refurbished and maintained. With original box and papers lc
-                  100. 1 year warranty from date of purchase. read more>
-                </Jost300>
-              </View>
-            </View>
+            <ModelDetailBox data={data} />
 
             <TouchableOpacity style={styles.buyButton}>
               <Jost600>Details</Jost600>
@@ -133,13 +146,9 @@ const ModelBuy = () => {
           )}
 
           {mode === 'bid' ? (
-            <TouchableOpacity style={styles.blackButton}>
-              <Jost600 style={styles.blackButtonText}>Review Order</Jost600>
-            </TouchableOpacity>
+            <BasicButton text="Review Order" onPress={handleReviewOrder} />
           ) : (
-            <TouchableOpacity style={styles.blackButton}>
-              <Jost600 style={styles.blackButtonText}>Buy Now</Jost600>
-            </TouchableOpacity>
+            <BasicButton text="Buy Now" onPress={handleBuyNow} />
           )}
         </View>
       </ScrollView>

@@ -13,7 +13,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import {SearchBox} from '../../components/Inputs';
+import SearchBox from '../../components/Inputs/SearchBox';
 
 import {Jost400, Jost500} from '../../components/StyledText';
 

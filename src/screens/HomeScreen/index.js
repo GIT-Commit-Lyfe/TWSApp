@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView, ScrollView} from 'react-native';
 import Banner from '../../assets/new-banner.png';
-import {SearchBox} from '../../components/Inputs';
+import SearchBox from '../../components/Inputs/SearchBox';
 import {FullWidthCarousel} from '../../components/Carousels';
 import {ScrollingTabbedNavigator} from '../../components/TabbedNavigator';
 import {Watches, Boutiques, Straps, Buckles} from './HomeScreenComponents';

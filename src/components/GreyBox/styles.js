@@ -1,14 +1,14 @@
 import {StyleSheet} from 'react-native';
+import colors from '../../constants/colors';
 
 const styles = StyleSheet.create({
   greyBox: {
-    backgroundColor: '#E6E6E6',
+    backgroundColor: colors.greyE6,
     borderRadius: 5,
-    paddingVertical: 6,
-    paddingHorizontal: 10,
+    paddingVertical: 3,
+    paddingHorizontal: 12,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 100,
   },
   greyBoxText: {
     color: '#18110C',

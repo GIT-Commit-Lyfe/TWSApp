@@ -159,7 +159,22 @@ const CollectionListingsScreen = () => {
 
             <View style={styles.lowestAskContainer}>
               <Jost600 style={styles.lowestAskTitle}>Lowest Ask</Jost600>
-              <LowestListingBox data={data} />
+              <ModelDetailBox data={data} />
+              <View style={styles.buttonContainer}>
+                <BasicButton
+                  text="Follow Listing"
+                  backgroundColor="white"
+                  textColor={colors.primary}
+                  containerStyle={styles.flex}>
+                  Releases
+                </BasicButton>
+                <View style={styles.separator} />
+                <BasicButton
+                  text="Buy This Watch Now"
+                  containerStyle={styles.flex}>
+                  Releases
+                </BasicButton>
+              </View>
             </View>
 
             <View style={styles.listingHeaderContainer}>
@@ -178,7 +193,7 @@ const CollectionListingsScreen = () => {
   );
 };
 
-const LowestListingBox = ({data}) => {
+export const ModelDetailBox = ({data}) => {
   return (
     <View style={styles.lowestListingContainer}>
       <View style={styles.row}>
@@ -233,19 +248,6 @@ const LowestListingBox = ({data}) => {
               style={styles.country}>{`${data.country}, ${data.city}`}</Jost300>
           </View>
         </View>
-      </View>
-      <View style={styles.buttonContainer}>
-        <BasicButton
-          text="Follow Listing"
-          backgroundColor="white"
-          textColor={colors.primary}
-          containerStyle={styles.flex}>
-          Releases
-        </BasicButton>
-        <View style={styles.separator} />
-        <BasicButton text="Buy This Watch Now" containerStyle={styles.flex}>
-          Releases
-        </BasicButton>
       </View>
     </View>
   );

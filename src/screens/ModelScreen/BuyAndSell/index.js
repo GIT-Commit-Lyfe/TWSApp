@@ -22,12 +22,14 @@ const BuyAndSell = () => {
         <View style={styles.flexRow}>
           <TouchableOpacity
             style={styles.buttonRed}
-            onPress={() => navigation.push('ModelSell')}>
+            onPress={() => navigation.navigate('ModelSellDetails')}>
             <Jost600 style={styles.buttonText}>SELL</Jost600>
             <Jost600 style={styles.buttonTextSmall}>Or Ask</Jost600>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.buttonGray}>
+          <TouchableOpacity
+            style={styles.buttonGray}
+            onPress={() => navigation.navigate('CollectionListings')}>
             <Jost600 style={styles.buttonTextSmall}>Listings</Jost600>
 
             <ArrowUpIcon />

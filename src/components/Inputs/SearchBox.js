@@ -7,12 +7,12 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {width, height, figmaHeight, figmaWidth} from '../utils/tools';
-import colors from '../constants/colors';
+import {width, height, figmaHeight, figmaWidth} from '../../utils/tools';
+import colors from '../../constants/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import useDebounce from '../customHooks/useDebounce';
+import useDebounce from '../../customHooks/useDebounce';
 
-export function SearchBox({
+function SearchBox({
   onChange = () => console.log('searching'),
   placeholder = 'Search',
   style,
@@ -56,3 +56,5 @@ export function SearchBox({
     </View>
   );
 }
+
+export default SearchBox;

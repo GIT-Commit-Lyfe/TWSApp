@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import colors from '../../constants/colors';
 import {width} from '../../utils/tools';
 
 const styles = StyleSheet.create({
@@ -6,31 +7,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     paddingVertical: 6,
-    paddingHorizontal: 10,
   },
+  scrollContainer: {paddingHorizontal: 10},
   buttonBidContainer: {
     flexDirection: 'row',
     marginTop: 10,
-  },
-  buttonLeft: {
-    borderTopLeftRadius: 20,
-    borderBottomLeftRadius: 20,
-  },
-  buttonRight: {
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
+    backgroundColor: colors.greyF5,
+    borderRadius: 20,
+    overflow: 'hidden',
+    borderColor: colors.greyCD,
+    borderWidth: 1,
   },
   buttonBidGreen: {
-    backgroundColor: '#296142',
-    width: width / 2 - 10,
+    backgroundColor: colors.green,
+    flex: 0.5,
     paddingVertical: 8,
     alignItems: 'center',
+    borderRadius: 20,
   },
   buttonBidGrey: {
-    backgroundColor: '#F5F5F5',
-    borderColor: '#CDCDCD',
-    borderWidth: 1,
-    width: width / 2 - 10,
+    flex: 0.5,
     paddingVertical: 8,
     alignItems: 'center',
   },

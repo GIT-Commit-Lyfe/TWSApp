@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import { Jost600 } from '../../../components/StyledText';
 
 import styles from './styles';
 
@@ -7,7 +8,7 @@ const Accesories = () => {
   return (
     <View style={styles.accesoriesContainer}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Accesories</Text>
+        <Jost600 style={styles.headerText}>Accesories</Jost600>
       </View>
     </View>
   );
