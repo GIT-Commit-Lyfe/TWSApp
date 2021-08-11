@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {get} from 'lodash';
 import {RNCamera} from 'react-native-camera';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {Jost400, Jost500} from '../../components/StyledText';
@@ -26,8 +27,7 @@ const CameraScreen = ({navigation, route}) => {
 
   const openImageLibrary = () => {
     launchImageLibrary({mediaType: 'photo', selectionLimit: 1}, result => {
-      const {fileName, uri} = result.assets[0];
-      console.log(result);
+      const uri = get(result, 'assets[0].uri', '');
       setFieldValue(uri);
       navigation.goBack();
     });
