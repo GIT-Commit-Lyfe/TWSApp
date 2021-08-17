@@ -1,12 +1,14 @@
 import React from 'react';
 
-import {FlatList, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
 import WatchListingStyles from './style';
 
 import FilterItem from '../../../components/FilterItem';
-import TransparentCard from '../../../components/TransparentCard';
 import {TwoRowList} from '../../../components/Lists';
+import colors from '../../../constants/colors';
+
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const WatchListing = ({ListHeaderComponent, title = 'All Listings'}) => {
   const filters = [
@@ -112,7 +114,17 @@ const WatchListing = ({ListHeaderComponent, title = 'All Listings'}) => {
           <View style={WatchListingStyles.container}>
             <View style={WatchListingStyles.filterContainer}>
               <Text style={WatchListingStyles.filterText}>{title}</Text>
-              <Text>Filter Models</Text>
+
+              <View style={WatchListingStyles.flexRow}>
+                <Text>Filter Models</Text>
+
+                <MaterialIcons
+                  name="filter-list"
+                  color={colors.primary}
+                  size={25}
+                  style={{marginLeft: 5}}
+                />
+              </View>
             </View>
             <View style={WatchListingStyles.filterItemContainer}>
               {filters.length > 0 &&
