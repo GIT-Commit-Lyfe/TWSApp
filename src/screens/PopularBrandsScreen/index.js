@@ -1,19 +1,13 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
 
-import {
-  SafeAreaView,
-  SectionList,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {SafeAreaView, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import PopularBrandsStyles from './styles';
+import SearchBox from '../../components/Inputs/SearchBox';
 import {Jost600} from '../../components/StyledText';
 import PopularList from './PopularList';
+
+import PopularBrandsStyles from './styles';
 
 export default function PopularBrandsScreen() {
   const navigation = useNavigation();
@@ -36,9 +30,9 @@ export default function PopularBrandsScreen() {
   return (
     <SafeAreaView style={PopularBrandsStyles.container}>
       <View style={PopularBrandsStyles.searchBarContainer}>
-        <TextInput
-          placeholder="Search for a brand"
+        <SearchBox
           style={PopularBrandsStyles.textInput}
+          placeholder="Search for a brand"
         />
 
         <TouchableOpacity

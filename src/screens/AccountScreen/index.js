@@ -1,18 +1,12 @@
 import React from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, SafeAreaView, TouchableOpacity, View} from 'react-native';
 
 import menus from './constant';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import colors from '../../constants/colors';
+import BrandsTab from '../../assets/brands-tab.svg';
 
 import AccountsStyles from './style';
 
@@ -30,12 +24,16 @@ export default function AccountScreen() {
           return (
             <TouchableOpacity key={index} style={AccountsStyles.listContainer}>
               <View style={AccountsStyles.list}>
-                <MaterialIcons
-                  name={menu.material_icon_name}
-                  color={colors.primary}
-                  size={30}
-                  style={{marginRight: 15}}
-                />
+                {menu.material_icon_name !== '' ? (
+                  <MaterialIcons
+                    name={menu.material_icon_name}
+                    color={colors.primary}
+                    size={30}
+                    style={{marginRight: 15}}
+                  />
+                ) : (
+                  <BrandsTab style={{marginRight: 15}} />
+                )}
 
                 <View>
                   <Jost600 style={AccountsStyles.menuName}>{menu.name}</Jost600>

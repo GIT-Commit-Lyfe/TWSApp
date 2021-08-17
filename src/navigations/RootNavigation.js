@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import {View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -16,8 +15,6 @@ import AccountScreen from '../screens/AccountScreen';
 import BrandDetailScreen from '../screens/BrandDetailScreen';
 import CollectionDetailScreen from '../screens/CollectionDetailScreen';
 import CollectionListingsScreen from '../screens/CollectionListingsScreen.js';
-import {Jost400} from '../components/StyledText';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
 import HomeTab from '../assets/home-tab.svg';
 import BoutiqueTab from '../assets/boutique-tab.svg';

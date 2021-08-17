@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, TouchableOpacity, View} from 'react-native';
 import colors from '../constants/colors';
-import {Jost400, Jost600} from './StyledText';
+import {Jost400} from './StyledText';
 
 export function ScrollingTabbedNavigator({data}) {
   const [componentShownIndex, setComponentShownIndex] = useState(0); // stores index of component to be shown
