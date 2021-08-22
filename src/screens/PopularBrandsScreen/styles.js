@@ -7,6 +7,7 @@ const PopularBrandsStyles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   searchBarContainer: {
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 20,
@@ -25,6 +26,7 @@ const PopularBrandsStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 90,
+    height: 40,
   },
   whiteText: {
     color: '#fff',

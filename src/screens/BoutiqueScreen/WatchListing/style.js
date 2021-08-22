@@ -6,6 +6,10 @@ const WatchListingStyles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingHorizontal: figmaWidth(14),
   },
+  flexRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
   filterContainer: {
     alignItems: 'center',
     flexDirection: 'row',

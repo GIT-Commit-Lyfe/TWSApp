@@ -2,12 +2,12 @@ const menus = [
   {
     name: 'Your Profile',
     description: 'Edit your Name, Username, Email and more',
-    material_icon_name: 'credit-card',
+    material_icon_name: 'account-box',
   },
   {
     name: 'Seller Profile',
     description: 'Seller Profile, Selling Settings and History',
-    material_icon_name: 'compare-arrows',
+    material_icon_name: '',
   },
   {
     name: 'Security',
@@ -17,17 +17,22 @@ const menus = [
   {
     name: 'Accounting',
     description: 'Billing, Payment, and Payout',
-    material_icon_name: 'wallet-giftcard',
+    material_icon_name: 'credit-card',
   },
   {
     name: 'Addresses',
     description: 'Add or Edit Addresses',
-    material_icon_name: 'location-history',
+    material_icon_name: 'local-shipping',
   },
   {
     name: 'Notifications',
     description: 'Notification Preferances',
     material_icon_name: 'notifications',
+  },
+  {
+    name: 'Message Center',
+    description: '',
+    material_icon_name: 'email',
   },
   {
     name: 'How It Works',
@@ -37,7 +42,7 @@ const menus = [
   {
     name: 'Help',
     description: '',
-    material_icon_name: 'question-answer',
+    material_icon_name: 'help',
   },
   {
     name: 'About',
