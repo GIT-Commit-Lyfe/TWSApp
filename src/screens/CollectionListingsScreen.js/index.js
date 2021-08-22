@@ -124,7 +124,7 @@ const products = [
 
 const filters = ['Full Set', 'Condition: Good or Better', 'Location: EU'];
 
-const CollectionListingsScreen = () => {
+const CollectionListingsScreen = ({navigation}) => {
   const filterModalRef = useRef();
   const openFilterModal = () => filterModalRef.current.open();
 
@@ -132,6 +132,7 @@ const CollectionListingsScreen = () => {
     <SafeAreaView style={styles.container}>
       <TwoRowList
         data={products}
+        navigation={navigation}
         ListHeaderComponent={
           <>
             <View style={styles.listingHeaderContainer}>

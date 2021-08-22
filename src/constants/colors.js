@@ -7,9 +7,11 @@ export default {
   grey62: '#626262',
   grey58: '#585858',
   greyCD: '#CDCDCD',
+  greyC5: '#C5C5C5',
   greyE6: '#E6E6E6',
   greyF5: '#F5F5F5',
   primary: '#18110C',
   almostWhite: '#FBFBFB',
   green: '#296142',
+  red: '#EC6564',
 };

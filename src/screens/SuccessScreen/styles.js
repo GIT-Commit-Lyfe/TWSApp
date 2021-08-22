@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
 import {figmaHeight, figmaWidth} from '../../utils/tools';
 
@@ -6,11 +6,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingHorizontal: 10,
-    paddingVertical: figmaHeight(16),
   },
   scrollView: {
     justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    paddingVertical: figmaHeight(16),
     flex: 1,
   },
   innerContainer: {

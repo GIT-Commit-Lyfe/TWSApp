@@ -8,9 +8,10 @@ import TransparentCardStyles from './style';
 import {Jost300, Jost400, Jost500, Jost600} from '../StyledText';
 import {formatCurrency} from '../../utils/tools';
 
-const TransparentCard = ({content, index}) => {
+const TransparentCard = ({content, index, onPress = () => {}}) => {
   return (
     <TouchableOpacity
+      onPress={onPress}
       style={{
         ...TransparentCardStyles.transparentCardContainer,
         marginLeft: index % 2 ? 5 : 10,

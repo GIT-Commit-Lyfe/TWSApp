@@ -1,15 +1,27 @@
-import React from 'react';
-import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
+import React, {useRef} from 'react';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  SafeAreaView,
+} from 'react-native';
 import {formatCurrency, height} from '../utils/tools';
 import colors from '../constants/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Jost400, Jost500, Jost600} from './StyledText';
 import Sort from '../assets/sort.svg';
+import FilterModal from './FilterModal';
 
 export const FilterSortModalButton = () => {
+  const filterModalRef = useRef();
+  const openFilter = () => filterModalRef.current.open();
+
   return (
     <View style={FilterSortModalButtonStyle.container}>
-      <TouchableOpacity style={FilterSortModalButtonStyle.button}>
+      <TouchableOpacity
+        onPress={openFilter}
+        style={FilterSortModalButtonStyle.button}>
         <MaterialIcons
           name="filter-list"
           color={colors.almostWhite}
@@ -22,6 +34,7 @@ export const FilterSortModalButton = () => {
         <Sort height={15} />
         <Jost400 style={FilterSortModalButtonStyle.buttonText}>Sort</Jost400>
       </TouchableOpacity>
+      <FilterModal ref={filterModalRef} />
     </View>
   );
 };
@@ -55,12 +68,14 @@ export const BasicButton = ({
   containerStyle,
   textStyle,
   text = 'Button',
+  disabled,
 }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
+      disabled={disabled}
       style={{
-        backgroundColor: backgroundColor,
+        backgroundColor: disabled ? colors.grey58 : backgroundColor,
         borderWidth: 1,
         borderColor: colors.primary,
         padding: 10,
@@ -74,21 +89,37 @@ export const BasicButton = ({
   );
 };
 
-export const FloatingButton = ({title = 'Buy Now', price, reserved}) => {
+export const FloatingButton = ({
+  title = 'Buy Now',
+  price,
+  reserved,
+  containerStyle,
+  fontSize = 11,
+  onPress = () => {},
+}) => {
   return (
-    <TouchableOpacity style={FloatingButtonStyle.button}>
-      <Jost500
-        style={{...FloatingButtonStyle.title, fontSize: reserved ? 24 : 11}}>
-        {reserved ? 'Reserved' : title}
-      </Jost500>
-      <Jost500
-        style={{
-          ...FloatingButtonStyle.price,
-          fontSize: reserved ? 11 : 24,
-        }}>
-        {formatCurrency(price)}
-      </Jost500>
-    </TouchableOpacity>
+    <SafeAreaView>
+      <TouchableOpacity
+        onPress={onPress}
+        style={{...FloatingButtonStyle.button, ...containerStyle}}>
+        <Jost500
+          style={{
+            ...FloatingButtonStyle.title,
+            fontSize: reserved ? 24 : fontSize,
+          }}>
+          {reserved ? 'Reserved' : title}
+        </Jost500>
+        {price && (
+          <Jost500
+            style={{
+              ...FloatingButtonStyle.price,
+              fontSize: reserved ? 11 : 24,
+            }}>
+            {formatCurrency(price)}
+          </Jost500>
+        )}
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 };
 

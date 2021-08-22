@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {width} from '../../../utils/tools';
+import {figmaWidth, width} from '../../../utils/tools';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
   },
   halveWidth: {
     flex: 0.5,
+  },
+  selectionContainer: {
+    paddingRight: figmaWidth(20),
   },
   flexRow: {
     flexDirection: 'row',

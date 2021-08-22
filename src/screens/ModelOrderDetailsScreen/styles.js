@@ -7,12 +7,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingHorizontal: 10,
-    paddingVertical: figmaHeight(16),
   },
   scrollView: {
     justifyContent: 'space-between',
     flex: 1,
+    paddingHorizontal: 10,
+    paddingVertical: figmaHeight(16),
   },
   innerContainer: {
     flex: 1,

@@ -71,7 +71,7 @@ const SignificantEditions = () => {
                   marginLeft: isFirst ? 10 : 8,
                 }}
                 onPress={() =>
-                  navigation.navigate('Model', {name: item.collection})
+                  navigation.push('Model', {name: item.collection})
                 }>
                 <View style={{zIndex: 1}}>
                   <Jost400 style={styles.smallText}>

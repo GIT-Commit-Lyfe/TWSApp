@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,18 +11,31 @@ import {RNCamera} from 'react-native-camera';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {Jost400, Jost500} from '../../components/StyledText';
 import WatchGuide from '../../assets/watch-guide.svg';
-import {figmaHeight, height} from '../../utils/tools';
+import {figmaHeight, height, width} from '../../utils/tools';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MCI from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CameraScreen = ({navigation, route}) => {
   const {setFieldValue} = route.params;
   const cameraRef = useRef();
+  const [flashMode, setFlashMode] = useState(RNCamera.Constants.FlashMode.off);
 
   const takePicture = async () => {
     const options = {quality: 0.5, base64: true};
-    const data = await cameraRef.current.takePictureAsync(options);
-    setFieldValue(data.uri);
-    navigation.goBack();
+    try {
+      const data = await cameraRef.current.takePictureAsync(options);
+      setFieldValue(data.uri);
+      navigation.goBack();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const toggleFlashMode = () => {
+    const {on, off, auto} = RNCamera.Constants.FlashMode;
+    if (flashMode === on) setFlashMode(off);
+    else if (flashMode === off) setFlashMode(auto);
+    else setFlashMode(on);
   };
 
   const openImageLibrary = () => {
@@ -37,9 +50,9 @@ const CameraScreen = ({navigation, route}) => {
     <SafeAreaView style={styles.container}>
       <RNCamera
         ref={cameraRef}
+        flashMode={flashMode}
         style={styles.preview}
         type={RNCamera.Constants.Type.back}
-        flashMode={RNCamera.Constants.FlashMode.on}
         androidCameraPermissionOptions={{
           title: 'Permission to use camera',
           message: 'We need your permission to use your camera',
@@ -60,9 +73,16 @@ const CameraScreen = ({navigation, route}) => {
         </Jost500>
         <WatchGuide height={height / 2} />
         <View>
-          <TouchableOpacity onPress={takePicture} style={styles.capture}>
-            <MaterialIcons name="photo-camera" color="white" size={24} />
-          </TouchableOpacity>
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity
+              onPress={toggleFlashMode}
+              style={styles.flashButton}>
+              <FlashIconDecider flashMode={flashMode} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={takePicture} style={styles.capture}>
+              <MaterialIcons name="photo-camera" color="white" size={24} />
+            </TouchableOpacity>
+          </View>
           <TouchableOpacity onPress={openImageLibrary}>
             <Jost400 style={styles.addFromLibrary}>ADD FROM LIBRARY</Jost400>
           </TouchableOpacity>
@@ -70,6 +90,15 @@ const CameraScreen = ({navigation, route}) => {
       </View>
     </SafeAreaView>
   );
+};
+
+const FlashIconDecider = ({flashMode}) => {
+  const {on, off, auto} = RNCamera.Constants.FlashMode;
+  if (flashMode === on)
+    return <MCI name="flash-circle" color="white" size={24} />;
+  else if (flashMode === off)
+    return <MCI name="flash-off" color="white" size={24} />;
+  else return <MCI name="flash-auto" color="white" size={24} />;
 };
 
 export default CameraScreen;
@@ -100,12 +129,28 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: 'white',
   },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: figmaHeight(14),
+  },
+  flashButton: {
+    height: figmaHeight(60),
+    width: figmaHeight(60),
+    borderRadius: figmaHeight(30),
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    position: 'absolute',
+    right: width / 3,
+  },
   capture: {
-    flex: 0,
     backgroundColor: 'rgba(0,0,0,0.5)',
-    borderRadius: 5,
-    padding: 15,
-    paddingHorizontal: 20,
+    height: figmaHeight(60),
+    width: figmaHeight(60),
+    borderRadius: figmaHeight(30),
+    justifyContent: 'center',
+    alignItems: 'center',
     alignSelf: 'center',
   },
   addFromLibrary: {

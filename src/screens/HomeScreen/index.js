@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, SafeAreaView, ScrollView} from 'react-native';
 import Banner from '../../assets/new-banner.png';
 import SearchBox from '../../components/Inputs/SearchBox';

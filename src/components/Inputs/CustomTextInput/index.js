@@ -28,7 +28,6 @@ const CustomTextInput = ({
         onChangeText={onChangeText}
         keyboardType={keyboardType}
       />
-      <Text></Text>
     </View>
   );
 };

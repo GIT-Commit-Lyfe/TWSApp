@@ -24,33 +24,49 @@ export const Watches = () => {
 
   useEffect(() => {
     const getPopularModels = async () => {
-      const {data} = await ModelsAPI.get('popular-models');
-
-      setPopularModels(data);
+      try {
+        const {data} = await ModelsAPI.get('popular-models');
+        setPopularModels(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     const getWatchLists = async () => {
-      const {data} = await ListingsAPI.getWatchLists();
-
-      setWatchLists(data);
+      try {
+        const {data} = await ListingsAPI.getWatchLists();
+        setWatchLists(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     const getFollowedListings = async () => {
-      const {data} = await ListingsAPI.getFollowedListings();
+      try {
+        const {data} = await ListingsAPI.getFollowedListings();
 
-      setFollowedListings(data);
+        setFollowedListings(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     const getPopularNearby = async () => {
-      const {data} = await ModelsAPI.getPopularNearby();
-
-      setPopularNearby(data);
+      try {
+        const {data} = await ModelsAPI.getPopularNearby();
+        setPopularNearby(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     const getTrendingModels = async () => {
-      const {data} = await ModelsAPI.getTrendingModels();
-
-      setTrendingModels(data);
+      try {
+        const {data} = await ModelsAPI.getTrendingModels();
+        setTrendingModels(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     getPopularModels();
@@ -59,7 +75,7 @@ export const Watches = () => {
     getPopularNearby();
     getTrendingModels();
 
-    return setPopularModels([]);
+    // return setPopularModels([]);
   }, []);
 
   return (

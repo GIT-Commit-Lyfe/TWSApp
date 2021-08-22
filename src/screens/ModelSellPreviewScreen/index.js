@@ -4,7 +4,7 @@ import BuyAndSellSummary from '../../components/BuyAndSellSummary';
 import {Jost300, Jost400, Jost500, Jost600} from '../../components/StyledText';
 import styles from './styles';
 import {figmaHeight, formatCurrency} from '../../utils/tools';
-import {BasicButton} from '../../components/Buttons';
+import {BasicButton, FloatingButton} from '../../components/Buttons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colors from '../../constants/colors';
@@ -36,6 +36,7 @@ const ModelSellPreviewScreen = ({navigation}) => {
 
   const handleSubmitOrder = () => {
     navigation.navigate('Home');
+    // navigation.popToTop();
   };
 
   return (
@@ -86,15 +87,13 @@ const ModelSellPreviewScreen = ({navigation}) => {
           </Jost300>
           <PaymentSelection navigation={navigation} />
         </View>
-
-        <View style={styles.buttonContainer}>
-          <BasicButton
-            text="Submit Order"
-            containerStyle={styles.button}
-            onPress={handleSubmitOrder}
-          />
-        </View>
       </ScrollView>
+      <FloatingButton
+        containerStyle={styles.buttonContainer}
+        title="Submit Order"
+        onPress={handleSubmitOrder}
+        fontSize={14}
+      />
     </SafeAreaView>
   );
 };

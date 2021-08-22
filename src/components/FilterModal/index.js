@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useRef} from 'react';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -6,65 +6,11 @@ import colors from '../../constants/colors';
 import {figmaHeight, height} from '../../utils/tools';
 import {Jost300, Jost400, Jost500, Jost600} from '../StyledText';
 import styles from './styles';
+import {Formik} from 'formik';
+import FilterSelection from './FilterSelection';
 
 const FilterModal = React.forwardRef(
   ({title = 'Filters', setFilters, filters}, ref) => {
-    const defaultFilters = [
-      {
-        category: 'Case Material',
-        values: ['Stainless Steel', 'Bicolor Rose Gold'],
-      },
-      {
-        category: 'Bezel Material',
-        values: ['Ceramic', 'Aluminium', 'Gem-set'],
-      },
-      {
-        category: 'Bezel Color',
-        values: ['Black', 'Black / Blue'],
-      },
-      {
-        category: 'Bracelet',
-        values: ['Jubilee', 'Oyster', 'Black Crocodile'],
-      },
-      {
-        category: 'Case Diameter',
-        values: ['39 mm', '40 mm', '42 mm'],
-      },
-      {
-        category: 'Crystal',
-        values: ['Sapphire', 'Plexyglass'],
-      },
-      {
-        category: 'Complications',
-        values: ['Date', 'Chronograph', 'GMT'],
-      },
-      {
-        category: 'Location of Watch',
-        values: ['Germany', 'EU'],
-      },
-      {category: 'Custom Features'},
-    ];
-    const [appliedFilters, setAppliedFilters] = useState(defaultFilters);
-
-    // removes / adds values according to what category and value is pressed
-    const applyFilter = ({category, value}) => {
-      const updatedFilters = appliedFilters.map(item => {
-        if (item.category === category) {
-          if (item.values.includes(value)) {
-            const newValues = item.values.filter(
-              existingValue => existingValue !== value,
-            );
-            return {category, values: newValues};
-          } else {
-            return {category, values: [...item.values, value]};
-          }
-        } else {
-          return item;
-        }
-      });
-      setAppliedFilters(updatedFilters);
-    };
-
     return (
       <RBSheet
         ref={ref}
@@ -84,69 +30,101 @@ const FilterModal = React.forwardRef(
         <View style={filterTitleContainer}>
           <Jost600 style={titleStyle}>{title}</Jost600>
         </View>
-        <FlatList
-          keyExtractor={(_, index) => index}
-          data={defaultFilters}
-          ItemSeparatorComponent={Line}
-          ListFooterComponent={Line}
-          renderItem={({item, index: categoryIndex}) => {
+        <Formik initialValues={{}} enableReinitialize={true}>
+          {formikProps => {
+            const {values} = formikProps;
             return (
-              <View style={filterCategoryContainer}>
-                <View style={titleButtonContainer}>
-                  <Jost500 style={filterTitleText}>{item.category}</Jost500>
-                  <TouchableOpacity>
-                    <MaterialIcons
-                      name={'chevron-right'}
-                      size={figmaHeight(15)}
-                      color={colors.primary}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <FilterButtons
-                  item={item}
-                  appliedFilters={appliedFilters}
-                  categoryIndex={categoryIndex}
-                  onPress={applyFilter}
+              <>
+                <FilterSelection
+                  currentValues={values?.case_material}
+                  name="case_material"
+                  label="Case Material"
+                  items={[
+                    {value: 'Stainless Steel', label: 'Stainless Steel'},
+                    {value: 'Bicolor Rose Gold', label: 'Bicolor Rose Gold'},
+                  ]}
                 />
-              </View>
+                <FilterSelection
+                  currentValues={values?.bezel_material}
+                  name="bezel_material"
+                  label="Bezel Material"
+                  items={[
+                    {value: 'Ceramic', label: 'Ceramic'},
+                    {value: 'Aluminium', label: 'Aluminium'},
+                    {value: 'Gem-Set', label: 'Gem-Set'},
+                  ]}
+                />
+                <FilterSelection
+                  currentValues={values?.bezel_color}
+                  name="bezel_color"
+                  label="Bezel Color"
+                  items={[
+                    {value: 'Black', label: 'Black'},
+                    {value: 'Black / Blue', label: 'Black / Blue'},
+                  ]}
+                />
+                <FilterSelection
+                  currentValues={values?.bracelet}
+                  name="bracelet"
+                  label="Bracelet"
+                  items={[
+                    {value: 'Jubilee', label: 'Jubilee'},
+                    {value: 'Oyster', label: 'Oyster'},
+                    {value: 'Black Crocodile', label: 'Black Crocodile'},
+                  ]}
+                />
+                <FilterSelection
+                  currentValues={values?.case_diameter}
+                  name="case_diameter"
+                  label="Case Diameter"
+                  items={[
+                    {value: '39 mm', label: '39 mm'},
+                    {value: '40 mm', label: '40 mm'},
+                    {value: '42 mm', label: '42 mm'},
+                  ]}
+                />
+                <FilterSelection
+                  currentValues={values?.crystal}
+                  name="crystal"
+                  label="Crystal"
+                  items={[
+                    {value: 'Sapphire', label: 'Sapphire'},
+                    {value: 'Plexyglass', label: 'Plexyglass'},
+                  ]}
+                />
+                <FilterSelection
+                  currentValues={values?.complications}
+                  name="complications"
+                  label="Complications"
+                  items={[
+                    {value: 'Date', label: 'Date'},
+                    {value: 'Chronograph', label: 'Chronograph'},
+                    {value: 'GMT', label: 'GMT'},
+                  ]}
+                />
+                <FilterSelection
+                  currentValues={values?.location}
+                  name="location"
+                  label="Location of Watch"
+                  items={[
+                    {value: 'Germany', label: 'Germany'},
+                    {value: 'EU', label: 'EU'},
+                  ]}
+                />
+                <FilterSelection
+                  currentValues={values?.custom_features}
+                  name="custom_features"
+                  label="Custom Features"
+                  items={[]}
+                />
+              </>
             );
           }}
-        />
+        </Formik>
       </RBSheet>
     );
   },
 );
-
-const FilterButtons = ({item, appliedFilters, categoryIndex, onPress}) => {
-  return (
-    <FlatList
-      horizontal
-      keyExtractor={(_, index) => index}
-      data={item.values}
-      renderItem={({item: filterItem, index}) => {
-        const isFirst = index === 0;
-        const isSelected =
-          appliedFilters[categoryIndex]?.values.includes(filterItem);
-        return (
-          <TouchableOpacity
-            onPress={() =>
-              onPress({
-                category: item.category,
-                value: filterItem,
-              })
-            }
-            style={{
-              ...filterItemContainer,
-              backgroundColor: isSelected ? colors.greyE6 : colors.almostWhite,
-              marginLeft: isFirst ? 0 : 10,
-            }}>
-            <Jost300>{filterItem}</Jost300>
-          </TouchableOpacity>
-        );
-      }}
-    />
-  );
-};
 
 const Line = () => <View style={line} />;
 export default FilterModal;

@@ -17,6 +17,7 @@ import colors from '../../constants/colors';
 const SuccessScreen = ({navigation}) => {
   const handleNext = () => {
     navigation.navigate('Home');
+    // navigation.popToTop();
   };
   return (
     <SafeAreaView style={styles.container}>

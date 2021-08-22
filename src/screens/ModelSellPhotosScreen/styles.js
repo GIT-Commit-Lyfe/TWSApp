@@ -12,8 +12,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    minHeight: '100%',
-    justifyContent: 'space-between',
   },
   headerText: {
     fontSize: 24,

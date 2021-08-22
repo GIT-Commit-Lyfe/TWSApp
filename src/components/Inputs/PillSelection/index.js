@@ -29,7 +29,7 @@ const PillSelection = ({
     if (value) {
       setFieldValue('');
     } else if (isPhoto) {
-      navigation.navigate('Camera', {setFieldValue});
+      navigation.navigate('Camera', {setFieldValue, title});
     } else {
       onPress();
     }

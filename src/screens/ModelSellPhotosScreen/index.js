@@ -11,6 +11,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../../constants/colors';
 import {Formik} from 'formik';
 import {Form} from '../../components/Inputs';
+import * as yup from 'yup';
 
 const ModelSellPhotosScreen = ({navigation}) => {
   const [additional, setAdditional] = useState(0);
@@ -25,17 +26,29 @@ const ModelSellPhotosScreen = ({navigation}) => {
     } else setAdditional(p => p + 1);
   };
 
+  const validationSchema = yup.object().shape({
+    photo1: yup.string().required('Required'),
+    photo2: yup.string().required('Required'),
+    photo3: yup.string().required('Required'),
+    photo4: yup.string().required('Required'),
+    photo5: yup.string().required('Required'),
+  });
+
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <View style={styles.innerContainer}>
         <BuyAndSellSummary />
       </View>
 
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Formik initialValues={{photo1: ''}} onSubmit={handleSubmitPhoto}>
-          {({values, handleSubmit}) => {
-            return (
-              <Form style={styles.contentContainer}>
+      <Formik
+        initialValues={{}}
+        validationSchema={validationSchema}
+        validateOnMount
+        onSubmit={handleSubmitPhoto}>
+        {({values, handleSubmit, isValid}) => {
+          return (
+            <Form style={styles.contentContainer}>
+              <ScrollView>
                 <View style={styles.innerContainer}>
                   <View style={styles.list}>
                     <Jost600 style={styles.headerText}>
@@ -93,22 +106,22 @@ const ModelSellPhotosScreen = ({navigation}) => {
                     </Jost300>
                   </TouchableOpacity>
                 </View>
-
-                <View style={styles.buttonContainer}>
-                  <BasicButton
-                    text="Next Step (Listing Details)"
-                    containerStyle={styles.button}
-                    onPress={handleSubmit}
-                  />
-                  <Jost400>
-                    Step <Jost600>2</Jost600> of 3
-                  </Jost400>
-                </View>
-              </Form>
-            );
-          }}
-        </Formik>
-      </ScrollView>
+              </ScrollView>
+              <View style={styles.buttonContainer}>
+                <BasicButton
+                  text="Next Step (Listing Details)"
+                  containerStyle={styles.button}
+                  onPress={handleSubmit}
+                  disabled={!isValid}
+                />
+                <Jost400>
+                  Step <Jost600>2</Jost600> of 3
+                </Jost400>
+              </View>
+            </Form>
+          );
+        }}
+      </Formik>
     </SafeAreaView>
   );
 };

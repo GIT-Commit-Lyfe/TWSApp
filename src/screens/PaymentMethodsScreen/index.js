@@ -23,42 +23,44 @@ const PaymentMethodScreen = ({navigation, route}) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <Jost600 style={styles.title}>Payment Methods</Jost600>
-        <View style={styles.paymentMethods}>
-          <TouchableOpacity style={styles.button}>
-            <Jost400>Credit Card or Paypal</Jost400>
-            <MaterialIcons name="expand-more" size={20} />
-          </TouchableOpacity>
+      <View style={styles.innerContainer}>
+        <View>
+          <Jost600 style={styles.title}>Payment Methods</Jost600>
+          <View style={styles.paymentMethods}>
+            <TouchableOpacity style={styles.button}>
+              <Jost400>Credit Card or Paypal</Jost400>
+              <MaterialIcons name="expand-more" size={20} />
+            </TouchableOpacity>
 
-          <View style={styles.separator}>
-            <View style={styles.line} />
-            <Jost600 style={styles.or}>OR</Jost600>
-            <View style={styles.line} />
+            <View style={styles.separator}>
+              <View style={styles.line} />
+              <Jost600 style={styles.or}>OR</Jost600>
+              <View style={styles.line} />
+            </View>
+
+            <TouchableOpacity style={styles.button}>
+              <Jost600>
+                Buy Now <Jost400>for 281 US$ with Apple Pay</Jost400>
+              </Jost600>
+              <MaterialIcons name="expand-more" size={20} />
+            </TouchableOpacity>
+
+            <View style={styles.separator}>
+              <View style={styles.line} />
+              <Jost600 style={styles.or}>OR</Jost600>
+              <View style={styles.line} />
+            </View>
+
+            <TouchableOpacity style={styles.button}>
+              <Jost600>
+                Buy Now <Jost400>for 281 US$ with Alipay</Jost400>
+              </Jost600>
+              <MaterialIcons name="expand-more" size={20} />
+            </TouchableOpacity>
           </View>
-
-          <TouchableOpacity style={styles.button}>
-            <Jost600>
-              Buy Now <Jost400>for 281 US$ with Apple Pay</Jost400>
-            </Jost600>
-            <MaterialIcons name="expand-more" size={20} />
-          </TouchableOpacity>
-
-          <View style={styles.separator}>
-            <View style={styles.line} />
-            <Jost600 style={styles.or}>OR</Jost600>
-            <View style={styles.line} />
-          </View>
-
-          <TouchableOpacity style={styles.button}>
-            <Jost600>
-              Buy Now <Jost400>for 281 US$ with Alipay</Jost400>
-            </Jost600>
-            <MaterialIcons name="expand-more" size={20} />
-          </TouchableOpacity>
         </View>
+        <BasicButton text="Save" onPress={handleSave}></BasicButton>
       </View>
-      <BasicButton text="Save" onPress={handleSave}></BasicButton>
     </SafeAreaView>
   );
 };
@@ -69,9 +71,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  innerContainer: {
     paddingHorizontal: figmaWidth(10),
     paddingVertical: figmaHeight(20),
     justifyContent: 'space-between',
+    flex: 1,
   },
   title: {
     fontSize: 24,

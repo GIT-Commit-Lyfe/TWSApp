@@ -9,6 +9,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../../constants/colors';
 import CustomTextInput from '../../components/Inputs/CustomTextInput';
 import DropdownPicker from '../../components/Inputs/DropdownPicker';
+import SelectionModal from '../../components/SelectionModal';
 
 const ModelSellAskPriceScreen = ({navigation}) => {
   const handleSubmit = () => {
@@ -31,9 +32,11 @@ const ModelSellAskPriceScreen = ({navigation}) => {
             keyboardType="decimal-pad"
           />
 
-          <DropdownPicker
-            title="Order Expiration: 30 days"
-            options={[
+          <SelectionModal
+            placeholder="Order Expiration: 30 days"
+            containerStyle={{borderColor: colors.greyE6}}
+            fontColor={colors.grey76}
+            items={[
               {label: '7 days', value: '7 days', key: 0},
               {label: '14 days', value: '14 days', key: 1},
               {label: '30 days', value: '30 days', key: 2},

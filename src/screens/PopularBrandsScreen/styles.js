@@ -1,10 +1,14 @@
 import {StyleSheet} from 'react-native';
+import {figmaWidth} from '../../utils/tools';
 
 const PopularBrandsStyles = StyleSheet.create({
-  container: {
+  safeContainer: {
     backgroundColor: '#fff',
     flex: 1,
-    paddingHorizontal: 10,
+  },
+  container: {
+    paddingHorizontal: figmaWidth(10),
+    flex: 1,
   },
   searchBarContainer: {
     alignItems: 'center',

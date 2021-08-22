@@ -1,16 +1,17 @@
-import React from 'react';
-
-import {Text, View} from 'react-native';
-
+import React, {useRef} from 'react';
+import {TouchableOpacity, View} from 'react-native';
 import WatchListingStyles from './style';
-
 import FilterItem from '../../../components/FilterItem';
 import {TwoRowList} from '../../../components/Lists';
 import colors from '../../../constants/colors';
-
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
+import {Jost400, Jost600} from '../../../components/StyledText';
+import FilterModal from '../../../components/FilterModal';
 
 const WatchListing = ({ListHeaderComponent, title = 'All Listings'}) => {
+  const navigation = useNavigation();
+  const filterModalRef = useRef();
   const filters = [
     'Stainless Steel',
     'Condition: Good or Better',
@@ -108,15 +109,18 @@ const WatchListing = ({ListHeaderComponent, title = 'All Listings'}) => {
   return (
     <TwoRowList
       data={products}
+      navigation={navigation}
       ListHeaderComponent={
         <>
           {ListHeaderComponent}
           <View style={WatchListingStyles.container}>
             <View style={WatchListingStyles.filterContainer}>
-              <Text style={WatchListingStyles.filterText}>{title}</Text>
+              <Jost600 style={WatchListingStyles.filterText}>{title}</Jost600>
 
-              <View style={WatchListingStyles.flexRow}>
-                <Text>Filter Models</Text>
+              <TouchableOpacity
+                onPress={() => filterModalRef.current.open()}
+                style={WatchListingStyles.flexRow}>
+                <Jost400>Filter Models</Jost400>
 
                 <MaterialIcons
                   name="filter-list"
@@ -124,7 +128,7 @@ const WatchListing = ({ListHeaderComponent, title = 'All Listings'}) => {
                   size={25}
                   style={{marginLeft: 5}}
                 />
-              </View>
+              </TouchableOpacity>
             </View>
             <View style={WatchListingStyles.filterItemContainer}>
               {filters.length > 0 &&
@@ -133,6 +137,7 @@ const WatchListing = ({ListHeaderComponent, title = 'All Listings'}) => {
                 ))}
             </View>
           </View>
+          <FilterModal ref={filterModalRef} />
         </>
       }
     />

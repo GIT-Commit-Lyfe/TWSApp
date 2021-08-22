@@ -11,7 +11,10 @@ const styles = StyleSheet.create({
   innerContainer: {
     paddingHorizontal: 10,
   },
-  contentContainer: {justifyContent: 'space-between'},
+  contentContainer: {
+    justifyContent: 'space-between',
+    paddingBottom: figmaHeight(70),
+  },
   title: {
     fontSize: 24,
   },

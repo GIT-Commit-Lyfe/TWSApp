@@ -155,6 +155,7 @@ const CollectionDetailScreen = ({navigation, route}) => {
     <SafeAreaView style={styles.container}>
       <TwoRowList
         data={products}
+        navigation={navigation}
         ListHeaderComponent={
           <>
             <CollectionDetailHeader

@@ -22,12 +22,9 @@ export const FullWidthCarousel = ({data}) => {
 
   const renderItem = ({item, index}) => {
     return (
-      <View>
-        <TouchableOpacity style={buttonStyle}>
-          <Jost400 style={buttonTextStyle}>Discover Offers</Jost400>
-        </TouchableOpacity>
+      <TouchableOpacity>
         <Image source={item.source} style={imageStyle} />
-      </View>
+      </TouchableOpacity>
     );
   };
 

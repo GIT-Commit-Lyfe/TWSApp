@@ -7,6 +7,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {
+  getFocusedRouteNameFromRoute,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import colors from '../constants/colors';
 import {figmaWidth, formatCurrency} from '../utils/tools';
 import {Jost300, Jost400, Jost500, Jost600} from './StyledText';
@@ -132,7 +137,7 @@ const WatchListStyle = StyleSheet.create({
   marketPrice: {fontSize: 9, color: colors.grey58},
 });
 
-export const CollectionList = ({data, onPress}) => {
+export const CollectionList = ({data, onPress = () => {}}) => {
   return (
     <FlatList
       data={data}
@@ -219,21 +224,46 @@ const CollectionListStyle = StyleSheet.create({
 });
 
 export const TwoRowList = ({ListHeaderComponent, data}) => {
+  const route = useRoute();
+  const navigation = useNavigation();
+
+  const itemOnPress = item => {
+    const homeStackRoutes = ['CollectionDetail', 'CollectionListings'];
+    const alreadyInHomeStack = homeStackRoutes.includes(route.name);
+
+    // dont use deep navigate if screen is already in home stack
+    if (alreadyInHomeStack) {
+      navigation.navigate('ListingDetail', {data: item});
+    } else {
+      navigation.navigate('Home', {
+        screen: 'ListingDetail',
+        params: {data: item},
+      });
+    }
+  };
+
   return (
     <FlatList
-      contentContainerStyle={TwooRowListStyles.container}
+      contentContainerStyle={TwoRowListStyles.container}
       ListHeaderComponent={ListHeaderComponent}
       data={data}
       keyExtractor={(_, index) => index}
       numColumns={2}
       renderItem={({item, index}) => {
-        return <TransparentCard key={index} content={item} index={index} />;
+        return (
+          <TransparentCard
+            key={index}
+            content={item}
+            index={index}
+            onPress={() => itemOnPress(item)}
+          />
+        );
       }}
     />
   );
 };
 
-const TwooRowListStyles = StyleSheet.create({
+const TwoRowListStyles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
     alignItems: 'stretch',

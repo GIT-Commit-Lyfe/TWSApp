@@ -8,6 +8,7 @@ import PillSelection from '../../components/Inputs/PillSelection';
 import {figmaHeight} from '../../utils/tools';
 import {BasicButton} from '../../components/Buttons';
 import {Formik} from 'formik';
+import * as yup from 'yup';
 
 const ModelSellDetailsScreen = ({navigation}) => {
   const years = ['2010 - 2020', '2016', '2017', '2019', '2020'];
@@ -16,9 +17,15 @@ const ModelSellDetailsScreen = ({navigation}) => {
   const locations = ['Berlin, Germany'];
 
   const handleSubmitDetails = values => {
-    console.log(values);
     navigation.navigate('ModelSellPhotos');
   };
+
+  const validationSchema = yup.object().shape({
+    year: yup.string().required('Required'),
+    condition: yup.string().required('Required'),
+    accomodate: yup.string().required('Required'),
+    location: yup.string().required('Required'),
+  });
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
@@ -26,14 +33,20 @@ const ModelSellDetailsScreen = ({navigation}) => {
         <BuyAndSellSummary />
       </View>
 
-      <ScrollView contentContainerStyle={styles.innerContainer}>
-        <View style={styles.list}>
-          <Jost600 style={styles.headerText}>Details for Sell Order</Jost600>
-        </View>
+      <Formik
+        initialValues={{}}
+        validationSchema={validationSchema}
+        validateOnMount
+        onSubmit={handleSubmitDetails}>
+        {({values, handleSubmit, isValid}) => {
+          return (
+            <ScrollView contentContainerStyle={styles.innerContainer}>
+              <View style={styles.list}>
+                <Jost600 style={styles.headerText}>
+                  Details for Sell Order
+                </Jost600>
+              </View>
 
-        <Formik initialValues={{year: ''}} onSubmit={handleSubmitDetails}>
-          {({values, handleSubmit}) => {
-            return (
               <Form>
                 <PillSelection title="Years" options={years} name="year" />
                 <PillSelection
@@ -69,6 +82,7 @@ const ModelSellDetailsScreen = ({navigation}) => {
 
                 <View style={styles.buttonContainer}>
                   <BasicButton
+                    disabled={!isValid}
                     text="Next Step (Add Photos)"
                     containerStyle={{flex: 1, width: '100%'}}
                     onPress={handleSubmit}
@@ -78,10 +92,10 @@ const ModelSellDetailsScreen = ({navigation}) => {
                   </Jost400>
                 </View>
               </Form>
-            );
-          }}
-        </Formik>
-      </ScrollView>
+            </ScrollView>
+          );
+        }}
+      </Formik>
     </SafeAreaView>
   );
 };

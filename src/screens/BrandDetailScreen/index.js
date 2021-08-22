@@ -109,13 +109,14 @@ const collections = [
 export default function BrandDetailScreen({navigation}) {
   const filterRef = useRef();
   const marketDataRef = useRef();
-  const isReady = Math.random() < 0.8;
-  // const isReady = true;
+  const isReady = true;
   const {brand, logo, details, website} = brandInfo;
 
   const collectionOnPress = item => {
-    console.log(item);
-    navigation.navigate('CollectionDetail', {data: item});
+    navigation.navigate('Home', {
+      screen: 'CollectionDetail',
+      params: {data: item},
+    });
   };
 
   const tabbedPages = [

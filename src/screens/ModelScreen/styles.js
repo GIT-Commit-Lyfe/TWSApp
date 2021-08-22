@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
+import {figmaHeight} from '../../utils/tools';
 
 const styles = StyleSheet.create({
+  scrollViewContainer: {
+    paddingVertical: figmaHeight(10),
+  },
   modelScreenContainer: {
     flex: 1,
     backgroundColor: 'white',

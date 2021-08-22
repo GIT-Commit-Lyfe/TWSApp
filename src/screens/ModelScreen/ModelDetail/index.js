@@ -1,24 +1,11 @@
 import React, {useRef, useState} from 'react';
 import {Button, Image, View, Text, TouchableOpacity} from 'react-native';
-
-import RBSheet from 'react-native-raw-bottom-sheet';
-
 import {Jost400, Jost500, Jost600} from '../../../components/StyledText';
-
-import ArrowUpIcon from '../../../assets/arrow-down-black.svg';
-
 import styles from './styles';
+import SelectionModal from '../../../components/SelectionModal';
+import FilterModal from '../../../components/FilterModal';
 
 const ModelDetail = () => {
-  const refRBSheetYear = useRef();
-  const refRBSheetCondition = useRef();
-  const refRBSheetAccomodation = useRef();
-
-  const [selectedItem, setSelectedItem] = useState({});
-  const [year, setYear] = useState('');
-  const [condition, setCondition] = useState('');
-  const [accomodation, setAccomodation] = useState('');
-
   const model = {
     status: 'Discontiniued',
     name: 'Rolex GMT Master II',
@@ -26,27 +13,9 @@ const ModelDetail = () => {
     modelUrl: 'https://via.placeholder.com/150.png',
   };
 
-  const onChange = item => {
-    setSelectedItem(item);
-  };
+  const filterModalRef = useRef();
 
-  const handleYear = value => {
-    setYear(value);
-
-    refRBSheetYear.current.close();
-  };
-
-  const handleCondition = value => {
-    setCondition(value);
-
-    refRBSheetCondition.current.close();
-  };
-
-  const handleAccomodation = value => {
-    setAccomodation(value);
-
-    refRBSheetAccomodation.current.close();
-  };
+  const openFilterModal = () => filterModalRef.current.open();
 
   return (
     <View>
@@ -58,47 +27,38 @@ const ModelDetail = () => {
 
       <View style={styles.flexRow}>
         <View style={styles.halveWidth}>
-          <View>
-            <Jost400 style={styles.label}>Year</Jost400>
-            <View>
-              <TouchableOpacity
-                style={styles.combobox}
-                onPress={() => refRBSheetYear.current.open()}>
-                <Jost400>{year === '' ? ' Select Year' : year}</Jost400>
-
-                <ArrowUpIcon />
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View>
-            <Jost400 style={styles.label}>Condition</Jost400>
-            <View>
-              <TouchableOpacity
-                style={styles.combobox}
-                onPress={() => refRBSheetCondition.current.open()}>
-                <Jost400>
-                  {condition === '' ? ' Select Condition' : condition}
-                </Jost400>
-
-                <ArrowUpIcon />
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View>
-            <Jost400 style={styles.label}>Accomodated with</Jost400>
-            <View>
-              <TouchableOpacity
-                style={styles.combobox}
-                onPress={() => refRBSheetAccomodation.current.open()}>
-                <Jost400>
-                  {accomodation === '' ? ' Select Accomodation' : accomodation}
-                </Jost400>
-
-                <ArrowUpIcon />
-              </TouchableOpacity>
-            </View>
+          <View style={styles.selectionContainer}>
+            <SelectionModal
+              title="Year"
+              placeholder="Select Year"
+              items={[
+                {id: 1, value: '1990 - 2000', label: '1990 - 2000'},
+                {id: 2, value: '2000 - 2010', label: '2000 - 2010'},
+                {id: 3, value: '2010 - 2020', label: '2010 - 2020'},
+              ]}
+            />
+            <SelectionModal
+              title="Condition"
+              placeholder="Select Condition"
+              items={[
+                {id: 1, value: 'Good', label: 'Good'},
+                {id: 2, value: 'Very Good', label: 'Very Good'},
+                {id: 3, value: 'Fair', label: 'Fair'},
+              ]}
+            />
+            <SelectionModal
+              title="Accomodated with"
+              placeholder="Select Accomodation"
+              items={[
+                {id: 1, value: 'Full Set', label: 'Full Set'},
+                {
+                  id: 2,
+                  value: 'With Original Papers',
+                  label: 'With Original Papers',
+                },
+                {id: 3, value: 'With Box', label: 'With Box'},
+              ]}
+            />
           </View>
 
           <View>
@@ -114,7 +74,7 @@ const ModelDetail = () => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.buttonWhite}>
+        <TouchableOpacity onPress={openFilterModal} style={styles.buttonWhite}>
           <Jost600 style={styles.buttonWhiteText}>More Filters</Jost600>
         </TouchableOpacity>
 
@@ -122,105 +82,7 @@ const ModelDetail = () => {
           <Jost600 style={styles.buttonBlackText}>Add to Watchlist</Jost600>
         </TouchableOpacity>
       </View>
-
-      <RBSheet
-        ref={refRBSheetYear}
-        closeOnDragDown={true}
-        closeOnPressMask={false}
-        customStyles={{
-          container: {
-            borderTopLeftRadius: 30,
-            borderTopRightRadius: 30,
-          },
-          wrapper: {
-            backgroundColor: 'rgba(0, 0, 0, .2)',
-            width: '100%',
-          },
-          draggableIcon: {
-            backgroundColor: '#000',
-          },
-        }}>
-        <View style={{paddingHorizontal: 20}}>
-          <Jost600 style={styles.headingSheet}>Select Year</Jost600>
-          <Jost400
-            style={{paddingBottom: 5}}
-            onPress={() => handleYear('1990 - 2000')}>
-            1990 - 2000
-          </Jost400>
-          <Jost400
-            style={{paddingBottom: 5}}
-            onPress={() => handleYear('2000 - 2010')}>
-            2000 - 2010
-          </Jost400>
-          <Jost400 onPress={() => handleYear('2010 - 2020')}>
-            2010 - 2020
-          </Jost400>
-        </View>
-      </RBSheet>
-
-      <RBSheet
-        ref={refRBSheetCondition}
-        closeOnDragDown={true}
-        closeOnPressMask={false}
-        customStyles={{
-          container: {
-            borderTopLeftRadius: 30,
-            borderTopRightRadius: 30,
-          },
-          wrapper: {
-            backgroundColor: 'rgba(0, 0, 0, .2)',
-            width: '100%',
-          },
-          draggableIcon: {
-            backgroundColor: '#000',
-          },
-        }}>
-        <View style={{paddingHorizontal: 20}}>
-          <Jost600 style={styles.headingSheet}>Select Condition</Jost600>
-          <Jost400
-            style={{paddingBottom: 5}}
-            onPress={() => handleCondition('Good')}>
-            Good
-          </Jost400>
-          <Jost400
-            style={{paddingBottom: 5}}
-            onPress={() => handleCondition('Very Good')}>
-            Very Good
-          </Jost400>
-        </View>
-      </RBSheet>
-
-      <RBSheet
-        ref={refRBSheetAccomodation}
-        closeOnDragDown={true}
-        closeOnPressMask={false}
-        customStyles={{
-          container: {
-            borderTopLeftRadius: 30,
-            borderTopRightRadius: 30,
-          },
-          wrapper: {
-            backgroundColor: 'rgba(0, 0, 0, .2)',
-            width: '100%',
-          },
-          draggableIcon: {
-            backgroundColor: '#000',
-          },
-        }}>
-        <View style={{paddingHorizontal: 20}}>
-          <Jost600 style={styles.headingSheet}>Select Accomodation</Jost600>
-          <Jost400
-            style={{paddingBottom: 5}}
-            onPress={() => handleAccomodation('Full Set')}>
-            Full Set
-          </Jost400>
-          <Jost400
-            style={{paddingBottom: 5}}
-            onPress={() => handleAccomodation('Lost some parts')}>
-            Lost some parts
-          </Jost400>
-        </View>
-      </RBSheet>
+      <FilterModal ref={filterModalRef} />
     </View>
   );
 };
