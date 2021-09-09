@@ -39,7 +39,9 @@ export default function useWatchlist() {
   };
 
   useEffect(() => {
-    initialGetWatchlist();
+    if (!watchlist.length) {
+      initialGetWatchlist();
+    }
   }, []);
 
   return {
