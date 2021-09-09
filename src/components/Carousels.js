@@ -156,16 +156,13 @@ const CarouselHeaderStyle = StyleSheet.create({
 });
 
 export const PriceTrendCarousel = ({title, data, navigation, fontSize}) => {
-  const type =
-    title === 'My Watchlist'
-      ? 'personal'
-      : title === 'Popular Models'
-      ? 'popular'
-      : 'trending';
-
   const bottomSheetRef = useRef();
   const onPressSeeAll = () => {
     bottomSheetRef.current.open();
+  };
+
+  const onPressItem = item => {
+    navigation.navigate('Model', {item});
   };
 
   return (
@@ -189,9 +186,7 @@ export const PriceTrendCarousel = ({title, data, navigation, fontSize}) => {
                 ...PriceTrendCarouselStyle.cardStyle,
                 marginLeft: isFirst ? 10 : 8,
               }}
-              onPress={() =>
-                navigation.navigate('Model', {name: item.collection})
-              }>
+              onPress={() => onPressItem(item)}>
               <View style={{zIndex: 1}}>
                 <Jost400 style={PriceTrendCarouselStyle.smallText}>
                   "{item.significantEdition}"

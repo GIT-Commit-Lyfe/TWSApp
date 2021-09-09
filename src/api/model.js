@@ -4,6 +4,9 @@ const ModelsAPI = {
   get(type) {
     return api.get(`/${type}`);
   },
+  getDetails(id) {
+    return api.get(`models/${id}`);
+  },
   getTrendingModels() {
     return api.get('/trending-models');
   },

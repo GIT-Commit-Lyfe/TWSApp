@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, SafeAreaView, ScrollView} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {get} from 'lodash';
 
 import Accesories from './Accesories';
 import BuyAndSell from './BuyAndSell';
@@ -15,68 +15,69 @@ import {formatCurrency} from '../../utils/tools';
 
 import styles from './styles';
 
-export default function ModelScreen() {
-  const navigation = useNavigation();
+const followedListings = [
+  {
+    brand: 'Rolex',
+    code: 'RLX',
+    SECode: '',
+    reference: '126710BLRO',
+    significantEdition: 'BATMAN',
+    collection: 'GMT Master II',
+    year: '2016',
+    price: 13350,
+    currency: 'EUR',
+    condition: 'Very Good',
+    accomodation: 'With Original Papers',
+    country: 'DE',
+    city: 'Berlin',
+    sellerType: 'Individual Investor',
+    modelUrl: 'https://via.placeholder.com/150.png',
+  },
+  {
+    brand: 'Rolex',
+    code: 'RLX',
+    SECode: 'F4',
+    reference: '16610LV',
+    significantEdition: 'KERMIT FLAT 4',
+    collection: 'Submariner Date',
+    year: '2004',
+    price: 17900,
+    currency: 'EUR',
+    condition: 'Fair',
+    accomodation: 'Full Set',
+    country: 'DE',
+    city: 'Berlin',
+    sellerType: 'Individual Investor',
+    modelUrl: 'https://via.placeholder.com/150.png',
+  },
+  {
+    brand: 'Rolex',
+    code: 'RLX',
+    SECode: 'F4',
+    reference: '16610LV',
+    significantEdition: 'KERMIT FLAT 4',
+    collection: 'Submariner Date',
+    year: '2004',
+    price: 13350,
+    currency: 'EUR',
+    condition: 'Fair',
+    accomodation: 'Full Set',
+    country: 'DE',
+    city: 'Berlin',
+    sellerType: 'Individual Investor',
+    modelUrl: 'https://via.placeholder.com/150.png',
+  },
+];
 
-  const followedListings = [
-    {
-      brand: 'Rolex',
-      code: 'RLX',
-      SECode: '',
-      reference: '126710BLRO',
-      significantEdition: 'BATMAN',
-      collection: 'GMT Master II',
-      year: '2016',
-      price: 13350,
-      currency: 'EUR',
-      condition: 'Very Good',
-      accomodation: 'With Original Papers',
-      country: 'DE',
-      city: 'Berlin',
-      sellerType: 'Individual Investor',
-      modelUrl: 'https://via.placeholder.com/150.png',
-    },
-    {
-      brand: 'Rolex',
-      code: 'RLX',
-      SECode: 'F4',
-      reference: '16610LV',
-      significantEdition: 'KERMIT FLAT 4',
-      collection: 'Submariner Date',
-      year: '2004',
-      price: 17900,
-      currency: 'EUR',
-      condition: 'Fair',
-      accomodation: 'Full Set',
-      country: 'DE',
-      city: 'Berlin',
-      sellerType: 'Individual Investor',
-      modelUrl: 'https://via.placeholder.com/150.png',
-    },
-    {
-      brand: 'Rolex',
-      code: 'RLX',
-      SECode: 'F4',
-      reference: '16610LV',
-      significantEdition: 'KERMIT FLAT 4',
-      collection: 'Submariner Date',
-      year: '2004',
-      price: 13350,
-      currency: 'EUR',
-      condition: 'Fair',
-      accomodation: 'Full Set',
-      country: 'DE',
-      city: 'Berlin',
-      sellerType: 'Individual Investor',
-      modelUrl: 'https://via.placeholder.com/150.png',
-    },
-  ];
+export default function ModelScreen({navigation, route}) {
+  const {item} = get(route, 'params');
+  console.log(item);
 
   return (
     <SafeAreaView style={styles.modelScreenContainer}>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         <View style={styles.horizontalPadding}>
-          <ModelDetail />
+          <ModelDetail data={item} />
         </View>
         <SignificantEditions />
         <View style={styles.horizontalPadding}>

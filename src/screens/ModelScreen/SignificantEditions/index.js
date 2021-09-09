@@ -70,9 +70,7 @@ const SignificantEditions = () => {
                   ...styles.cardStyle,
                   marginLeft: isFirst ? 10 : 8,
                 }}
-                onPress={() =>
-                  navigation.push('Model', {name: item.collection})
-                }>
+                onPress={() => navigation.push('Model', {item})}>
                 <View style={{zIndex: 1}}>
                   <Jost400 style={styles.smallText}>
                     "{item.significantEdition}"

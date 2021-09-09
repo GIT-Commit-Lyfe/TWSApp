@@ -70,9 +70,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   buttonWhite: {
+    flex: 1,
     borderColor: '#18110C',
     borderWidth: 1,
-    width: width / 2 - 20,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
@@ -81,14 +81,17 @@ const styles = StyleSheet.create({
     color: '#18110C',
   },
   buttonBlack: {
+    flex: 1,
     backgroundColor: '#18110C',
-    width: width / 2 - 20,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
   },
   buttonBlackText: {
     color: '#fff',
+  },
+  spacer: {
+    width: figmaWidth(12),
   },
   headingSheet: {
     marginBottom: 15,

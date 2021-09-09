@@ -1,28 +1,70 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import {Button, Image, View, Text, TouchableOpacity} from 'react-native';
 import {Jost400, Jost500, Jost600} from '../../../components/StyledText';
 import styles from './styles';
 import SelectionModal from '../../../components/SelectionModal';
 import FilterModal from '../../../components/FilterModal';
+import {formatCurrency} from '../../../utils/tools';
+import ModelsAPI from '../../../api/model';
+import useWatchlist from '../../../customHooks/useWatchlist';
+import Toast from 'react-native-toast-message';
 
-const ModelDetail = () => {
-  const model = {
-    status: 'Discontiniued',
-    name: 'Rolex GMT Master II',
-    alias: '2116BLNR "GMT Batman"',
-    modelUrl: 'https://via.placeholder.com/150.png',
+const ModelDetail = ({data = {}}) => {
+  const [model, setModel] = useState(data);
+  const {addWatchList} = useWatchlist();
+
+  const {
+    brand = 'Rolex',
+    collection,
+    currency,
+    id,
+    marketPrice,
+    modelUrl,
+    raising,
+    reference,
+    significantEdition = '',
+    status = '',
+  } = model;
+
+  const getDetailedInfo = async () => {
+    try {
+      const res = await ModelsAPI.getDetails(id);
+      // setModel(res.data);
+      console.log(res, 'ini detailnya');
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    getDetailedInfo();
+  }, []);
 
   const filterModalRef = useRef();
 
   const openFilterModal = () => filterModalRef.current.open();
 
+  const addToWatchlist = () => {
+    console.log(model);
+    addWatchList(model);
+    Toast.show({
+      type: 'success',
+      text1: `${brand} ${collection}`,
+      text2: 'Added to watchlist',
+      position: 'top',
+      visibilityTime: 2000,
+    });
+  };
+
   return (
     <View>
       <View style={styles.copywriting}>
-        <Jost600 style={styles.statusText}>{model.status}</Jost600>
-        <Jost600 style={styles.nameText}>{model.name}</Jost600>
-        <Jost400 style={styles.aliasText}>{model.alias}</Jost400>
+        <Jost600 style={styles.statusText}>{status}</Jost600>
+        <Jost600 style={styles.nameText}>{`${brand} ${collection}`}</Jost600>
+        <Jost400
+          style={
+            styles.aliasText
+          }>{`${reference} ${significantEdition}`}</Jost400>
       </View>
 
       <View style={styles.flexRow}>
@@ -63,13 +105,17 @@ const ModelDetail = () => {
 
           <View>
             <Jost400 style={styles.label}>Last Known Price</Jost400>
-            <Jost500 style={styles.price}>€14.350</Jost500>
-            <Jost400 style={styles.updown}>+€350 (+2,5%)</Jost400>
+            <Jost500 style={styles.price}>
+              {formatCurrency(marketPrice)}
+            </Jost500>
+            <Jost400 style={styles.updown}>{`${
+              raising ? '+' : '-'
+            }€350 (+2,5%)`}</Jost400>
           </View>
         </View>
 
         <View style={styles.halveWidth}>
-          <Image style={styles.imageStyle} source={{uri: model.modelUrl}} />
+          <Image style={styles.imageStyle} source={{uri: modelUrl}} />
         </View>
       </View>
 
@@ -78,7 +124,9 @@ const ModelDetail = () => {
           <Jost600 style={styles.buttonWhiteText}>More Filters</Jost600>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonBlack}>
+        <View style={styles.spacer} />
+
+        <TouchableOpacity onPress={addToWatchlist} style={styles.buttonBlack}>
           <Jost600 style={styles.buttonBlackText}>Add to Watchlist</Jost600>
         </TouchableOpacity>
       </View>

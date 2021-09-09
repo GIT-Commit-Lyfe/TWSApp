@@ -22,17 +22,21 @@ export const tabBarVisibleDecider = route => {
   // If the focused route is not found, we need to assume it's the initial screen
   // This can happen during if there hasn't been any navigation inside the screen
   const routeName = getFocusedRouteNameFromRoute(route) ?? 'Initial';
-  const routesWithBottomTab = [
-    'Initial',
-    'Home',
-    'Boutiques',
-    'PopularBrands',
-    'AllBrands',
-    'OrdersTrades',
-    'Account',
+  console.log('Route name: ', routeName);
+  const routesWithNoBottomTab = [
+    'ModelSellDetails',
+    'ModelSellPhotos',
+    'Camera',
+    'ModelSellAskPrice',
+    'ModelSellPreview',
+    'PaymentMethods',
+    'ModelBuy',
+    'ModelOrderDetails',
+    'Success',
+    'ListingDetail',
   ];
-  if (routesWithBottomTab.includes(routeName)) {
-    return true;
+  if (routesWithNoBottomTab.includes(routeName)) {
+    return false;
   }
-  return false;
+  return true;
 };

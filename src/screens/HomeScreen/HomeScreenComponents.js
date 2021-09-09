@@ -12,10 +12,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import ModelsAPI from '../../api/model';
 import ListingsAPI from '../../api/list';
+import useWatchlist from '../../customHooks/useWatchlist';
 
 export const Watches = () => {
   const [popularModels, setPopularModels] = useState([]);
-  const [watchLists, setWatchLists] = useState([]);
+  const {data: watchLists} = useWatchlist();
   const [followedListings, setFollowedListings] = useState([]);
   const [popularNearby, setPopularNearby] = useState([]);
   const [trendingModels, setTrendingModels] = useState([]);
@@ -27,15 +28,6 @@ export const Watches = () => {
       try {
         const {data} = await ModelsAPI.get('popular-models');
         setPopularModels(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const getWatchLists = async () => {
-      try {
-        const {data} = await ListingsAPI.getWatchLists();
-        setWatchLists(data);
       } catch (error) {
         console.log(error);
       }
@@ -70,7 +62,6 @@ export const Watches = () => {
     };
 
     getPopularModels();
-    getWatchLists();
     getFollowedListings();
     getPopularNearby();
     getTrendingModels();

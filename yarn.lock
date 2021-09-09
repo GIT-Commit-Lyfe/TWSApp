@@ -6271,6 +6271,13 @@ react-native-text-ticker@^1.14.0:
   resolved "https://registry.yarnpkg.com/react-native-text-ticker/-/react-native-text-ticker-1.14.0.tgz#dc537d2c587efc18ef19db9a85dc678a28aa8c57"
   integrity sha512-8TNGTcW43dfnCqIuXVA7F1Ny8SKGrw0pIrNS5nM7eda+6AsuPTZh3JQ2CwmSRYfsrlnS4QFrpyo5ykpI8nvtCw==
 
+react-native-toast-message@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-toast-message/-/react-native-toast-message-1.5.0.tgz#eb2029974f0288025de68bf397c3b709c74ca80b"
+  integrity sha512-gv9EbOyzy8PoZxjfv0SefoG8vwGuxM6NSENbf88izEQMbocsbkEuKZl3riW7ETY7rfR/Uu/gW8D9UwCjXzFr+w==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-vector-icons@^8.1.0:
   version "8.1.0"
   resolved "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-8.1.0.tgz"

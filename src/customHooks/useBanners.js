@@ -1,18 +1,37 @@
-import {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {setBanners} from '../redux/banners';
+import {useContext, useEffect} from 'react';
+import BannersAPI from '../api/banner';
+import {BannerContext} from '../contexts/bannerContext';
 
 export default function useBanners() {
-  const dispatch = useDispatch();
-  const {banners, loading, error} = useSelector(state => state.banners);
+  const [state, dispatch] = useContext(BannerContext);
+  const {banners, loading, error} = state;
 
   const initialGetBanners = async () => {
     try {
-      dispatch(setBanners());
+      dispatch({type: 'SET_LOADING', payload: true});
+      const data = await getBanners();
+      dispatch({type: 'SET_BANNERS', payload: data});
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({type: 'SET_LOADING', payload: false});
+    }
+  };
+
+  const getBanners = async () => {
+    try {
+      const res = await BannersAPI.getPriceBanners();
+      return res.data;
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (!banners?.length) {
+      initialGetBanners();
+    }
+  }, []);
 
   return {
     data: banners,
