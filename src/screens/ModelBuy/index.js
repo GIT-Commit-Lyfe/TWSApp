@@ -7,7 +7,7 @@ import {
   Image,
   TextInput,
 } from 'react-native';
-import {BasicButton} from '../../components/Buttons';
+import {BasicButton, DoubleCapsul} from '../../components/Buttons';
 
 import BuyAndSellSummary from '../../components/BuyAndSellSummary';
 import {Jost300, Jost500, Jost600} from '../../components/StyledText';
@@ -47,37 +47,19 @@ const ModelBuy = ({navigation}) => {
     navigation.navigate('ModelOrderDetails');
   };
 
+  const toggleMode = () => {
+    setMode(p => {
+      if (p === 'bid') return 'buy';
+      return 'bid';
+    });
+  };
+
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <BuyAndSellSummary />
 
-        <View style={styles.buttonBidContainer}>
-          <TouchableOpacity
-            onPress={() => setMode('bid')}
-            style={
-              mode === 'bid'
-                ? {...styles.buttonBidGreen}
-                : {...styles.buttonBidGrey}
-            }>
-            <Jost500
-              style={mode === 'bid' ? styles.textWhite : styles.textBlack}>
-              Place a Bid
-            </Jost500>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => setMode('buy')}
-            style={
-              mode === 'buy'
-                ? {...styles.buttonBidGreen}
-                : {...styles.buttonBidGrey}
-            }>
-            <Jost500
-              style={mode === 'buy' ? styles.textWhite : styles.textBlack}>
-              Market Buy
-            </Jost500>
-          </TouchableOpacity>
-        </View>
+        <DoubleCapsul onPress={toggleMode} />
 
         {mode === 'bid' ? (
           <>

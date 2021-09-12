@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
@@ -6,7 +6,7 @@ import {
   View,
   SafeAreaView,
 } from 'react-native';
-import {formatCurrency, height} from '../utils/tools';
+import {formatCurrency, height, width} from '../utils/tools';
 import colors from '../constants/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Jost400, Jost500, Jost600} from './StyledText';
@@ -144,3 +144,70 @@ const FloatingButtonStyle = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+export const DoubleCapsul = ({
+  onPress = () => {},
+  firstOption = 'Place a Bid',
+  secondOption = 'Market Buy',
+  containerStyle,
+}) => {
+  const [isLeft, setIsLeft] = useState(true);
+  const handlePress = () => {
+    setIsLeft(p => !p);
+    onPress();
+  };
+
+  const {
+    buttonBidContainer,
+    buttonBidGreen,
+    buttonBidGrey,
+    textWhite,
+    textBlack,
+  } = StyleSheet.create({
+    buttonBidContainer: {
+      flexDirection: 'row',
+      marginTop: 10,
+      backgroundColor: colors.greyF5,
+      borderRadius: 20,
+      overflow: 'hidden',
+      borderColor: colors.greyCD,
+      borderWidth: 1,
+      ...containerStyle,
+    },
+    buttonBidGreen: {
+      backgroundColor: colors.green,
+      flex: 0.5,
+      paddingVertical: 8,
+      alignItems: 'center',
+      borderRadius: 20,
+    },
+    buttonBidGrey: {
+      flex: 0.5,
+      paddingVertical: 8,
+      alignItems: 'center',
+    },
+    textWhite: {
+      color: '#fff',
+    },
+    textBlack: {
+      color: '#18110C',
+    },
+  });
+
+  return (
+    <View style={buttonBidContainer}>
+      <TouchableOpacity
+        onPress={handlePress}
+        style={isLeft ? {...buttonBidGreen} : {...buttonBidGrey}}>
+        <Jost500 style={isLeft ? textWhite : textBlack}>{firstOption}</Jost500>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={handlePress}
+        style={!isLeft ? {...buttonBidGreen} : {...buttonBidGrey}}>
+        <Jost500 style={!isLeft ? textWhite : textBlack}>
+          {secondOption}
+        </Jost500>
+      </TouchableOpacity>
+    </View>
+  );
+};
