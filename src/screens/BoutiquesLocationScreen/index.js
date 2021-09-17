@@ -1,4 +1,4 @@
-import React, {useMemo, useRef} from 'react';
+import React, {useMemo, useRef, useEffect, useState} from 'react';
 
 import {
   FlatList,
@@ -8,7 +8,10 @@ import {
   View,
 } from 'react-native';
 
+import Geolocation from '@react-native-community/geolocation';
+
 import MapView from 'react-native-maps';
+
 import BottomSheet from '@gorhom/bottom-sheet';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -22,9 +25,41 @@ import colors from '../../constants/colors';
 import BoutiquesLocationStyles from './style';
 
 const BoutiquesLocationScreen = ({navigation}) => {
+  const [location, setLocation] = useState({
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  });
   const bottomSheetRef = useRef(null);
 
   const snapPoints = useMemo(() => ['35%', '100%'], []);
+
+  const getAuthorization = () => {
+    Geolocation.requestAuthorization();
+  };
+
+  const getUserLocation = async () => {
+    try {
+      Geolocation.getCurrentPosition(info => {
+        const {coords = {}} = info;
+        const {latitude, longitude} = coords;
+        setLocation({
+          latitude,
+          longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAuthorization();
+    getUserLocation();
+  }, []);
 
   const boutiques = [
     {
@@ -51,12 +86,7 @@ const BoutiquesLocationScreen = ({navigation}) => {
     <SafeAreaView style={BoutiquesLocationStyles.container}>
       <MapView
         style={{height: 500, width: '100%'}}
-        region={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
+        region={location}
         showsUserLocation={true}
       />
 

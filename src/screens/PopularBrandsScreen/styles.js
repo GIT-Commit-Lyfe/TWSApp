@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {figmaWidth} from '../../utils/tools';
+import {figmaHeight, figmaWidth} from '../../utils/tools';
 
 const PopularBrandsStyles = StyleSheet.create({
   safeContainer: {
@@ -14,7 +14,7 @@ const PopularBrandsStyles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 20,
+    marginVertical: figmaHeight(6),
   },
   textInput: {
     backgroundColor: '#EEEEEF',

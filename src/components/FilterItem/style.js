@@ -18,10 +18,10 @@ const FilterItemStyles = StyleSheet.create({
     marginBottom: 5,
   },
   filterItemTextClose: {
-    marginLeft: 10,
     fontSize: 13,
   },
   filterItemText: {
+    marginRight: 6,
     fontSize: 10,
   },
 });
