@@ -14,6 +14,11 @@ const reducer = (state, action) => {
       return {...state, watchlist: action.payload};
     case 'ADD_WATCHLIST':
       return {...state, watchlist: [action.payload, ...state.watchlist]};
+    case 'REMOVE_WATCHLIST':
+      const filteredWatchlist = state.watchlist.filter(
+        watch => watch.id !== action.payload.id,
+      );
+      return {...state, watchlist: filteredWatchlist};
     case 'SET_LOADING':
       return {...state, loading: action.payload};
     default:

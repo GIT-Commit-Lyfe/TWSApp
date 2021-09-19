@@ -11,14 +11,14 @@ import BottomSheet from '../../components/BottomSheet';
 import {BasicButton} from '../../components/Buttons';
 import {BasicHeader} from '../../components/Headers';
 import {CollectionList} from '../../components/Lists';
-import {Jost400, Jost500} from '../../components/StyledText';
+import {Jost300, Jost400, Jost500} from '../../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
   ScrollingTabbedNavigator,
   TabbedNavigator,
 } from '../../components/TabbedNavigator';
 import colors from '../../constants/colors';
-import {figmaWidth} from '../../utils/tools';
+import {figmaHeight, figmaWidth} from '../../utils/tools';
 import {Watches} from '../HomeScreen/HomeScreenComponents';
 import MarketDataModal from '../../components/MarketDataModal';
 import FilterModal from '../../components/FilterModal';
@@ -146,7 +146,7 @@ export default function BrandDetailScreen({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
       {isReady ? (
-        <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
           <View style={styles.paddingHorizontal}>
             <BasicHeader
               title={brand}
@@ -156,11 +156,11 @@ export default function BrandDetailScreen({navigation}) {
             />
             <View style={styles.buttonContainer}>
               <BasicButton
-                text="Filter Models"
+                text="Releases"
                 backgroundColor="white"
                 textColor={colors.primary}
                 containerStyle={styles.flex}
-                onPress={openFilter}
+                // onPress={openFilter}
               />
               <View style={styles.separator} />
               <BasicButton
@@ -173,9 +173,9 @@ export default function BrandDetailScreen({navigation}) {
           <View style={styles.tabbedSeparator}>
             <ScrollingTabbedNavigator data={tabbedPages} />
           </View>
-        </View>
+        </ScrollView>
       ) : (
-        <View>
+        <View style={{flex: 1, justifyContent: 'space-between'}}>
           <View style={styles.paddingHorizontal}>
             <BasicHeader title={brand} description={details} imageUri={logo} />
             <Jost400>
@@ -193,10 +193,19 @@ export default function BrandDetailScreen({navigation}) {
                 color={colors.primary}
               />
               <Jost500 style={styles.watchlistText}>
-                If you want a list a watch under this brand you can do it here.
+                {
+                  'If you want a list a watch under this brand you can do it here.'
+                }
               </Jost500>
             </TouchableOpacity>
           </View>
+          <Jost300 style={styles.speedUp}>
+            {
+              'If you are the official represntative of the brand you can help us to speed up the process by contributing our research. '
+            }
+            <Jost400 style={styles.clickHere}>{'Click here '}</Jost400>
+            {'for more.'}
+          </Jost300>
         </View>
       )}
       <FilterModal ref={filterRef} />
@@ -225,6 +234,17 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginLeft: 10,
     width: '90%',
+  },
+  speedUp: {
+    paddingHorizontal: figmaWidth(13),
+    fontSize: 12,
+    lineHeight: 17,
+    paddingBottom: figmaHeight(16),
+  },
+  clickHere: {
+    textDecorationLine: 'underline',
+    fontSize: 12,
+    lineHeight: 17,
   },
 });
 

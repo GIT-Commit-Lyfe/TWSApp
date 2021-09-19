@@ -38,6 +38,17 @@ export default function useWatchlist() {
     }
   };
 
+  const removeWatchList = async watch => {
+    try {
+      dispatch({type: 'SET_LOADING', payload: true});
+      dispatch({type: 'REMOVE_WATCHLIST', payload: watch});
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dispatch({type: 'SET_LOADING', payload: false});
+    }
+  };
+
   useEffect(() => {
     if (!watchlist.length) {
       initialGetWatchlist();
@@ -47,6 +58,7 @@ export default function useWatchlist() {
   return {
     data: watchlist,
     addWatchList,
+    removeWatchList,
     error,
     loading,
     refetch: initialGetWatchlist,

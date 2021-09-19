@@ -11,7 +11,7 @@ import Toast from 'react-native-toast-message';
 
 const ModelDetail = ({data = {}}) => {
   const [model, setModel] = useState(data);
-  const {addWatchList} = useWatchlist();
+  const {addWatchList, removeWatchList, data: watchlist} = useWatchlist();
 
   const {
     brand = 'Rolex',
@@ -25,6 +25,15 @@ const ModelDetail = ({data = {}}) => {
     significantEdition = '',
     status = '',
   } = model;
+
+  const isInWatchlist = watchlist.filter(
+    item => item.reference === reference,
+  ).length;
+
+  useEffect(() => {
+    console.log(watchlist);
+    console.log(isInWatchlist);
+  }, [watchlist]);
 
   const getDetailedInfo = async () => {
     try {
@@ -44,16 +53,28 @@ const ModelDetail = ({data = {}}) => {
 
   const openFilterModal = () => filterModalRef.current.open();
 
-  const addToWatchlist = () => {
-    console.log(model);
-    addWatchList(model);
-    Toast.show({
-      type: 'success',
-      text1: `${brand} ${collection}`,
-      text2: 'Added to watchlist',
-      position: 'top',
-      visibilityTime: 2000,
-    });
+  const addToWatchlist = async () => {
+    try {
+      if (isInWatchlist) {
+        await removeWatchList(model);
+        Toast.show({
+          type: 'success',
+          text1: `${brand} ${collection}`,
+          text2: 'Removed from watchlist',
+          position: 'top',
+          visibilityTime: 2000,
+        });
+      } else {
+        await addWatchList(model);
+        Toast.show({
+          type: 'success',
+          text1: `${brand} ${collection}`,
+          text2: 'Added to watchlist',
+          position: 'top',
+          visibilityTime: 2000,
+        });
+      }
+    } catch (error) {}
   };
 
   return (
@@ -127,7 +148,9 @@ const ModelDetail = ({data = {}}) => {
         <View style={styles.spacer} />
 
         <TouchableOpacity onPress={addToWatchlist} style={styles.buttonBlack}>
-          <Jost600 style={styles.buttonBlackText}>Add to Watchlist</Jost600>
+          <Jost600 style={styles.buttonBlackText}>
+            {isInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+          </Jost600>
         </TouchableOpacity>
       </View>
       <FilterModal ref={filterModalRef} />

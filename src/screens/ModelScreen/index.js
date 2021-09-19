@@ -1,19 +1,24 @@
-import React from 'react';
-import {View, SafeAreaView, ScrollView} from 'react-native';
+import React, {useRef} from 'react';
+import {View, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
+import Toast from 'react-native-toast-message';
 import {get} from 'lodash';
 
 import Accesories from './Accesories';
 import BuyAndSell from './BuyAndSell';
 import ModelDetail from './ModelDetail';
 import SignificantEditions from './SignificantEditions';
+import styles from './styles';
 
 import {PriceGraph} from '../../components/Graphs';
 import {SimpleList} from '../../components/Lists';
 import {ListingCarousel} from '../../components/Carousels';
 
-import {formatCurrency} from '../../utils/tools';
+import {Jost600} from '../../components/StyledText';
+import MarketDataModal from '../../components/MarketDataModal';
+import BottomSheet from '../../components/BottomSheet';
 
-import styles from './styles';
+import {formatCurrency} from '../../utils/tools';
+import useWatchlist from '../../customHooks/useWatchlist';
 
 const followedListings = [
   {
@@ -71,7 +76,40 @@ const followedListings = [
 
 export default function ModelScreen({navigation, route}) {
   const {item} = get(route, 'params');
-  console.log(item);
+  const {addWatchList, removeWatchList, data: watchlist} = useWatchlist();
+
+  const {brand = 'Rolex', collection, reference} = item;
+
+  const marketDataRef = useRef();
+  const openMarketData = () => marketDataRef.current.open();
+
+  const isInWatchlist = watchlist.filter(
+    item => item.reference === reference,
+  ).length;
+
+  const addToWatchlist = async () => {
+    try {
+      if (isInWatchlist) {
+        await removeWatchList(item);
+        Toast.show({
+          type: 'success',
+          text1: `${brand} ${collection}`,
+          text2: 'Removed from watchlist',
+          position: 'top',
+          visibilityTime: 2000,
+        });
+      } else {
+        await addWatchList(item);
+        Toast.show({
+          type: 'success',
+          text1: `${brand} ${collection}`,
+          text2: 'Added to watchlist',
+          position: 'top',
+          visibilityTime: 2000,
+        });
+      }
+    } catch (error) {}
+  };
 
   return (
     <SafeAreaView style={styles.modelScreenContainer}>
@@ -82,6 +120,19 @@ export default function ModelScreen({navigation, route}) {
         <SignificantEditions />
         <View style={styles.horizontalPadding}>
           <PriceGraph title="Price History" />
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={addToWatchlist} style={styles.buttonWhite}>
+            <Jost600 style={styles.buttonWhiteText}>
+              {isInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+            </Jost600>
+          </TouchableOpacity>
+
+          <View style={styles.spacer} />
+
+          <TouchableOpacity onPress={openMarketData} style={styles.buttonBlack}>
+            <Jost600 style={styles.buttonBlackText}>View Market Data</Jost600>
+          </TouchableOpacity>
         </View>
         <SimpleList
           title="Model Analytics"
@@ -106,8 +157,10 @@ export default function ModelScreen({navigation, route}) {
           data={followedListings}
           navigation={navigation}
         />
-        <Accesories />
       </ScrollView>
+      <BottomSheet ref={marketDataRef} title={item.brand} subtitle="(RLX)">
+        <MarketDataModal />
+      </BottomSheet>
 
       <BuyAndSell />
     </SafeAreaView>

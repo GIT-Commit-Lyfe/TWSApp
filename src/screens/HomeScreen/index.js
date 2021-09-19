@@ -6,7 +6,7 @@ import {FullWidthCarousel} from '../../components/Carousels';
 import {ScrollingTabbedNavigator} from '../../components/TabbedNavigator';
 import {Watches, Boutiques, Straps, Buckles} from './HomeScreenComponents';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
   const banner = [{source: Banner}, {source: Banner}, {source: Banner}];
 
   const tabbedPages = [
@@ -16,13 +16,18 @@ export default function HomeScreen() {
     {title: 'Buckles', component: <Buckles />},
   ];
 
+  const openSearchScreen = () => {
+    navigation.navigate('SearchScreen');
+  };
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <ScrollView bounces={false}>
         <FullWidthCarousel data={banner} />
         <SearchBox
+          isHomeScreen
           placeholder="Search for Watches, Brands, Boutiques and more"
-          onChange={text => console.log(text)}
+          onPress={openSearchScreen}
           style={{marginHorizontal: 10}}
         />
         <ScrollingTabbedNavigator data={tabbedPages} scrolling />
