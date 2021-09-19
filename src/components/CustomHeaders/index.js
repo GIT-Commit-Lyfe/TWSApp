@@ -177,13 +177,20 @@ export const CustomHeader = ({
 };
 
 const TickerContent = ({data}) => {
+  const navigation = useNavigation();
+
+  const navigateToModel = item => {
+    navigation.navigate('Model', item);
+  };
+
   return (
     <>
       {data?.map(item => {
         const {id, code, reference, raising, price, currency} = item;
         return (
-          <View
+          <TouchableOpacity
             key={id}
+            onPress={() => navigateToModel(item)}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -202,7 +209,7 @@ const TickerContent = ({data}) => {
             <View style={{paddingRight: figmaWidth(10)}}>
               {raising ? <TriangleUp /> : <TriangleDown />}
             </View>
-          </View>
+          </TouchableOpacity>
         );
       })}
     </>
