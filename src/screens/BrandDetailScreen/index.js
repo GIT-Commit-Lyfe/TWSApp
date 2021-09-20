@@ -23,6 +23,9 @@ import {Watches} from '../HomeScreen/HomeScreenComponents';
 import MarketDataModal from '../../components/MarketDataModal';
 import FilterModal from '../../components/FilterModal';
 
+import Collectibles from './Tabs/collectibles';
+import Parts from './Tabs/parts';
+
 const brandInfo = {
   id: 1,
   brand: 'Rolex',
@@ -127,8 +130,8 @@ export default function BrandDetailScreen({navigation}) {
       ),
     },
     {title: 'Models', component: <CollectionList data={collections} />},
-    {title: 'Collectibles', component: <CollectionList data={collections} />},
-    {title: 'Parts', component: <CollectionList data={collections} />},
+    {title: 'Collectibles', component: <Collectibles />},
+    {title: 'Parts', component: <Parts />},
   ];
 
   const openFilter = () => {
@@ -218,7 +221,7 @@ const styles = StyleSheet.create({
   },
   separator: {width: 10},
   flex: {flex: 1},
-  tabbedSeparator: {marginTop: 20, flex: 1},
+  tabbedSeparator: {marginTop: 20},
   prioritizeButton: {marginVertical: 20},
   addToWatchlist: {flexDirection: 'row', alignItems: 'center'},
   watchlistText: {
