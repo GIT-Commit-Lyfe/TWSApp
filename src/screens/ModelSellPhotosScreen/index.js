@@ -15,6 +15,7 @@ import * as yup from 'yup';
 
 const ModelSellPhotosScreen = ({navigation}) => {
   const [additional, setAdditional] = useState(0);
+  const MAX_SELL_PHOTOS = 10;
 
   const handleSubmitPhoto = () => {
     navigation.navigate('ModelSellAskPrice');
@@ -23,7 +24,9 @@ const ModelSellPhotosScreen = ({navigation}) => {
   const handleAdditional = () => {
     if (!additional) {
       setAdditional(6);
-    } else setAdditional(p => p + 1);
+    } else {
+      setAdditional(p => p + 1);
+    }
   };
 
   const validationSchema = yup.object().shape({
@@ -93,18 +96,20 @@ const ModelSellPhotosScreen = ({navigation}) => {
                       );
                     })}
 
-                  <TouchableOpacity
-                    style={styles.additionalShots}
-                    onPress={handleAdditional}>
-                    <MaterialIcons
-                      name="add-circle-outline"
-                      size={16}
-                      color={colors.primary}
-                    />
-                    <Jost300 style={styles.addText}>
-                      Add additional shots
-                    </Jost300>
-                  </TouchableOpacity>
+                  {additional < MAX_SELL_PHOTOS && (
+                    <TouchableOpacity
+                      style={styles.additionalShots}
+                      onPress={handleAdditional}>
+                      <MaterialIcons
+                        name="add-circle-outline"
+                        size={16}
+                        color={colors.primary}
+                      />
+                      <Jost300 style={styles.addText}>
+                        Add additional shots
+                      </Jost300>
+                    </TouchableOpacity>
+                  )}
                 </View>
               </ScrollView>
               <View style={styles.buttonContainer}>

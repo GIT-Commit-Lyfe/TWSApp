@@ -10,10 +10,26 @@ import {SimpleList} from '../../components/Lists';
 import {ListingCarousel} from '../../components/Carousels';
 import colors from '../../constants/colors';
 import {width, formatCurrency} from '../../utils/tools';
+import useFollowedList from '../../customHooks/useFollowedList';
 import styles from './styles';
+
+import Toast from 'react-native-toast-message';
 
 export default function ListingDetailScreen({route, navigation}) {
   const {data: listing} = route.params;
+  const {addFollowedList} = useFollowedList;
+
+  const addToFollowedlist = () => {
+    addFollowedList(listing);
+    Toast.show({
+      type: 'success',
+      text1: `(${listing.code}) ${listing.reference}`,
+      text2: 'Added to followed list',
+      position: 'top',
+      visibilityTime: 2000,
+    });
+  };
+
   const images = [
     {
       url: 'https://via.placeholder.com/150.png',
@@ -107,7 +123,7 @@ export default function ListingDetailScreen({route, navigation}) {
           <TouchableOpacity style={styles.buttons}>
             <MaterialIcons name="ios-share" size={26} color={colors.primary} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttons}>
+          <TouchableOpacity onPress={addToFollowedlist} style={styles.buttons}>
             <MaterialIcons
               name="favorite-border"
               size={26}
