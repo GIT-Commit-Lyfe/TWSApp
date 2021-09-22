@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   View,
+  ActivityIndicator,
 } from 'react-native';
 
 import DismissKeyboard from '../../components/DismissKeyboard';
@@ -16,6 +17,7 @@ import {InitialList, MultiScopeResult} from './components';
 
 const SearchScreen = ({navigation}) => {
   const [query, setQuery] = useState('');
+  const [loading, setLoading] = useState(false);
   const goBack = () => {
     navigation.goBack();
   };
@@ -67,9 +69,15 @@ const SearchScreen = ({navigation}) => {
   ];
 
   const handleSearch = text => {
-    console.log(text, 'di handle search');
     setQuery(text);
   };
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  }, [query]);
 
   return (
     <DismissKeyboard>
@@ -86,6 +94,7 @@ const SearchScreen = ({navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
+        {loading && <ActivityIndicator />}
         <ScrollView>
           {Boolean(query) ? (
             <>

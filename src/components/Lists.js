@@ -137,7 +137,12 @@ const WatchListStyle = StyleSheet.create({
   marketPrice: {fontSize: 9, color: colors.grey58},
 });
 
-export const CollectionList = ({data, onPress = () => {}}) => {
+export const CollectionList = ({
+  data,
+  inSearch,
+  onPress = () => {},
+  containerStyle = {},
+}) => {
   return (
     <FlatList
       data={data}
@@ -146,56 +151,70 @@ export const CollectionList = ({data, onPress = () => {}}) => {
         <View style={CollectionListStyle.itemSeparator}></View>
       )}
       renderItem={({item}) => {
-        const {
-          collection,
-          productionYearStart,
-          productionYearEnd,
-          modelUrl,
-          currency,
-          lowestAsk,
-        } = item;
-
-        const currentYear = new Date().getFullYear();
-        const isDiscontinued = productionYearEnd < currentYear;
         return (
-          <TouchableOpacity
-            onPress={() => onPress(item)}
-            style={CollectionListStyle.container}>
-            <View style={{flexDirection: 'row'}}>
-              <Image
-                style={CollectionListStyle.modalImage}
-                source={{uri: modelUrl}}
-              />
-              <View style={CollectionListStyle.textContainer}>
-                {isDiscontinued && (
-                  <Jost600 style={CollectionListStyle.significantEdition}>
-                    Discontinued
-                  </Jost600>
-                )}
-                <Jost600 style={CollectionListStyle.collection}>
-                  {collection}
-                </Jost600>
-                <Jost400 style={CollectionListStyle.reference}>
-                  {`${productionYearStart} - ${
-                    isDiscontinued ? productionYearEnd : 'Current Model'
-                  }`}
-                </Jost400>
-              </View>
-            </View>
-            <View style={CollectionListStyle.priceContainer}>
-              <View style={CollectionListStyle.priceTrendContainer}>
-                <Jost500 style={CollectionListStyle.price}>
-                  {formatCurrency(lowestAsk)}
-                </Jost500>
-              </View>
-              <Jost300 style={CollectionListStyle.marketPrice}>
-                Lowest Ask
-              </Jost300>
-            </View>
-          </TouchableOpacity>
+          <CollectionItem
+            onPress={onPress}
+            item={item}
+            containerStyle={containerStyle}
+          />
         );
       }}
     />
+  );
+};
+
+export const CollectionItem = ({onPress, item, containerStyle}) => {
+  const {
+    collection,
+    productionYearStart,
+    productionYearEnd,
+    modelUrl,
+    currency,
+    lowestAsk,
+    smallText,
+  } = item;
+
+  const currentYear = new Date().getFullYear();
+  const isDiscontinued = productionYearEnd < currentYear;
+
+  const smallPrint = smallText
+    ? smallText
+    : isDiscontinued
+    ? 'Discontinued'
+    : '';
+
+  return (
+    <TouchableOpacity
+      onPress={() => onPress(item)}
+      style={{...CollectionListStyle.container, ...containerStyle}}>
+      <View style={{flexDirection: 'row'}}>
+        <Image
+          style={CollectionListStyle.modalImage}
+          source={{uri: modelUrl}}
+        />
+        <View style={CollectionListStyle.textContainer}>
+          {Boolean(smallPrint) && (
+            <Jost600 style={CollectionListStyle.significantEdition}>
+              {smallPrint}
+            </Jost600>
+          )}
+          <Jost600 style={CollectionListStyle.collection}>{collection}</Jost600>
+          <Jost400 style={CollectionListStyle.reference}>
+            {`${productionYearStart} - ${
+              isDiscontinued ? productionYearEnd : 'Current Model'
+            }`}
+          </Jost400>
+        </View>
+      </View>
+      <View style={CollectionListStyle.priceContainer}>
+        <View style={CollectionListStyle.priceTrendContainer}>
+          <Jost500 style={CollectionListStyle.price}>
+            {formatCurrency(lowestAsk)}
+          </Jost500>
+        </View>
+        <Jost300 style={CollectionListStyle.marketPrice}>Lowest Ask</Jost300>
+      </View>
+    </TouchableOpacity>
   );
 };
 

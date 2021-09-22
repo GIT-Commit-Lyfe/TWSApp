@@ -102,6 +102,10 @@ export const CustomHeader = ({
   const navigation = useNavigation();
   const {data, refetch} = useBanners();
 
+  const onPressSearch = () => {
+    navigation.navigate('SearchScreen');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {!tickerOnly && (
@@ -146,7 +150,7 @@ export const CustomHeader = ({
                     />
                   </TouchableOpacity>
                 )}
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onPressSearch}>
                   <MaterialIcons
                     name="search"
                     color={colors.primary}
