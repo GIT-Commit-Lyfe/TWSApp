@@ -2,12 +2,13 @@ import React from 'react';
 import {SafeAreaView, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import {Jost600} from '../../../components/StyledText';
-import BuyAndSellSummary from '../../../components/BuyAndSellSummary';
+import {Jost400, Jost600} from '../../../components/StyledText';
 
 import ArrowUpIcon from '../../../assets/arrow-up-white.svg';
 
 import styles from './styles';
+
+import {formatCurrency} from '../../../utils/tools';
 
 const BuyAndSell = () => {
   const navigation = useNavigation();
@@ -16,10 +17,48 @@ const BuyAndSell = () => {
     <SafeAreaView>
       <View style={styles.buyAndSellPosition}>
         <View style={styles.buttonContainner}>
-          <BuyAndSellSummary />
-        </View>
+          <View style={styles.flexRow}>
+            <View style={styles.topContainer}>
+              <Jost400
+                style={{
+                  ...styles.buttonTextSmall,
+                  ...styles.colorGray,
+                  ...styles.labelContainer,
+                }}>
+                Highest Bid:
+              </Jost400>
+              <Jost600 style={styles.blackText}>
+                {formatCurrency(14350)}
+              </Jost600>
+            </View>
+            <View style={styles.topContainerMiddle}>
+              <Jost400
+                style={{
+                  ...styles.buttonTextSmall,
+                  ...styles.colorGray,
+                  ...styles.labelContainer,
+                }}>
+                Last Sold:
+              </Jost400>
+              <Jost600 style={styles.blackText}>
+                {formatCurrency(14350)}
+              </Jost600>
+            </View>
+            <View style={styles.topContainer}>
+              <Jost400
+                style={{
+                  ...styles.buttonTextSmall,
+                  ...styles.colorGray,
+                  ...styles.labelContainer,
+                }}>
+                Lowest Ask:
+              </Jost400>
+              <Jost600 style={styles.blackText}>
+                {formatCurrency(14350)}
+              </Jost600>
+            </View>
+          </View>
 
-        <View style={styles.buttonContainner}>
           <View style={styles.flexRow}>
             <TouchableOpacity
               style={styles.buttonRed}
@@ -31,9 +70,12 @@ const BuyAndSell = () => {
             <TouchableOpacity
               style={styles.buttonGray}
               onPress={() => navigation.navigate('CollectionListings')}>
-              <Jost600 style={styles.buttonTextSmall}>Listings</Jost600>
-
-              <ArrowUpIcon />
+              <View style={styles.greyInnerContainer}>
+                <Jost600 style={styles.buttonTextSmall}>Listings</Jost600>
+                <View style={{marginTop: 5}}>
+                  <ArrowUpIcon />
+                </View>
+              </View>
             </TouchableOpacity>
 
             <TouchableOpacity

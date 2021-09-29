@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import BottomSheet from '../../components/BottomSheet';
-import {BasicButton} from '../../components/Buttons';
+import {BasicButton, FilterSortModalButton} from '../../components/Buttons';
 import {BasicHeader} from '../../components/Headers';
 import {CollectionList} from '../../components/Lists';
 import {Jost300, Jost400, Jost500} from '../../components/StyledText';
@@ -110,7 +110,6 @@ const collections = [
 ];
 
 export default function BrandDetailScreen({navigation}) {
-  const filterRef = useRef();
   const marketDataRef = useRef();
   const isReady = true;
   const {brand, logo, details, website} = brandInfo;
@@ -133,10 +132,6 @@ export default function BrandDetailScreen({navigation}) {
     {title: 'Collectibles', component: <Collectibles />},
     {title: 'Parts', component: <Parts />},
   ];
-
-  const openFilter = () => {
-    filterRef.current.open();
-  };
 
   const openMarketData = () => {
     marketDataRef.current.open();
@@ -163,7 +158,6 @@ export default function BrandDetailScreen({navigation}) {
                 backgroundColor="white"
                 textColor={colors.primary}
                 containerStyle={styles.flex}
-                // onPress={openFilter}
               />
               <View style={styles.separator} />
               <BasicButton
@@ -211,7 +205,7 @@ export default function BrandDetailScreen({navigation}) {
           </Jost300>
         </View>
       )}
-      <FilterModal ref={filterRef} />
+      <FilterSortModalButton />
       <BottomSheet ref={marketDataRef} title={brand} subtitle="(RLX)">
         <MarketDataModal />
       </BottomSheet>

@@ -1,28 +1,29 @@
 import {StyleSheet} from 'react-native';
+import colors from '../../constants/colors';
 import {width} from '../../utils/tools';
 
 const styles = StyleSheet.create({
   buyAndSellSummaryContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
+    width: '95%',
     alignItems: 'center',
+    alignSelf: 'center',
     marginVertical: 15,
   },
   bottomContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: width / 3,
+    flexGrow: 1,
   },
   middleBottomContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: width / 5,
   },
   priceContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: width / 3,
+    flex: 0.4,
     borderColor: '#C5C5C5',
     borderWidth: 1,
     paddingTop: 5,
@@ -30,44 +31,22 @@ const styles = StyleSheet.create({
   middlePriceContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: width / 5,
+    flex: 0.4,
     borderColor: '#C5C5C5',
     borderWidth: 1,
     paddingTop: 5,
+    backgroundColor: 'grey',
   },
-  buttonGray: {
-    alignItems: 'center',
-    backgroundColor: '#585858',
-    borderRadius: 5,
-    paddingVertical: 3,
-    width: width / 5,
-    justifyContent: 'center',
-  },
-  buttonGreen: {
-    alignItems: 'center',
-    backgroundColor: '#296142',
-    borderRadius: 5,
-    paddingVertical: 3,
-    width: width / 3,
-    justifyContent: 'center',
-  },
-  buttonRed: {
-    alignItems: 'center',
-    backgroundColor: '#C83D27',
-    borderRadius: 5,
-    paddingVertical: 3,
-    width: width / 3,
-    justifyContent: 'center',
-  },
+
   buttonText: {
     fontSize: 18,
     color: '#fff',
   },
   colorBlack: {
-    color: '#18110C',
+    color: colors.primary,
   },
   colorGray: {
-    color: '#C4C4C4',
+    color: colors.greyC5,
   },
   labelContainer: {
     backgroundColor: '#fff',

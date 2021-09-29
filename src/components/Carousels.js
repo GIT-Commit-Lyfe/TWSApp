@@ -6,8 +6,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Swiper from 'react-native-swiper';
 import {upperCase} from 'lodash';
-import {width, height, formatCurrency} from '../utils/tools';
+import {width, formatCurrency, figmaWidth} from '../utils/tools';
 import {Jost300, Jost400, Jost500, Jost600} from '../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import BottomSheet from './BottomSheet';
@@ -18,44 +19,71 @@ import GreenArrow from '../assets/arrow-up.svg';
 import {FilterSortModalButton} from './Buttons';
 
 export const FullWidthCarousel = ({data}) => {
-  const {buttonStyle, buttonTextStyle, imageStyle} = FullWidthCarouselStyle;
+  const {
+    carouselContainer,
+    imageContainer,
+    imageStyle,
+    activeDotStyle,
+    dotStyle,
+    paginationStyle,
+  } = FullWidthCarouselStyle;
 
-  const renderItem = ({item, index}) => {
-    return (
-      <TouchableOpacity>
-        <Image source={item.source} style={imageStyle} />
-      </TouchableOpacity>
-    );
-  };
+  const [height, setHeight] = useState(200);
 
   return (
-    <FlatList
-      pagingEnabled
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      data={data}
-      renderItem={renderItem}
-      bounces={false}
-      keyExtractor={(item, index) => index}
-    />
+    <Swiper
+      autoplay
+      autoplayTimeout={5}
+      loop={true}
+      activeDotStyle={activeDotStyle}
+      dotStyle={dotStyle}
+      containerStyle={carouselContainer}
+      height={height}
+      width={width}
+      paginationStyle={paginationStyle}>
+      {data.map((item, idx) => {
+        return (
+          <TouchableOpacity style={imageContainer} key={idx}>
+            <Image
+              source={item.source}
+              style={imageStyle}
+              onLayout={e => console.log(e.nativeEvent)}
+            />
+          </TouchableOpacity>
+        );
+      })}
+    </Swiper>
   );
 };
 
 const FullWidthCarouselStyle = StyleSheet.create({
-  buttonStyle: {
-    position: 'absolute',
-    top: 83,
-    left: 3,
-    backgroundColor: 'white',
-    width: 116,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    zIndex: 1,
-    justifyContent: 'center',
+  carouselContainer: {},
+  imageContainer: {
     alignItems: 'center',
+    height: 150,
+    justifyContent: 'center',
+    overflow: 'hidden',
   },
-  buttonTextStyle: {color: 'black', fontSize: 14},
-  imageStyle: {width: width},
+  imageStyle: {
+    width: width - figmaWidth(20),
+    resizeMode: 'contain',
+  },
+  activeDotStyle: {
+    width: 5,
+    height: 5,
+    borderRadius: 2.5,
+    backgroundColor: colors.primary,
+  },
+  dotStyle: {
+    backgroundColor: colors.greyCD,
+    width: 5,
+    height: 5,
+    borderRadius: 2.5,
+  },
+  paginationStyle: {
+    height: 10,
+    top: 160,
+  },
 });
 
 export const BigImageCarousel = ({data}) => {
@@ -155,7 +183,13 @@ const CarouselHeaderStyle = StyleSheet.create({
   seeAllText: {fontSize: 14, color: colors.primary},
 });
 
-export const PriceTrendCarousel = ({title, data, navigation, fontSize}) => {
+export const PriceTrendCarousel = ({
+  title,
+  data,
+  navigation,
+  fontSize,
+  containerStyle,
+}) => {
   const bottomSheetRef = useRef();
   const onPressSeeAll = () => {
     bottomSheetRef.current.open();
@@ -166,7 +200,7 @@ export const PriceTrendCarousel = ({title, data, navigation, fontSize}) => {
   };
 
   return (
-    <View style={PriceTrendCarouselStyle.container}>
+    <View style={{...PriceTrendCarouselStyle.container, ...containerStyle}}>
       <CarouselHeader
         title={title}
         onPress={onPressSeeAll}

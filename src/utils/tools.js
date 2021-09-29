@@ -1,7 +1,8 @@
 import React from 'react';
-import {Dimensions, Platform} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 import {upperCase} from 'lodash';
 import numeral from 'numeral';
+import colors from '../constants/colors';
 
 export const {width, height} = Dimensions.get('screen');
 
@@ -29,3 +30,12 @@ export const formatCurrency = (amount, currency = 'EUR', shortened = false) => {
 };
 
 export const isIos = Platform.OS === 'ios';
+
+export const {iosShadow} = StyleSheet.create({
+  iosShadow: {
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    shadowColor: colors.primary,
+    shadowOffset: {height: 3, width: 0},
+  },
+});

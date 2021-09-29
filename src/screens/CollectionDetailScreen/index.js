@@ -158,16 +158,19 @@ const CollectionDetailScreen = ({navigation, route}) => {
         navigation={navigation}
         ListHeaderComponent={
           <>
-            <CollectionDetailHeader
-              brand={data.brand}
-              collection={data.collection}
-              description={data.description}
-            />
+            <Jost600 style={styles.collectionTitle}>{`${upperCase(
+              data.brand,
+            )} ${data.collection} Collection`}</Jost600>
             <PriceTrendCarousel
               title={`${data.collection} Models`}
               fontSize={18}
               data={watchlist}
               navigation={navigation}
+            />
+            <CollectionDetailHeader
+              brand={data.brand}
+              collection={data.collection}
+              description={data.description}
             />
             <View style={styles.buttonContainer}>
               <BasicButton
@@ -185,6 +188,7 @@ const CollectionDetailScreen = ({navigation, route}) => {
                 Releases
               </BasicButton>
             </View>
+            <View style={styles.line} />
             <View style={styles.listingHeaderContainer}>
               <Jost600
                 style={
@@ -221,9 +225,6 @@ const CollectionDetailScreen = ({navigation, route}) => {
 const CollectionDetailHeader = ({brand, collection, description}) => {
   return (
     <View style={styles.header}>
-      <Jost600 style={styles.collectionTitle}>{`${upperCase(
-        brand,
-      )} ${collection} Collection`}</Jost600>
       <Jost400>
         {description} Designed to show the time in two different time zones
         simultaneously, the GMT-Master, launched in 1955, was originally

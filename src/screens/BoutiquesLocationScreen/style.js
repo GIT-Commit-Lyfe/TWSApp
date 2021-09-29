@@ -1,10 +1,27 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
+import {figmaHeight, figmaWidth, height, iosShadow} from '../../utils/tools';
 
 const BoutiquesLocationStyles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     flex: 1,
+  },
+  locationButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: colors.greyCD,
+    elevation: 3,
+    ...iosShadow,
+    position: 'absolute',
+    zIndex: 100,
+    right: figmaWidth(18),
+    bottom: height * 0.3 + figmaHeight(18),
   },
   sheetContainer: {
     paddingHorizontal: 20,

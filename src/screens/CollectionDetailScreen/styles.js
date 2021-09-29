@@ -8,18 +8,26 @@ const styles = StyleSheet.create({
   flex: {flex: 1},
   header: {
     marginHorizontal: figmaWidth(14),
-    paddingVertical: figmaHeight(16),
     marginBottom: figmaHeight(16),
-    borderBottomWidth: 1,
-    borderBottomColor: colors.greyCD,
   },
-  collectionTitle: {fontSize: 24, lineHeight: 36},
+  collectionTitle: {
+    fontSize: 24,
+    lineHeight: 36,
+    marginHorizontal: figmaWidth(14),
+    marginVertical: figmaHeight(16),
+  },
   buttonContainer: {
     flexDirection: 'row',
     paddingHorizontal: figmaWidth(14),
     justifyContent: 'space-between',
   },
   separator: {width: figmaWidth(12)},
+  line: {
+    height: 0.5,
+    backgroundColor: colors.greyC5,
+    marginHorizontal: figmaWidth(14),
+    marginTop: figmaHeight(20),
+  },
   listingHeaderContainer: {
     marginHorizontal: figmaWidth(14),
     marginTop: figmaHeight(20),

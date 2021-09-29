@@ -1,18 +1,19 @@
 import {StyleSheet} from 'react-native';
-import {width} from '../../../utils/tools';
+import colors from '../../../constants/colors';
+import {figmaHeight, width} from '../../../utils/tools';
 
 const styles = StyleSheet.create({
   buyAndSellPosition: {
     alignItems: 'center',
     backgroundColor: '#fff',
-    bottom: 0,
-    borderTopWidth: 1,
-    borderTopColor: '#C5C5C5',
-    justifyContent: 'center',
     left: 0,
+    bottom: 0,
     position: 'absolute',
+    borderTopWidth: 1,
+    borderTopColor: colors.greyC5,
+    justifyContent: 'center',
     width: width,
-    paddingTop: 20,
+    paddingTop: 10,
   },
   buttonContainner: {
     width: '95%',
@@ -21,48 +22,34 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  bottomContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-  },
-  priceContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: width / 3,
-    borderColor: '#C5C5C5',
-    borderWidth: 1,
-    paddingTop: 5,
-  },
-  middlePriceContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: width / 5,
+    marginVertical: figmaHeight(5),
   },
   buttonGray: {
-    alignItems: 'center',
-    backgroundColor: '#585858',
+    backgroundColor: colors.grey58,
     borderRadius: 5,
     paddingVertical: 3,
-    width: width / 5,
+    flex: 0.25,
+    marginHorizontal: 8,
+  },
+  greyInnerContainer: {
+    flexGrow: 1,
     justifyContent: 'center',
-    height: '100%',
+    alignItems: 'center',
   },
   buttonGreen: {
     alignItems: 'center',
-    backgroundColor: '#296142',
+    backgroundColor: colors.green,
     borderRadius: 5,
     paddingVertical: 3,
-    width: width / 3,
+    flex: 0.4,
     justifyContent: 'center',
   },
   buttonRed: {
     alignItems: 'center',
-    backgroundColor: '#C83D27',
+    backgroundColor: colors.redButton,
     borderRadius: 5,
     paddingVertical: 3,
-    width: width / 3,
+    flex: 0.4,
     justifyContent: 'center',
   },
   buttonText: {
@@ -78,12 +65,33 @@ const styles = StyleSheet.create({
   labelContainer: {
     backgroundColor: '#fff',
     position: 'absolute',
-    top: -10,
+    paddingHorizontal: 2,
+    top: -8,
     zIndex: 1,
   },
   buttonTextSmall: {
-    fontSize: 13,
+    fontSize: 10,
     color: '#fff',
+  },
+  blackText: {fontSize: 14, color: colors.primary},
+  topContainer: {
+    alignItems: 'center',
+    paddingTop: 8,
+    paddingBottom: 3,
+    flex: 0.4,
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: colors.greyC5,
+  },
+  topContainerMiddle: {
+    alignItems: 'center',
+    paddingTop: 8,
+    paddingBottom: 3,
+    flex: 0.25,
+    marginHorizontal: 8,
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: colors.greyC5,
   },
 });
 

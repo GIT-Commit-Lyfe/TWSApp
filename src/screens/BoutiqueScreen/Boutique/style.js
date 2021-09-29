@@ -1,9 +1,10 @@
 import {StyleSheet} from 'react-native';
+import {figmaWidth} from '../../../utils/tools';
 
 const BoutiqueStyles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    paddingHorizontal: 20,
+    paddingHorizontal: figmaWidth(20),
   },
   boutiqueContainer: {
     flexDirection: 'row',
@@ -22,26 +23,28 @@ const BoutiqueStyles = StyleSheet.create({
     flexGrow: 1,
     flex: 1,
   },
+  flex: {flex: 1},
+  separator: {width: 10},
   titleText: {fontSize: 18, fontWeight: '600', marginBottom: 5},
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  primary: {
+  buttonBlack: {
     alignItems: 'center',
     backgroundColor: '#000',
     borderStyle: 'solid',
     borderWidth: 1,
     color: '#000',
     padding: 10,
-    width: 170,
+    flex: 1,
   },
-  primaryGhost: {
+  buttonWhite: {
     alignItems: 'center',
     borderStyle: 'solid',
     borderWidth: 1,
     padding: 10,
-    width: 170,
+    flex: 1,
   },
   primaryText: {
     color: '#fff',

@@ -2,15 +2,12 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import {upperCase} from 'lodash';
-
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {View} from 'react-native';
 
 import BoutiqueStyles from './style';
-
-import {Jost400, Jost600} from '../../../components/StyledText';
-
 import {BasicHeader} from '../../../components/Headers';
+import {BasicButton} from '../../../components/Buttons';
+import colors from '../../../constants/colors';
 
 const Boutique = ({boutique}) => {
   const {avatar, boutiqueName, description} = boutique;
@@ -23,15 +20,14 @@ const Boutique = ({boutique}) => {
       />
 
       <View style={BoutiqueStyles.buttonContainer}>
-        <TouchableOpacity style={BoutiqueStyles.primaryGhost}>
-          <Jost600 style={BoutiqueStyles.primaryGhostText}>
-            Follow Boutique
-          </Jost600>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={BoutiqueStyles.primary}>
-          <Jost600 style={BoutiqueStyles.primaryText}>Contact</Jost600>
-        </TouchableOpacity>
+        <BasicButton
+          text="Follow Boutique"
+          backgroundColor="white"
+          textColor={colors.primary}
+          containerStyle={BoutiqueStyles.flex}
+        />
+        <View style={BoutiqueStyles.separator} />
+        <BasicButton text="Contact" containerStyle={BoutiqueStyles.flex} />
       </View>
     </View>
   );

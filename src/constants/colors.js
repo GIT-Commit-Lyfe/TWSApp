@@ -14,4 +14,5 @@ export default {
   almostWhite: '#FBFBFB',
   green: '#296142',
   red: '#EC6564',
+  redButton: '#C83D27',
 };

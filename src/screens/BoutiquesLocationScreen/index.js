@@ -84,6 +84,11 @@ const BoutiquesLocationScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={BoutiquesLocationStyles.container}>
+      <TouchableOpacity
+        style={BoutiquesLocationStyles.locationButton}
+        onPress={getUserLocation}>
+        <MaterialIcons name="place" color={colors.primary} size={25} />
+      </TouchableOpacity>
       <MapView
         style={{height: 500, width: '100%'}}
         region={location}

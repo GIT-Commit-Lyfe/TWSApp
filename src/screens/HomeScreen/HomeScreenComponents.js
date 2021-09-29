@@ -13,6 +13,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import ModelsAPI from '../../api/model';
 import ListingsAPI from '../../api/list';
 import useWatchlist from '../../customHooks/useWatchlist';
+import {figmaHeight} from '../../utils/tools';
 
 export const Watches = () => {
   const [popularModels, setPopularModels] = useState([]);
@@ -75,6 +76,7 @@ export const Watches = () => {
         title="My Watchlist"
         data={watchLists}
         navigation={navigation}
+        containerStyle={{marginTop: figmaHeight(27)}}
       />
       <ListingCarousel
         title="Followed Listings"

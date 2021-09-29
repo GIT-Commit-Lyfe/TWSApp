@@ -23,13 +23,13 @@ export default function HomeScreen({navigation}) {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <ScrollView bounces={false}>
-        <FullWidthCarousel data={banner} />
         <SearchBox
           isHomeScreen
           placeholder="Search for Watches, Brands, Boutiques and more"
           onPress={openSearchScreen}
           style={{marginHorizontal: 10}}
         />
+        <FullWidthCarousel data={banner} />
         <ScrollingTabbedNavigator data={tabbedPages} scrolling />
       </ScrollView>
     </SafeAreaView>
