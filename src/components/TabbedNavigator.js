@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {FlatList, TouchableOpacity, View} from 'react-native';
 import colors from '../constants/colors';
-import {Jost400} from './StyledText';
+import {Jost400, Jost500} from './StyledText';
 
 export function ScrollingTabbedNavigator({data}) {
   const [componentShownIndex, setComponentShownIndex] = useState(0); // stores index of component to be shown
@@ -18,6 +18,7 @@ export function ScrollingTabbedNavigator({data}) {
         keyExtractor={(_, index) => index}
         renderItem={({item, index}) => {
           const selected = componentShownIndex === index;
+          const JostSelected = selected ? Jost500 : Jost400;
           return (
             <TouchableOpacity onPress={() => setComponentShownIndex(index)}>
               <View
@@ -25,15 +26,15 @@ export function ScrollingTabbedNavigator({data}) {
                   marginRight: 50,
                   borderBottomColor: colors.primary,
                   borderBottomWidth: selected ? 2 : 0,
-                  paddingBottom: 10,
+                  paddingBottom: 4,
                 }}>
-                <Jost400
+                <JostSelected
                   style={{
                     color: selected ? colors.primary : colors.grey62,
                     fontSize: 16,
                   }}>
                   {item.title}
-                </Jost400>
+                </JostSelected>
               </View>
             </TouchableOpacity>
           );
@@ -59,6 +60,7 @@ export function TabbedNavigator({data}) {
         }}>
         {data.map((item, index) => {
           const selected = componentShownIndex === index;
+          const JostSelected = selected ? Jost500 : Jost400;
           return (
             <TouchableOpacity
               key={index}
@@ -67,15 +69,15 @@ export function TabbedNavigator({data}) {
                 style={{
                   borderBottomColor: colors.primary,
                   borderBottomWidth: selected ? 2 : 0,
-                  paddingBottom: 10,
+                  paddingBottom: 4,
                 }}>
-                <Jost400
+                <JostSelected
                   style={{
                     color: selected ? colors.primary : colors.grey62,
                     fontSize: 16,
                   }}>
                   {item.title}
-                </Jost400>
+                </JostSelected>
               </View>
             </TouchableOpacity>
           );
