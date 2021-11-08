@@ -8,7 +8,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingVertical: 6,
   },
-  scrollContainer: {paddingHorizontal: 10},
+  scrollContainer: {
+    paddingHorizontal: 10,
+    flexGrow: 1,
+    justifyContent: 'space-between',
+  },
   buttonBidContainer: {
     flexDirection: 'row',
     marginTop: 10,

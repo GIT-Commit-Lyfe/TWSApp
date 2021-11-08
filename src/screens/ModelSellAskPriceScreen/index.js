@@ -1,6 +1,5 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native';
-import BuyAndSellSummary from '../../components/BuyAndSellSummary';
 import {Jost300, Jost400, Jost500, Jost600} from '../../components/StyledText';
 import styles from './styles';
 import {figmaHeight, formatCurrency} from '../../utils/tools';
@@ -10,6 +9,7 @@ import colors from '../../constants/colors';
 import CustomTextInput from '../../components/Inputs/CustomTextInput';
 import DropdownPicker from '../../components/Inputs/DropdownPicker';
 import SelectionModal from '../../components/SelectionModal';
+import BuyAndSell from '../ModelScreen/BuyAndSell';
 
 const ModelSellAskPriceScreen = ({navigation}) => {
   const handleSubmit = () => {
@@ -19,7 +19,13 @@ const ModelSellAskPriceScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <View style={styles.innerContainer}>
-        <BuyAndSellSummary />
+        <BuyAndSell
+          summary
+          containerStyle={{
+            marginTop: figmaHeight(20),
+            marginBottom: figmaHeight(12),
+          }}
+        />
       </View>
 
       <ScrollView contentContainerStyle={styles.contentContainer}>

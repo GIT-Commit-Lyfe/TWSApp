@@ -1,8 +1,15 @@
 import React from 'react';
 import {Dimensions, Platform, StyleSheet} from 'react-native';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {upperCase} from 'lodash';
 import numeral from 'numeral';
 import colors from '../constants/colors';
+
+// 44 - on iPhoneX
+// 20 - on iOS device
+// X - on Android platfrom (runtime value)
+// 0 - on all other platforms (default)
+export const statusBarHeight = getStatusBarHeight();
 
 export const {width, height} = Dimensions.get('screen');
 

@@ -80,12 +80,54 @@ export const BasicButton = ({
         borderColor: colors.primary,
         padding: 10,
         marginVertical: 10,
+        justifyContent: 'center',
         ...containerStyle,
       }}>
       <Jost600 style={{...textStyle, color: textColor, textAlign: 'center'}}>
         {text}
       </Jost600>
     </TouchableOpacity>
+  );
+};
+
+export const DualButton = ({
+  onPressLeft = () => {},
+  onPressRight = () => {},
+  backgroundColorLeft = 'white',
+  backgroundColorRight = colors.primary,
+  textColorLeft = colors.primary,
+  textColorRight = 'white',
+  containerStyle,
+  textLeft = 'Button',
+  textRight = 'Button',
+  disabledLeft,
+  disabledRight,
+}) => {
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        ...containerStyle,
+      }}>
+      <BasicButton
+        onPress={onPressLeft}
+        backgroundColor={backgroundColorLeft}
+        textColor={textColorLeft}
+        text={textLeft}
+        disabled={disabledLeft}
+        containerStyle={{flex: 170 / 375}}
+      />
+      <View style={{width: 10}} />
+      <BasicButton
+        onPress={onPressRight}
+        backgroundColor={backgroundColorRight}
+        textColor={textColorRight}
+        text={textRight}
+        disabled={disabledRight}
+        containerStyle={{flex: 205 / 375}}
+      />
+    </View>
   );
 };
 
@@ -124,6 +166,53 @@ export const FloatingButton = ({
 };
 
 const FloatingButtonStyle = StyleSheet.create({
+  button: {
+    backgroundColor: colors.primary,
+    justifyContent: 'center',
+    marginHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 30,
+    position: 'absolute',
+    alignSelf: 'center',
+    bottom: 10,
+    width: '90%',
+  },
+  title: {
+    color: colors.greyCD,
+    textAlign: 'center',
+  },
+  price: {
+    color: colors.greyCD,
+    textAlign: 'center',
+  },
+});
+
+export const BigButton = ({
+  title = 'Buy Now',
+  upperText = '',
+  lowerText = '',
+  containerStyle,
+  fontSize = 11,
+  onPress = () => {},
+}) => {
+  return (
+    <SafeAreaView>
+      <TouchableOpacity
+        onPress={onPress}
+        style={{...BigButtonStyle.button, ...containerStyle}}>
+        <Jost500
+          style={{
+            ...BigButtonStyle.title,
+            fontSize: reserved ? 24 : fontSize,
+          }}>
+          {title}
+        </Jost500>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
+};
+
+const BigButtonStyle = StyleSheet.create({
   button: {
     backgroundColor: colors.primary,
     justifyContent: 'center',

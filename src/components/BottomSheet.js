@@ -4,23 +4,28 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import colors from '../constants/colors';
 import {Jost600, Jost400} from './StyledText';
-import {width, height} from '../utils/tools';
+import {height as screenHeight, statusBarHeight} from '../utils/tools';
 
 const BottomSheet = React.forwardRef(
-  ({title, subtitle = '', children}, ref) => {
+  ({title, subtitle = '', height = screenHeight - 100, children}, ref) => {
+    const showSeparator = height === screenHeight;
     return (
       <RBSheet
         ref={ref}
         closeOnDragDown={true}
         dragFromTopOnly={true}
-        height={height - 100}
+        height={height}
         customStyles={{
           container: containerCustomStyle,
           draggableIcon: {display: 'none'}, // The Draggable Icon (If you set closeOnDragDown to true)
         }}>
+        {showSeparator && <View height={statusBarHeight} />}
         <TouchableOpacity
           onPress={() => ref.current.close()}
-          style={closeButtonStyle}>
+          style={{
+            ...closeButtonStyle,
+            top: showSeparator ? 10 + statusBarHeight : 10,
+          }}>
           <MaterialIcons name="close" size={10} color={colors.primary} />
         </TouchableOpacity>
 

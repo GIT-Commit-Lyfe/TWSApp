@@ -1,16 +1,11 @@
 import React, {useRef} from 'react';
 import {upperCase} from 'lodash';
-import {SafeAreaView, View, TouchableOpacity} from 'react-native';
+import {SafeAreaView, View, ScrollView} from 'react-native';
 import {Jost400, Jost600} from '../../components/StyledText';
-import colors from '../../constants/colors';
-import {PriceTrendCarousel} from '../../components/Carousels';
-import {BasicButton} from '../../components/Buttons';
+import {ListingCarousel, PriceTrendCarousel} from '../../components/Carousels';
+import {BasicButton, DualButton} from '../../components/Buttons';
 import BottomSheet from '../../components/BottomSheet';
 import MarketDataModal from '../../components/MarketDataModal';
-import {TwoRowList} from '../../components/Lists';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FilterItem from '../../components/FilterItem';
-import FilterModal from '../../components/FilterModal';
 import styles from './styles';
 
 const watchlist = [
@@ -130,11 +125,6 @@ const products = [
     modelUrl: 'https://via.placeholder.com/150.png',
   },
 ];
-const filters = [
-  'Stainless Steel',
-  'Condition: Good or Better',
-  'Location: EU',
-];
 
 const CollectionDetailScreen = ({navigation, route}) => {
   // const {data} = route.params;
@@ -142,95 +132,69 @@ const CollectionDetailScreen = ({navigation, route}) => {
     id: 1,
     brand: 'Rolex',
     collection: 'GMT Master II',
+    release_year: 1982,
     description: 'Lorem ipsum',
   };
 
   const marketDataRef = useRef();
-  const filterModalRef = useRef();
 
   const openMarketData = () => marketDataRef.current.open();
-  const openFilterModal = () => filterModalRef.current.open();
 
   return (
     <SafeAreaView style={styles.container}>
-      <TwoRowList
-        data={products}
-        navigation={navigation}
-        ListHeaderComponent={
-          <>
-            <Jost600 style={styles.collectionTitle}>{`${upperCase(
-              data.brand,
-            )} ${data.collection} Collection`}</Jost600>
-            <PriceTrendCarousel
-              title={`${data.collection} Models`}
-              fontSize={18}
-              data={watchlist}
-              navigation={navigation}
-            />
-            <CollectionDetailHeader
-              brand={data.brand}
-              collection={data.collection}
-              description={data.description}
-            />
-            <View style={styles.buttonContainer}>
-              <BasicButton
-                text="Releases"
-                backgroundColor="white"
-                textColor={colors.primary}
-                containerStyle={styles.flex}>
-                Releases
-              </BasicButton>
-              <View style={styles.separator} />
-              <BasicButton
-                text="View Market Data"
-                containerStyle={styles.flex}
-                onPress={openMarketData}>
-                Releases
-              </BasicButton>
-            </View>
-            <View style={styles.line} />
-            <View style={styles.listingHeaderContainer}>
-              <Jost600
-                style={
-                  styles.listingHeaderText
-                }>{`${data.collection} Listings`}</Jost600>
-              <TouchableOpacity
-                onPress={openFilterModal}
-                style={styles.filterContainer}>
-                <Jost400 style={styles.filterText}>Filter Models</Jost400>
-                <MaterialIcons
-                  name="filter-list"
-                  color={colors.primary}
-                  size={20}
-                />
-              </TouchableOpacity>
-            </View>
-            <View style={styles.filterItemContainer}>
-              {filters.length > 0 &&
-                filters.map((filter, index) => (
-                  <FilterItem key={index} filter={filter} />
-                ))}
-            </View>
-          </>
-        }
-      />
-      <BottomSheet ref={marketDataRef} title={data.brand} subtitle="(RLX)">
-        <MarketDataModal />
-      </BottomSheet>
-      <FilterModal ref={filterModalRef} />
+      <ScrollView>
+        <Jost600 style={styles.collectionTitle}>
+          {upperCase(`${data.collection} Collection`)}
+        </Jost600>
+        <Jost400
+          style={
+            styles.collectionSubtitle
+          }>{`Released at ${data.release_year}`}</Jost400>
+        <PriceTrendCarousel
+          fontSize={18}
+          data={watchlist}
+          navigation={navigation}
+          withoutSeeAll
+        />
+        <DualButton
+          containerStyle={styles.buttonContainer}
+          textLeft="Market Data"
+          onPressLeft={openMarketData}
+          textRight="View all 35 Models"
+        />
+        <CollectionDetailHeader title="Bio" description={data.description} />
+        <CollectionDetailHeader title="Listings" />
+        <ListingCarousel
+          title="Listings for the Collection"
+          data={products}
+          navigation={navigation}
+          withoutSeeAll
+        />
+        <BasicButton
+          text="Discover All Listings"
+          containerStyle={styles.buttonContainer}
+        />
+        <BottomSheet ref={marketDataRef} title={data.brand} subtitle="(RLX)">
+          <MarketDataModal />
+        </BottomSheet>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
-const CollectionDetailHeader = ({brand, collection, description}) => {
+const CollectionDetailHeader = ({title = '', collection, description = ''}) => {
   return (
     <View style={styles.header}>
-      <Jost400>
-        {description} Designed to show the time in two different time zones
-        simultaneously, the GMT-Master, launched in 1955, was originally
-        developed as a navigation instrument for professionals criss-crossing
-        the globe.
-      </Jost400>
+      <View style={styles.headerTitleContainer}>
+        <Jost600 style={styles.headerTitle}>{title}</Jost600>
+      </View>
+      {Boolean(description) && (
+        <Jost400 style={styles.description}>
+          Designed to show the time in two different time zones simultaneously,
+          the GMT-Master, launched in 1955, was originally developed as a
+          navigation instrument for professionals criss-crossing the globe.
+        </Jost400>
+      )}
     </View>
   );
 };

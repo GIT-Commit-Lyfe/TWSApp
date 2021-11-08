@@ -8,23 +8,23 @@ import {
   View,
 } from 'react-native';
 import BottomSheet from '../../components/BottomSheet';
-import {BasicButton, FilterSortModalButton} from '../../components/Buttons';
+import {
+  BasicButton,
+  DualButton,
+  FilterSortModalButton,
+} from '../../components/Buttons';
 import {BasicHeader} from '../../components/Headers';
 import {CollectionList} from '../../components/Lists';
 import {Jost300, Jost400, Jost500} from '../../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {
-  ScrollingTabbedNavigator,
-  TabbedNavigator,
-} from '../../components/TabbedNavigator';
+import {ScrollingTabbedNavigator} from '../../components/TabbedNavigator';
 import colors from '../../constants/colors';
 import {figmaHeight, figmaWidth} from '../../utils/tools';
-import {Watches} from '../HomeScreen/HomeScreenComponents';
 import MarketDataModal from '../../components/MarketDataModal';
-import FilterModal from '../../components/FilterModal';
 
-import Collectibles from './Tabs/collectibles';
-import Parts from './Tabs/parts';
+import Models from './Tabs/Models';
+import Collectibles from './Tabs/Collectibles';
+import Parts from './Tabs/Parts';
 
 const brandInfo = {
   id: 1,
@@ -128,7 +128,7 @@ export default function BrandDetailScreen({navigation}) {
         <CollectionList data={collections} onPress={collectionOnPress} />
       ),
     },
-    {title: 'Models', component: <CollectionList data={collections} />},
+    {title: 'Models', component: <Models data={collections} />},
     {title: 'Collectibles', component: <Collectibles />},
     {title: 'Parts', component: <Parts />},
   ];
@@ -152,20 +152,11 @@ export default function BrandDetailScreen({navigation}) {
               bottomText={website}
               imageUri={logo}
             />
-            <View style={styles.buttonContainer}>
-              <BasicButton
-                text="Releases"
-                backgroundColor="white"
-                textColor={colors.primary}
-                containerStyle={styles.flex}
-              />
-              <View style={styles.separator} />
-              <BasicButton
-                text="View Market Data"
-                containerStyle={styles.flex}
-                onPress={openMarketData}
-              />
-            </View>
+            <DualButton
+              textLeft="Market Data"
+              onPressLeft={openMarketData}
+              textRight="Watch Finder"
+            />
           </View>
           <View style={styles.tabbedSeparator}>
             <ScrollingTabbedNavigator data={tabbedPages} />
@@ -205,7 +196,7 @@ export default function BrandDetailScreen({navigation}) {
           </Jost300>
         </View>
       )}
-      <FilterSortModalButton />
+      {isReady && <FilterSortModalButton />}
       <BottomSheet ref={marketDataRef} title={brand} subtitle="(RLX)">
         <MarketDataModal />
       </BottomSheet>

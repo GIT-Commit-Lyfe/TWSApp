@@ -142,7 +142,7 @@ const CollectionListingsScreen = ({navigation}) => {
               <TouchableOpacity
                 onPress={openFilterModal}
                 style={styles.filterContainer}>
-                <Jost400 style={styles.filterText}>Filter Models</Jost400>
+                <Jost400 style={styles.filterText}>Refine Search</Jost400>
                 <MaterialIcons
                   name="filter-list"
                   color={colors.primary}
@@ -161,29 +161,6 @@ const CollectionListingsScreen = ({navigation}) => {
             <View style={styles.lowestAskContainer}>
               <Jost600 style={styles.lowestAskTitle}>Lowest Ask</Jost600>
               <ModelDetailBox data={data} />
-              <View style={styles.buttonContainer}>
-                <BasicButton
-                  text="Follow Listing"
-                  backgroundColor="white"
-                  textColor={colors.primary}
-                  containerStyle={styles.flex}>
-                  Releases
-                </BasicButton>
-                <View style={styles.separator} />
-                <BasicButton
-                  text="Buy This Watch Now"
-                  containerStyle={styles.flex}>
-                  Releases
-                </BasicButton>
-              </View>
-            </View>
-
-            <View style={styles.listingHeaderContainer}>
-              <Jost600 style={styles.listingHeaderText}>All Listings</Jost600>
-              <TouchableOpacity style={styles.filterContainer}>
-                <Jost400 style={styles.filterText}>Sort Listings</Jost400>
-                <SortBlack />
-              </TouchableOpacity>
             </View>
 
             <FilterModal ref={filterModalRef} />

@@ -19,6 +19,7 @@ import BottomSheet from '../../components/BottomSheet';
 
 import {formatCurrency} from '../../utils/tools';
 import useWatchlist from '../../customHooks/useWatchlist';
+import {DualButton} from '../../components/Buttons';
 
 const followedListings = [
   {
@@ -121,19 +122,15 @@ export default function ModelScreen({navigation, route}) {
         <View style={styles.horizontalPadding}>
           <PriceGraph title="Price History" />
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={addToWatchlist} style={styles.buttonWhite}>
-            <Jost600 style={styles.buttonWhiteText}>
-              {isInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
-            </Jost600>
-          </TouchableOpacity>
-
-          <View style={styles.spacer} />
-
-          <TouchableOpacity onPress={openMarketData} style={styles.buttonBlack}>
-            <Jost600 style={styles.buttonBlackText}>View Market Data</Jost600>
-          </TouchableOpacity>
-        </View>
+        <DualButton
+          textLeft={
+            isInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'
+          }
+          onPressLeft={addToWatchlist}
+          textRight="View Market Data"
+          onPressRight={openMarketData}
+          containerStyle={styles.buttonContainer}
+        />
         <SimpleList
           title="Model Analytics"
           items={[

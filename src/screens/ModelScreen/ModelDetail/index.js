@@ -8,6 +8,7 @@ import {formatCurrency} from '../../../utils/tools';
 import ModelsAPI from '../../../api/model';
 import useWatchlist from '../../../customHooks/useWatchlist';
 import Toast from 'react-native-toast-message';
+import {DualButton} from '../../../components/Buttons';
 
 const ModelDetail = ({data = {}}) => {
   const [model, setModel] = useState(data);
@@ -140,19 +141,13 @@ const ModelDetail = ({data = {}}) => {
         </View>
       </View>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={openFilterModal} style={styles.buttonWhite}>
-          <Jost600 style={styles.buttonWhiteText}>More Filters</Jost600>
-        </TouchableOpacity>
-
-        <View style={styles.spacer} />
-
-        <TouchableOpacity onPress={addToWatchlist} style={styles.buttonBlack}>
-          <Jost600 style={styles.buttonBlackText}>
-            {isInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
-          </Jost600>
-        </TouchableOpacity>
-      </View>
+      <DualButton
+        containerStyle={styles.buttonContainer}
+        onPressLeft={openFilterModal}
+        onPressRight={addToWatchlist}
+        textLeft="Market Data"
+        textRight={isInWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+      />
       <FilterModal ref={filterModalRef} />
     </View>
   );

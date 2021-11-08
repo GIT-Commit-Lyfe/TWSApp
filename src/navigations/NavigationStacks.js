@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ListingDetailScreen from '../screens/ListingDetailScreen';
@@ -52,9 +51,7 @@ export function HomeStack({navigation, route}) {
         name="CollectionListings"
         component={CollectionListingsScreen}
         options={{
-          header: () => (
-            <CustomHeader title="Sell:" subtitle="(RLX)126710BNLRO" />
-          ),
+          header: () => <CustomHeader title="Listings" withWatchlist />,
         }}
       />
       <Stack.Screen

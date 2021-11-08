@@ -22,73 +22,6 @@ import TriangleDown from '../../assets/triangle-down.svg';
 import WatchList from '../../assets/watchlist.svg';
 import useBanners from '../../customHooks/useBanners';
 
-const priceBanner = [
-  {
-    id: 1,
-    code: 'RLX',
-    reference: '22334',
-    raising: true,
-    price: 14500,
-    currency: 'EUR',
-  },
-  {
-    id: 2,
-    code: 'RLX',
-    reference: '44556',
-    raising: false,
-    price: 12500,
-    currency: 'EUR',
-  },
-  {
-    id: 3,
-    code: 'RLX',
-    reference: '22334',
-    raising: true,
-    price: 14500,
-    currency: 'EUR',
-  },
-  {
-    id: 4,
-    code: 'RLX',
-    reference: '44556',
-    raising: false,
-    price: 12500,
-    currency: 'EUR',
-  },
-  {
-    id: 5,
-    code: 'RLX',
-    reference: '22334',
-    raising: true,
-    price: 14500,
-    currency: 'EUR',
-  },
-  {
-    id: 6,
-    code: 'RLX',
-    reference: '44556',
-    raising: false,
-    price: 12500,
-    currency: 'EUR',
-  },
-  {
-    id: 7,
-    code: 'RLX',
-    reference: '22334',
-    raising: true,
-    price: 14500,
-    currency: 'EUR',
-  },
-  {
-    id: 8,
-    code: 'RLX',
-    reference: '44556',
-    raising: false,
-    price: 12500,
-    currency: 'EUR',
-  },
-];
-
 export const CustomHeader = ({
   withoutBack = false,
   withoutRight = false,
@@ -184,7 +117,7 @@ const TickerContent = ({data}) => {
   const navigation = useNavigation();
 
   const navigateToModel = item => {
-    navigation.navigate('Model', item);
+    navigation.navigate('Model', {item});
   };
 
   return (
@@ -221,7 +154,10 @@ const TickerContent = ({data}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {backgroundColor: 'white', width},
+  container: {
+    backgroundColor: 'white',
+    width,
+  },
   mainBar: {
     height: figmaHeight(42),
     flexDirection: 'row',

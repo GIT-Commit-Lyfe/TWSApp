@@ -1,6 +1,5 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native';
-import BuyAndSellSummary from '../../components/BuyAndSellSummary';
 import {Jost300, Jost400, Jost500, Jost600} from '../../components/StyledText';
 import styles from './styles';
 import {Form} from '../../components/Inputs';
@@ -9,6 +8,7 @@ import {figmaHeight} from '../../utils/tools';
 import {BasicButton} from '../../components/Buttons';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import BuyAndSell from '../ModelScreen/BuyAndSell';
 
 const ModelSellDetailsScreen = ({navigation}) => {
   const years = ['2010 - 2020', '2016', '2017', '2019', '2020'];
@@ -30,7 +30,13 @@ const ModelSellDetailsScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <View style={styles.innerContainer}>
-        <BuyAndSellSummary />
+        <BuyAndSell
+          summary
+          containerStyle={{
+            marginTop: figmaHeight(20),
+            marginBottom: figmaHeight(12),
+          }}
+        />
       </View>
 
       <Formik

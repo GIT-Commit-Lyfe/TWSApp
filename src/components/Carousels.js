@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import {upperCase} from 'lodash';
-import {width, formatCurrency, figmaWidth} from '../utils/tools';
+import {width, formatCurrency, figmaWidth, height} from '../utils/tools';
 import {Jost300, Jost400, Jost500, Jost600} from '../components/StyledText';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import BottomSheet from './BottomSheet';
@@ -16,7 +16,6 @@ import WatchlistModal from './WatchlistModal';
 import ListingsModal from '../components/ListingsModal';
 import colors from '../constants/colors';
 import GreenArrow from '../assets/arrow-up.svg';
-import {FilterSortModalButton} from './Buttons';
 
 export const FullWidthCarousel = ({data}) => {
   const {
@@ -44,11 +43,7 @@ export const FullWidthCarousel = ({data}) => {
       {data.map((item, idx) => {
         return (
           <TouchableOpacity style={imageContainer} key={idx}>
-            <Image
-              source={item.source}
-              style={imageStyle}
-              onLayout={e => console.log(e.nativeEvent)}
-            />
+            <Image source={item.source} style={imageStyle} />
           </TouchableOpacity>
         );
       })}
@@ -189,6 +184,7 @@ export const PriceTrendCarousel = ({
   navigation,
   fontSize,
   containerStyle,
+  withoutSeeAll,
 }) => {
   const bottomSheetRef = useRef();
   const onPressSeeAll = () => {
@@ -205,6 +201,7 @@ export const PriceTrendCarousel = ({
         title={title}
         onPress={onPressSeeAll}
         fontSize={fontSize}
+        withoutSeeAll={withoutSeeAll}
       />
       <FlatList
         style={PriceTrendCarouselStyle.flatListStyle}
@@ -289,7 +286,7 @@ export const PriceTrendCarousel = ({
           );
         }}
       />
-      <BottomSheet ref={bottomSheetRef} title={title}>
+      <BottomSheet height={height} ref={bottomSheetRef} title={title}>
         <WatchlistModal />
       </BottomSheet>
     </View>
@@ -449,7 +446,7 @@ export const ListingCarousel = ({
           );
         }}
       />
-      <BottomSheet ref={bottomSheetRef} title={title}>
+      <BottomSheet height={height} ref={bottomSheetRef} title={title}>
         <ListingsModal
           navigation={navigation}
           bottomSheetRef={bottomSheetRef}

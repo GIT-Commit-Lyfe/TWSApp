@@ -8,14 +8,17 @@ import ArrowUpIcon from '../../../assets/arrow-up-white.svg';
 
 import styles from './styles';
 
-import {formatCurrency} from '../../../utils/tools';
+import {formatCurrency, width} from '../../../utils/tools';
 
-const BuyAndSell = () => {
+const BuyAndSell = ({summary = false, containerStyle}) => {
   const navigation = useNavigation();
 
   return (
     <SafeAreaView>
-      <View style={styles.buyAndSellPosition}>
+      <View
+        style={
+          summary ? {width, ...containerStyle} : styles.buyAndSellPosition
+        }>
         <View style={styles.buttonContainner}>
           <View style={styles.flexRow}>
             <View style={styles.topContainer}>
@@ -59,32 +62,34 @@ const BuyAndSell = () => {
             </View>
           </View>
 
-          <View style={styles.flexRow}>
-            <TouchableOpacity
-              style={styles.buttonRed}
-              onPress={() => navigation.navigate('ModelSellDetails')}>
-              <Jost600 style={styles.buttonText}>SELL</Jost600>
-              <Jost600 style={styles.buttonTextSmall}>Or Ask</Jost600>
-            </TouchableOpacity>
+          {!summary && (
+            <View style={styles.flexRow}>
+              <TouchableOpacity
+                style={styles.buttonRed}
+                onPress={() => navigation.navigate('ModelSellDetails')}>
+                <Jost600 style={styles.buttonText}>SELL</Jost600>
+                <Jost600 style={styles.buttonTextSmall}>Or Ask</Jost600>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.buttonGray}
-              onPress={() => navigation.navigate('CollectionListings')}>
-              <View style={styles.greyInnerContainer}>
-                <Jost600 style={styles.buttonTextSmall}>Listings</Jost600>
-                <View style={{marginTop: 5}}>
-                  <ArrowUpIcon />
+              <TouchableOpacity
+                style={styles.buttonGray}
+                onPress={() => navigation.navigate('CollectionListings')}>
+                <View style={styles.greyInnerContainer}>
+                  <Jost600 style={styles.buttonTextSmall}>Listings</Jost600>
+                  <View style={{marginTop: 5}}>
+                    <ArrowUpIcon />
+                  </View>
                 </View>
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.buttonGreen}
-              onPress={() => navigation.push('ModelBuy')}>
-              <Jost600 style={styles.buttonText}>BUY</Jost600>
-              <Jost600 style={styles.buttonTextSmall}>Or Bid</Jost600>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity
+                style={styles.buttonGreen}
+                onPress={() => navigation.push('ModelBuy')}>
+                <Jost600 style={styles.buttonText}>BUY</Jost600>
+                <Jost600 style={styles.buttonTextSmall}>Or Bid</Jost600>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </View>
     </SafeAreaView>

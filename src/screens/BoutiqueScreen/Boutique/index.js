@@ -6,7 +6,7 @@ import {View} from 'react-native';
 
 import BoutiqueStyles from './style';
 import {BasicHeader} from '../../../components/Headers';
-import {BasicButton} from '../../../components/Buttons';
+import {DualButton} from '../../../components/Buttons';
 import colors from '../../../constants/colors';
 
 const Boutique = ({boutique}) => {
@@ -19,16 +19,7 @@ const Boutique = ({boutique}) => {
         description={description}
       />
 
-      <View style={BoutiqueStyles.buttonContainer}>
-        <BasicButton
-          text="Follow Boutique"
-          backgroundColor="white"
-          textColor={colors.primary}
-          containerStyle={BoutiqueStyles.flex}
-        />
-        <View style={BoutiqueStyles.separator} />
-        <BasicButton text="Contact" containerStyle={BoutiqueStyles.flex} />
-      </View>
+      <DualButton textLeft="Follow Boutique" textRight="Contact" />
     </View>
   );
 };

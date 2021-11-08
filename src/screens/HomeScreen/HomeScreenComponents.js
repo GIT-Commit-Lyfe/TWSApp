@@ -66,8 +66,6 @@ export const Watches = () => {
     getFollowedListings();
     getPopularNearby();
     getTrendingModels();
-
-    // return setPopularModels([]);
   }, []);
 
   return (
