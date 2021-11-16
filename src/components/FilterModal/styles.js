@@ -1,15 +1,26 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
+import {figmaHeight} from '../../utils/tools';
 
 const styles = StyleSheet.create({
   containerCustomStyle: {
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
+    paddingTop: figmaHeight(16),
   },
-  filterCloseButtonStyle: {alignItems: 'center'},
+  filterCloseButtonStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 30,
+    width: 30,
+    backgroundColor: '#FBFBFB',
+    position: 'absolute',
+    right: 14,
+  },
   filterTitleContainer: {
     borderBottomWidth: 1,
     borderBottomColor: colors.greyCD,
+    paddingBottom: figmaHeight(16),
   },
   titleStyle: {
     fontSize: 24,

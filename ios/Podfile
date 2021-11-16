@@ -17,6 +17,8 @@ target 'TWSApp' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-slider', :path => '../node_modules/@react-native-community/slider'
+
   target 'TWSAppTests' do
     inherit! :complete
     # Pods for testing

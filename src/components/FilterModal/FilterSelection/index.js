@@ -1,43 +1,82 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {FlatList, TouchableOpacity, View} from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import CheckboxBlank from '../../../assets/checkbox-blank.svg';
+import ArrowRight from '../../../assets/arrow-right-black.svg';
 import {withFormikControl} from 'react-native-formik';
 import {Jost300, Jost500, Jost600} from '../../StyledText';
 import styles from './styles';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {figmaHeight, height} from '../../../utils/tools';
+import {figmaHeight, formatCurrency, height} from '../../../utils/tools';
 import colors from '../../../constants/colors';
-import RBSheet from 'react-native-raw-bottom-sheet';
+import SliderInput from '../../Inputs/SliderInput';
+import CustomTextInput from '../../Inputs/CustomTextInput';
 
-const FilterSelection = ({label, items, setFieldValue, currentValues}) => {
-  const bottomSheetRef = useRef();
+const FilterSelection = ({
+  label,
+  value: formikValue,
+  selectionValue: value,
+  name,
+  minValue,
+  maxValue,
+  type = '',
+  onPress = () => {},
+  currentValues,
+  setFieldValue,
+}) => {
+  const [textInputValue, setTextInputValue] = useState(String(value));
 
-  const categoryOnPress = () => {
-    bottomSheetRef.current.open();
+  useEffect(() => {
+    if (!formikValue && value) setFieldValue(Number(value));
+  }, []);
+
+  useEffect(() => {
+    setTextInputValue(String(formikValue));
+  }, [formikValue]);
+
+  const isPrice = type === 'price';
+
+  const onTextInputChange = value => {
+    setTextInputValue(String(value));
+    setFieldValue(Number(value));
   };
 
   return (
     <View style={filterCategoryContainer}>
-      <TouchableOpacity onPress={categoryOnPress} style={titleButtonContainer}>
-        <Jost500 style={filterTitleText}>{label}</Jost500>
-        <MaterialIcons
-          name={'chevron-right'}
-          size={figmaHeight(15)}
-          color={colors.primary}
-        />
-      </TouchableOpacity>
-      <FilterButtons items={currentValues} />
-      <MoreSelectionModal
-        ref={bottomSheetRef}
-        setFieldValue={setFieldValue}
-        currentValues={currentValues}
-        items={items}
-        label={label}
-      />
+      {minValue ? (
+        <View>
+          <Jost500 style={filterTitleText}>{label}</Jost500>
+          <CustomTextInput
+            value={textInputValue}
+            onChange={onTextInputChange}
+            keyboardType="number-pad"
+            style={{
+              marginTop: 7,
+              marginBottom: 20,
+              fontFamily: 'Jost-Medium',
+              color: colors.grey76,
+            }}
+          />
+          <SliderInput
+            name={name}
+            minValue={minValue}
+            maxValue={maxValue}
+            style={{width: '90%', alignSelf: 'center'}}
+          />
+        </View>
+      ) : (
+        <>
+          <TouchableOpacity onPress={onPress} style={titleButtonContainer}>
+            <Jost500 style={filterTitleText}>{label}</Jost500>
+            {value ? <CheckboxBlank /> : <ArrowRight height={15} />}
+          </TouchableOpacity>
+          <FilterButtons items={currentValues} />
+        </>
+      )}
     </View>
   );
 };
 
-const MoreSelectionModal = React.forwardRef(
+const SelectionItems = React.forwardRef(
   ({label, items, setFieldValue, currentValues = []}, ref) => {
     const handlePress = item => {
       const applied = currentValues.some(i => i.value === item.value);
@@ -53,15 +92,7 @@ const MoreSelectionModal = React.forwardRef(
     };
 
     return (
-      <RBSheet
-        ref={ref}
-        closeOnDragDown={true}
-        dragFromTopOnly={true}
-        height={height - 100}
-        customStyles={{
-          container: containerCustomStyle,
-          draggableIcon: {display: 'none'},
-        }}>
+      <>
         <TouchableOpacity onPress={handleClose} style={filterCloseButtonStyle}>
           <MaterialIcons name="expand-more" size={40} color={colors.primary} />
         </TouchableOpacity>
@@ -89,7 +120,7 @@ const MoreSelectionModal = React.forwardRef(
             );
           }}
         />
-      </RBSheet>
+      </>
     );
   },
 );

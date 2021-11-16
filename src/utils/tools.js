@@ -1,5 +1,6 @@
 import React from 'react';
 import {Dimensions, Platform, StyleSheet} from 'react-native';
+import {upperFirst} from 'lodash';
 import {getStatusBarHeight} from 'react-native-status-bar-height';
 import {upperCase} from 'lodash';
 import numeral from 'numeral';

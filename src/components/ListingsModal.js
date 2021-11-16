@@ -154,7 +154,8 @@ export default function ListingsModal({navigation, bottomSheetRef}) {
                     style={styles.smallText}>{`${item.accomodation}`}</Jost300>
                 </View>
                 <View>
-                  <Jost600 style={styles.bigText}>{formatCurrency(item.price)}
+                  <Jost600 style={styles.bigText}>
+                    {formatCurrency(item.price)}
                   </Jost600>
                   <Jost300 style={styles.tinyCopy}>
                     Incl. Chronobase Authentication

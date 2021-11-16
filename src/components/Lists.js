@@ -243,22 +243,10 @@ const CollectionListStyle = StyleSheet.create({
 });
 
 export const TwoRowList = ({ListHeaderComponent, data}) => {
-  const route = useRoute();
   const navigation = useNavigation();
 
   const itemOnPress = item => {
-    const homeStackRoutes = ['CollectionDetail', 'CollectionListings'];
-    const alreadyInHomeStack = homeStackRoutes.includes(route.name);
-
-    // dont use deep navigate if screen is already in home stack
-    if (alreadyInHomeStack) {
-      navigation.navigate('ListingDetail', {data: item});
-    } else {
-      navigation.navigate('Home', {
-        screen: 'ListingDetail',
-        params: {data: item},
-      });
-    }
+    navigation.navigate('ListingDetail', {data: item});
   };
 
   return (

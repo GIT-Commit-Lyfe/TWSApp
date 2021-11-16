@@ -115,10 +115,7 @@ export default function BrandDetailScreen({navigation}) {
   const {brand, logo, details, website} = brandInfo;
 
   const collectionOnPress = item => {
-    navigation.navigate('Home', {
-      screen: 'CollectionDetail',
-      params: {data: item},
-    });
+    navigation.navigate('CollectionDetail', {data: item});
   };
 
   const tabbedPages = [

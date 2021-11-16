@@ -3,10 +3,10 @@ import {FlatList, TouchableOpacity, View} from 'react-native';
 import colors from '../constants/colors';
 import {Jost400, Jost500} from './StyledText';
 
-export function ScrollingTabbedNavigator({data}) {
+export function ScrollingTabbedNavigator({data, containerStyle = {}}) {
   const [componentShownIndex, setComponentShownIndex] = useState(0); // stores index of component to be shown
   return (
-    <>
+    <View style={{...containerStyle}}>
       <FlatList
         style={{
           paddingHorizontal: 10,
@@ -43,7 +43,7 @@ export function ScrollingTabbedNavigator({data}) {
         showsHorizontalScrollIndicator={false}
       />
       {data[componentShownIndex].component}
-    </>
+    </View>
   );
 }
 

@@ -8,5 +8,3 @@ import {
 } from 'react-native-formik';
 
 export const Form = withNextInputAutoFocusForm(View);
-
-

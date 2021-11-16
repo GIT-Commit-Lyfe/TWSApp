@@ -27,8 +27,6 @@ export const FullWidthCarousel = ({data}) => {
     paginationStyle,
   } = FullWidthCarouselStyle;
 
-  const [height, setHeight] = useState(200);
-
   return (
     <Swiper
       autoplay
@@ -37,13 +35,12 @@ export const FullWidthCarousel = ({data}) => {
       activeDotStyle={activeDotStyle}
       dotStyle={dotStyle}
       containerStyle={carouselContainer}
-      height={height}
-      width={width}
+      height={200}
       paginationStyle={paginationStyle}>
       {data.map((item, idx) => {
         return (
           <TouchableOpacity style={imageContainer} key={idx}>
-            <Image source={item.source} style={imageStyle} />
+            <Image source={item.source} height={150} style={imageStyle} />
           </TouchableOpacity>
         );
       })}
@@ -52,16 +49,22 @@ export const FullWidthCarousel = ({data}) => {
 };
 
 const FullWidthCarouselStyle = StyleSheet.create({
-  carouselContainer: {},
+  carouselContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   imageContainer: {
     alignItems: 'center',
-    height: 150,
     justifyContent: 'center',
-    overflow: 'hidden',
   },
   imageStyle: {
+    borderRadius: 10,
     width: width - figmaWidth(20),
+    height: ((width - figmaWidth(20)) * 156) / 375,
+    overflow: 'hidden',
     resizeMode: 'contain',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   activeDotStyle: {
     width: 5,

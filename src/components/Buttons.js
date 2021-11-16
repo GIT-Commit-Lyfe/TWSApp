@@ -187,34 +187,54 @@ const FloatingButtonStyle = StyleSheet.create({
   },
 });
 
-export const BigButton = ({
+export const RoundedButton = ({
   title = 'Buy Now',
   upperText = '',
   lowerText = '',
   containerStyle,
-  fontSize = 11,
+  fontSize = 24,
+  marginBottom = 20,
+  height = 55,
+  backgroundColor = colors.primary,
+  textColor = colors.greyCB,
+  disabled = false,
   onPress = () => {},
 }) => {
   return (
     <SafeAreaView>
       <TouchableOpacity
         onPress={onPress}
-        style={{...BigButtonStyle.button, ...containerStyle}}>
+        style={{
+          ...RoundedButtonStyle.button,
+          backgroundColor: disabled ? colors.greyC4 : backgroundColor,
+          height,
+          marginBottom,
+          ...containerStyle,
+        }}>
         <Jost500
           style={{
-            ...BigButtonStyle.title,
-            fontSize: reserved ? 24 : fontSize,
+            ...RoundedButtonStyle.title,
+            color: disabled ? colors.grey58 : textColor,
+            fontSize,
           }}>
           {title}
         </Jost500>
+        {Boolean(lowerText) && (
+          <Jost500
+            style={{
+              ...RoundedButtonStyle.subtitle,
+              color: disabled ? colors.grey58 : textColor,
+            }}>
+            {lowerText}
+          </Jost500>
+        )}
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
-const BigButtonStyle = StyleSheet.create({
+const RoundedButtonStyle = StyleSheet.create({
   button: {
-    backgroundColor: colors.primary,
     justifyContent: 'center',
     marginHorizontal: 10,
     paddingVertical: 6,
@@ -225,12 +245,12 @@ const BigButtonStyle = StyleSheet.create({
     width: '90%',
   },
   title: {
-    color: colors.greyCD,
     textAlign: 'center',
   },
-  price: {
-    color: colors.greyCD,
+  subtitle: {
     textAlign: 'center',
+    fontSize: 11,
+    lineHeight: 15.9,
   },
 });
 

@@ -16,8 +16,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   filterCategoryContainer: {
-    paddingVertical: 9,
+    paddingVertical: 14,
     paddingHorizontal: 13,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.greyC5,
   },
   titleButtonContainer: {
     flexDirection: 'row',
@@ -26,7 +28,8 @@ const styles = StyleSheet.create({
   },
   filterTitleText: {
     color: colors.grey58,
-    fontSize: 14,
+    fontSize: 18,
+    lineHeight: 26,
   },
   filterItemContainer: {
     borderRadius: 5,

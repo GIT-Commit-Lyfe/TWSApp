@@ -40,113 +40,17 @@ export function HomeStack({navigation, route}) {
           header: () => <CustomHeader tickerOnly />,
         }}
       />
-      <Stack.Screen
-        name="CollectionDetail"
-        component={CollectionDetailScreen}
-        options={{
-          header: () => <CustomHeader />,
-        }}
-      />
-      <Stack.Screen
-        name="CollectionListings"
-        component={CollectionListingsScreen}
-        options={{
-          header: () => <CustomHeader title="Listings" withWatchlist />,
-        }}
-      />
-      <Stack.Screen
-        name="ListingDetail"
-        component={ListingDetailScreen}
-        options={{
-          header: () => <CustomHeader />,
-        }}
-      />
-      <Stack.Screen
-        name="Model"
-        component={ModelScreen}
-        options={{
-          header: () => <CustomHeader withWatchlist />,
-        }}
-      />
-      <Stack.Screen
-        name="ModelSellDetails"
-        component={ModelSellDetailsScreen}
-        options={{
-          header: () => (
-            <CustomHeader title="Sell:" subtitle="(RLX)126710BNLRO" />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="ModelSellPhotos"
-        component={ModelSellPhotosScreen}
-        options={{
-          header: () => (
-            <CustomHeader title="Sell:" subtitle="(RLX)126710BNLRO" />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Camera"
-        component={CameraScreen}
-        options={({route}) => ({
-          header: () => {
-            return <CustomHeader title={route?.params?.title} />;
-          },
-        })}
-      />
-      <Stack.Screen
-        name="ModelSellAskPrice"
-        component={ModelSellAskPriceScreen}
-        options={{
-          header: () => (
-            <CustomHeader title="Sell:" subtitle="(RLX)126710BNLRO" />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="ModelSellPreview"
-        component={ModelSellPreviewScreen}
-        options={{
-          header: () => (
-            <CustomHeader title="Sell:" subtitle="(RLX)126710BNLRO" />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="PaymentMethods"
-        component={PaymentMethodsScreen}
-        options={{
-          header: () => <CustomHeader title="Add Payment Method" />,
-        }}
-      />
-      <Stack.Screen
-        name="ModelBuy"
-        component={ModelBuyScreen}
-        options={{
-          header: () => (
-            <CustomHeader
-              title="Buy:"
-              subtitle="(RLX)126710BNLRO"
-              withWatchlist
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="ModelOrderDetails"
-        component={ModelOrderDetailsScreen}
-        options={{
-          header: () => <CustomHeader title="Review" />,
-        }}
-      />
-      <Stack.Screen
-        name="Success"
-        component={SuccessScreen}
-        options={{
-          header: () => <CustomHeader title="Review" />,
-        }}
-      />
+      {commonScreens.map(screen => {
+        const {name, component, options} = screen;
+        return (
+          <Stack.Screen
+            key={name}
+            name={name}
+            component={component}
+            options={options}
+          />
+        );
+      })}
     </Stack.Navigator>
   );
 }
@@ -172,6 +76,17 @@ export function BoutiqueStack({navigation, route}) {
           header: () => <CustomHeader />,
         }}
       />
+      {commonScreens.map(screen => {
+        const {name, component, options} = screen;
+        return (
+          <Stack.Screen
+            key={name}
+            name={name}
+            component={component}
+            options={options}
+          />
+        );
+      })}
     </Stack.Navigator>
   );
 }
@@ -204,6 +119,17 @@ export function BrandsStack({navigation, route}) {
           header: () => <CustomHeader />,
         }}
       />
+      {commonScreens.map(screen => {
+        const {name, component, options} = screen;
+        return (
+          <Stack.Screen
+            key={name}
+            name={name}
+            component={component}
+            options={options}
+          />
+        );
+      })}
     </Stack.Navigator>
   );
 }
@@ -249,3 +175,91 @@ export function AccountStack() {
     </Stack.Navigator>
   );
 }
+
+const commonScreens = [
+  {
+    name: 'CollectionDetail',
+    component: CollectionDetailScreen,
+    options: {header: () => <CustomHeader />},
+  },
+  {
+    name: 'CollectionListings',
+    component: CollectionListingsScreen,
+    options: {header: () => <CustomHeader title="Listings" withWatchlist />},
+  },
+  {
+    name: 'ListingDetail',
+    component: ListingDetailScreen,
+    options: {header: () => <CustomHeader />},
+  },
+  {
+    name: 'Model',
+    component: ModelScreen,
+    options: {header: () => <CustomHeader withWatchlist />},
+  },
+  {
+    name: 'ModelSellDetails',
+    component: ModelSellDetailsScreen,
+    options: {
+      header: () => <CustomHeader title="Sell:" subtitle="(RLX)126710BNLRO" />,
+    },
+  },
+  {
+    name: 'ModelSellPhotos',
+    component: ModelSellPhotosScreen,
+    options: {
+      header: () => <CustomHeader title="Sell:" subtitle="(RLX)126710BNLRO" />,
+    },
+  },
+  {
+    name: 'Camera',
+    component: CameraScreen,
+    options: {
+      header: () => <CustomHeader />,
+    },
+  },
+  {
+    name: 'ModelSellAskPrice',
+    component: ModelSellAskPriceScreen,
+    options: {
+      header: () => <CustomHeader title="Sell:" subtitle="(RLX)126710BNLRO" />,
+    },
+  },
+  {
+    name: 'ModelSellPreview',
+    component: ModelSellPreviewScreen,
+    options: {
+      header: () => <CustomHeader title="Sell:" subtitle="(RLX)126710BNLRO" />,
+    },
+  },
+  {
+    name: 'PaymentMethods',
+    component: PaymentMethodsScreen,
+    options: {
+      header: () => <CustomHeader title="Add Payment Method" />,
+    },
+  },
+  {
+    name: 'ModelBuy',
+    component: ModelBuyScreen,
+    options: {
+      header: () => (
+        <CustomHeader title="Buy:" subtitle="(RLX)126710BNLRO" withWatchlist />
+      ),
+    },
+  },
+  {
+    name: 'ModelOrderDetails',
+    component: ModelOrderDetailsScreen,
+    options: {
+      header: () => <CustomHeader title="Review" />,
+    },
+  },
+  {
+    name: 'Success',
+    component: SuccessScreen,
+    options: {
+      header: () => <CustomHeader title="Review" />,
+    },
+  },
+];
