@@ -1,12 +1,6 @@
 import React, {useRef, useState} from 'react';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  View,
-  SafeAreaView,
-} from 'react-native';
-import {formatCurrency, height, width} from '../utils/tools';
+import {StyleSheet, TouchableOpacity, View, SafeAreaView} from 'react-native';
+import {formatCurrency} from '../utils/tools';
 import colors from '../constants/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Jost400, Jost500, Jost600} from './StyledText';
