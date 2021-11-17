@@ -12,10 +12,18 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {Jost400, Jost500, Jost600} from './StyledText';
 import Sort from '../assets/sort.svg';
 import FilterModal from './FilterModal';
+import SortModal from './SortModal';
 
 export const FilterSortModalButton = () => {
+  const [sortBy, setSortBy] = useState('newest_date');
   const filterModalRef = useRef();
+  const sortModalRef = useRef();
   const openFilter = () => filterModalRef.current.open();
+  const openSort = () => sortModalRef.current.open();
+
+  const handleSort = value => {
+    setSortBy(value);
+  };
 
   return (
     <View style={FilterSortModalButtonStyle.container}>
@@ -30,11 +38,15 @@ export const FilterSortModalButton = () => {
         <Jost400 style={FilterSortModalButtonStyle.buttonText}>Filter</Jost400>
       </TouchableOpacity>
       <View style={FilterSortModalButtonStyle.separator} />
-      <TouchableOpacity style={FilterSortModalButtonStyle.button}>
+
+      <TouchableOpacity
+        onPress={openSort}
+        style={FilterSortModalButtonStyle.button}>
         <Sort height={15} />
         <Jost400 style={FilterSortModalButtonStyle.buttonText}>Sort</Jost400>
       </TouchableOpacity>
       <FilterModal ref={filterModalRef} />
+      <SortModal sortBy={sortBy} handleSort={handleSort} ref={sortModalRef} />
     </View>
   );
 };
