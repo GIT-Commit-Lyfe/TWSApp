@@ -28,6 +28,7 @@
 		A9A91D6998DB49D78B73ECE5 /* Jost-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A05BB5E5FB64AD69E548337 /* Jost-ExtraBold.ttf */; };
 		BBAC97BEC1784509ADD01533 /* Jost-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B94A22C3234A466297DCE0F0 /* Jost-BoldItalic.ttf */; };
 		BCB2CDD97BC544CD8875EB63 /* Jost-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2754A7A067E4E80A8750E2F /* Jost-BlackItalic.ttf */; };
+		CE8B7DA727413BA10067FE2A /* libswiftWebKit.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8B7DA627413BA00067FE2A /* libswiftWebKit.tbd */; };
 		CFCC91F9E0694C17B6DFCEA4 /* Jost-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F99CEBD64685402C993E3C4E /* Jost-SemiBold.ttf */; };
 		E41FDC5C3418442D8DD80B1C /* Jost-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3EE893E4BA44347B6AF896C /* Jost-Light.ttf */; };
 		E69C5449BE6F4E89BA8B7795 /* Jost-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B84CD8AB371A4BBEB62BE1E1 /* Jost-Black.ttf */; };
@@ -92,6 +93,7 @@
 		C37FAA1969F74941B63586FC /* Jost-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jost-Regular.ttf"; path = "../src/assets/fonts/Jost-Regular.ttf"; sourceTree = "<group>"; };
 		C4018E2ADE1646D59DECA800 /* Jost-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jost-Italic.ttf"; path = "../src/assets/fonts/Jost-Italic.ttf"; sourceTree = "<group>"; };
 		CAA8565DE40143ED9C62B8D8 /* Jost-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jost-Thin.ttf"; path = "../src/assets/fonts/Jost-Thin.ttf"; sourceTree = "<group>"; };
+		CE8B7DA627413BA00067FE2A /* libswiftWebKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftWebKit.tbd; path = usr/lib/swift/libswiftWebKit.tbd; sourceTree = SDKROOT; };
 		CFD4DF1A96321C127E9DDEF7 /* libPods-TWSApp-TWSAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TWSApp-TWSAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2754A7A067E4E80A8750E2F /* Jost-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jost-BlackItalic.ttf"; path = "../src/assets/fonts/Jost-BlackItalic.ttf"; sourceTree = "<group>"; };
 		E3EE893E4BA44347B6AF896C /* Jost-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Jost-Light.ttf"; path = "../src/assets/fonts/Jost-Light.ttf"; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8B7DA727413BA10067FE2A /* libswiftWebKit.tbd in Frameworks */,
 				891683B1A57F420ECCAABBAC /* libPods-TWSApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +157,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE8B7DA627413BA00067FE2A /* libswiftWebKit.tbd */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				3D2E3DB990A52FE388F11B42 /* libPods-TWSApp.a */,
 				CFD4DF1A96321C127E9DDEF7 /* libPods-TWSApp-TWSAppTests.a */,
@@ -622,6 +626,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/swift",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -652,6 +660,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/swift",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
